@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="ka" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AgroBridge (agrobridge.ge) — Production-Ready B2B Agri-Trade Platform</title>
-  <meta name="description" content="Digital Infrastructure for Global Agricultural Trade connecting Verified Farmers, Exporters, Importers, Logistics Providers, Labs, and Banks across Georgia, Caucasus, EU, Central Asia & GCC." />
+  <title>AgroBridge (agrobridge.ge) — Global Agri-Trade Ecosystem</title>
+  <meta name="description" content="Digital Infrastructure for Global Agricultural Trade connecting Georgia, Caucasus, EU, Central Asia & GCC." />
   
   <!-- Fonts: Inter & Noto Sans Georgian -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,7 @@
             }
           },
           fontFamily: {
-            sans: ['Inter', 'Noto Sans Georgian', 'sans-serif'],
+            sans: ['Noto Sans Georgian', 'Inter', 'sans-serif'],
             mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
           }
         }
@@ -59,7 +59,7 @@
     body {
       background-color: #080d1a;
       color: #f8fafc;
-      font-family: 'Inter', 'Noto Sans Georgian', sans-serif;
+      font-family: 'Noto Sans Georgian', 'Inter', sans-serif;
       overflow-x: hidden;
     }
 
@@ -72,6 +72,7 @@
     .glass-card {
       background: rgba(30, 41, 59, 0.55);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.06);
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -118,13 +119,18 @@
 </head>
 <body class="min-h-screen flex flex-col selection:bg-brand-500 selection:text-slate-950">
 
-  <!-- ==================== TOP COMMODITY TICKER ==================== -->
-  <div class="bg-dark-card border-b border-dark-border text-xs py-2 px-4 relative z-50">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <div class="flex items-center space-x-3 overflow-hidden flex-1 mr-4">
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+  <!-- TOP ROLE SWITCHER & TICKER BAR -->
+  <div class="bg-dark-card border-b border-dark-border text-xs py-2 px-4 relative z-40">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2">
+      
+      <!-- Live Ticker -->
+      <div class="flex items-center space-x-3 overflow-hidden flex-1 cursor-pointer" onclick="navigateTo('marketplace')">
         <span class="inline-flex items-center gap-1.5 font-bold text-brand-400 bg-brand-900/50 px-2 py-0.5 rounded border border-brand-500/30 text-[10px] whitespace-nowrap">
           <span class="w-2 h-2 rounded-full bg-brand-400 animate-ping"></span>
-          <span id="txt-ticker-title">LIVE COMMODITY INDEX</span>
+          <span id="t-ticker-badge">AGRI INDEX LIVE</span>
         </span>
         <div class="overflow-hidden relative w-full">
           <div class="ticker-wrapper flex items-center space-x-6 text-slate-300 font-mono text-[11px]">
@@ -132,25 +138,29 @@
             <span>🌰 Georgian Hazelnut Inshell (13-15mm): <strong class="text-emerald-400">$3,200/t</strong> (+1.1%)</span>
             <span>🍏 Polish Gala Apples (Grade A): <strong class="text-slate-200">$650/t</strong> (0.0%)</span>
             <span>🍊 Egyptian Valencia Oranges: <strong class="text-emerald-400">$520/t</strong> (+3.2%)</span>
-            <span>🌾 Kazakh Soft Wheat (Class 3): <strong class="text-red-400">$220/t</strong> (-0.8%)</span>
-            <span>🍷 Kakheti Rkatsiteli Wine 2024: <strong class="text-emerald-400">$1,850/t</strong> (+2.4%)</span>
           </div>
         </div>
       </div>
-      <div class="hidden lg:flex items-center space-x-4 text-slate-400 text-[11px] whitespace-nowrap">
-        <span>Hub: <strong class="text-slate-200">Tbilisi / Poti Port 🇬🇪</strong></span>
-        <span>ISO 20022 Escrow: <strong class="text-emerald-400">ACTIVE</strong></span>
-        <span>FIDO2 Security: <strong class="text-slate-200">ENFORCED</strong></span>
+
+      <!-- Quick Role Switcher -->
+      <div class="flex items-center space-x-2 text-[11px] bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-800">
+        <span class="text-slate-400 font-medium" id="t-lbl-role">როლი:</span>
+        <select id="role-select" onchange="switchUserRole(this.value)" class="bg-slate-950 border border-slate-800 text-brand-400 font-bold rounded px-2 py-0.5 focus:outline-none cursor-pointer">
+          <option value="exporter">🍇 Kakheti Heritage (Exporter 🇬🇪)</option>
+          <option value="importer">🚢 AgriCorp B.V. (Importer 🇳🇱)</option>
+          <option value="admin">🛡️ Super Admin Desk</option>
+        </select>
       </div>
+
     </div>
   </div>
 
-  <!-- ==================== MAIN NAVIGATION HEADER ==================== -->
+  <!-- NAVIGATION HEADER -->
   <header class="sticky top-0 z-40 glass-panel border-b border-dark-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         
-        <!-- BRAND LOGO -->
+        <!-- LOGO -->
         <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
           <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-600 via-brand-500 to-accent-gold p-0.5 shadow-lg shadow-brand-500/20">
             <div class="w-full h-full bg-dark-bg rounded-[10px] flex items-center justify-center">
@@ -166,114 +176,97 @@
           </div>
         </div>
 
-        <!-- NAVIGATION LINKS -->
+        <!-- MAIN NAV BUTTONS -->
         <nav class="hidden xl:flex items-center space-x-1">
-          <button onclick="navigateTo('home')" id="nav-home" class="px-3 py-2 rounded-lg text-xs font-semibold transition-all text-brand-400 bg-brand-900/30 border border-brand-500/30">
-            <span id="lbl-nav-home">Home</span>
+          <button onclick="navigateTo('home')" id="nav-home" class="px-3.5 py-2 rounded-lg text-xs font-bold transition-all text-brand-400 bg-brand-900/30 border border-brand-500/30">
+            <span id="t-nav-home">მთავარი</span>
           </button>
-          <button onclick="navigateTo('marketplace')" id="nav-marketplace" class="px-3 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800/60">
-            <span id="lbl-nav-marketplace">B2B Marketplace</span>
+          <button onclick="navigateTo('marketplace')" id="nav-marketplace" class="px-3.5 py-2 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800/60">
+            <span id="t-nav-marketplace">B2B ბაზარი</span>
           </button>
-          <button onclick="navigateTo('dashboard')" id="nav-dashboard" class="px-3 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center gap-1.5">
+          <button onclick="navigateTo('dashboard')" id="nav-dashboard" class="px-3.5 py-2 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center gap-1.5">
             <i data-lucide="layout-dashboard" class="w-3.5 h-3.5 text-brand-400"></i>
-            <span id="lbl-nav-dashboard">Workspace</span>
+            <span id="t-nav-dashboard">სამუშაო სივრცე</span>
           </button>
-          <button onclick="navigateTo('dealroom')" id="nav-dealroom" class="px-3 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center gap-1">
+          <button onclick="navigateTo('dealroom')" id="nav-dealroom" class="px-3.5 py-2 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center gap-1">
             <i data-lucide="shield-check" class="w-3.5 h-3.5 text-accent-gold"></i>
-            <span id="lbl-nav-dealroom">Deal Room</span>
+            <span id="t-nav-dealroom">გარიგების ოთახი</span>
           </button>
-          <button onclick="navigateTo('services')" id="nav-services" class="px-3 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800/60">Services</button>
-          <button onclick="navigateTo('directories')" id="nav-directories" class="px-3 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800/60">Directories</button>
-          <button onclick="navigateTo('ai')" id="nav-ai" class="px-3 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center gap-1">
+          <button onclick="navigateTo('services')" id="nav-services" class="px-3.5 py-2 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800/60">
+            <span id="t-nav-services">სერვისები</span>
+          </button>
+          <button onclick="navigateTo('ai')" id="nav-ai" class="px-3.5 py-2 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center gap-1">
             <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-400 animate-pulse"></i>
             <span>AgroIntel AI</span>
           </button>
-          <button onclick="navigateTo('admin')" id="nav-admin" class="px-3 py-2 rounded-lg text-xs font-semibold transition-all text-purple-400 bg-purple-900/30 border border-purple-500/30 flex items-center gap-1">
+          <button onclick="navigateTo('admin')" id="nav-admin" class="px-3.5 py-2 rounded-lg text-xs font-bold transition-all text-purple-400 bg-purple-900/30 border border-purple-500/30 flex items-center gap-1">
             <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-purple-400"></i>
-            <span>Admin</span>
+            <span id="t-nav-admin">ადმინისტრაცია</span>
           </button>
         </nav>
 
-        <!-- CONTROLS & LANGUAGE TOGGLE -->
+        <!-- LANGUAGE & CONTROLS -->
         <div class="flex items-center space-x-3">
-          
-          <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-dark-card border border-dark-border rounded-lg px-2 py-1.5 text-xs text-slate-200 font-medium focus:outline-none focus:border-brand-500 cursor-pointer">
-            <option value="en">🇬🇧 English</option>
-            <option value="ka">🇬🇪 ქართული</option>
-            <option value="ru">🇷🇺 Русский</option>
+          <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-dark-card border border-dark-border rounded-lg px-3 py-1.5 text-xs text-slate-200 font-bold focus:outline-none focus:border-brand-500 cursor-pointer">
+            <option value="ka" selected>ქართული</option>
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
           </select>
 
           <button onclick="openModal('modal-rfq')" class="bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-slate-950 font-bold px-3.5 py-2 rounded-xl text-xs shadow-lg shadow-brand-500/25 transition-all flex items-center gap-1">
             <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
-            <span id="btn-txt-post-rfq">Post RFQ</span>
+            <span id="t-btn-post-rfq">RFQ განთავსება</span>
           </button>
-
-          <div onclick="navigateTo('dashboard')" class="flex items-center space-x-2 bg-slate-800/80 hover:bg-slate-700 p-1.5 pr-2.5 rounded-xl border border-dark-border cursor-pointer transition-all">
-            <div class="w-7 h-7 rounded-lg bg-brand-500/20 text-brand-400 font-bold text-xs flex items-center justify-center border border-brand-500/40">KH</div>
-            <div class="text-left hidden lg:block">
-              <p class="text-[10px] font-bold text-white leading-tight">Kakheti Heritage</p>
-              <p class="text-[8px] text-emerald-400 font-medium flex items-center gap-0.5">
-                <i data-lucide="badge-check" class="w-2.5 h-2.5"></i> Gold Passport
-              </p>
-            </div>
-          </div>
-
         </div>
 
       </div>
     </div>
   </header>
 
-  <!-- $100M BOARD REVIEW BANNER -->
-  <div class="bg-gradient-to-r from-purple-950 via-slate-900 to-slate-950 border-b border-purple-500/40 py-2.5 px-4 text-xs text-center text-slate-200">
-    <span class="inline-flex items-center gap-1.5 font-black text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30 text-[10px]">
-      <i data-lucide="award" class="w-3.5 h-3.5"></i> $100M BOARD APPROVED ARCHITECTURE
-    </span>
-    <span class="ml-2 text-slate-300 hidden md:inline">ISO 20022 Tri-Party Escrow Hooks • Demurrage Engine • UNECE Quality Taxonomy • AWS Aurora Global DB • FIDO2 WebAuthn Passkeys.</span>
-  </div>
-
-  <!-- ==================== MAIN VIEW CONTAINER ==================== -->
+  <!-- MAIN APP VIEWS -->
   <main id="app-container" class="flex-grow">
     
-    <!-- VIEW 1: HOME -->
+    <!-- VIEW 1: PORTAL HOME -->
     <section id="view-home" class="view-section py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-brand-500/30 text-xs text-brand-400 font-medium">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-brand-500/30 text-xs text-brand-400 font-medium cursor-pointer" onclick="navigateTo('services')">
             <i data-lucide="globe" class="w-3.5 h-3.5"></i>
-            <span>Connecting Georgia, Caucasus, EU, Central Asia & GCC</span>
+            <span id="t-hero-tag">საქართველო, კავკასია, ევროკავშირი, ცენტრალური აზია და GCC</span>
           </div>
           
-          <h1 class="text-4xl sm:text-5xl font-black text-white tracking-tight leading-[1.1]">
-            Digital Infrastructure for <span class="gradient-text">Global Agri-Trade</span>
+          <h1 class="text-4xl sm:text-5xl font-black text-white tracking-tight leading-[1.1]" id="t-hero-title">
+            ციფრული ინფრასტრუქტურა <span class="gradient-text">გლობალური აგრო ვაჭრობისთვის</span>
           </h1>
           
-          <p class="text-base text-slate-300 leading-relaxed" id="txt-hero-subtitle">
-            AgroBridge is the enterprise B2B trade management ecosystem connecting verified producers, exporters, importers, logistics providers, and certification bodies in standard-compliant, secure international transactions.
+          <p class="text-base text-slate-300 leading-relaxed" id="t-hero-desc">
+            AgroBridge არის B2B აგრო ვაჭრობის ეკოსისტემა, რომელიც აკავშირებს ვერიფიცირებულ მწარმოებლებს, ექსპორტიორებს, იმპორტიორებს, ლოჯისტიკურ ოპერატორებსა და სერტიფიცირების ორგანობს.
           </p>
 
+          <!-- Interactive Search Engine -->
           <div class="glass-panel p-2 rounded-2xl border border-slate-700 flex flex-col sm:flex-row gap-2 max-w-2xl">
             <div class="flex-1 relative flex items-center">
               <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5"></i>
-              <input type="text" placeholder="Search products, hazelnut, wine, supplier name, HSN code..." class="w-full bg-slate-950 text-xs text-white pl-10 pr-4 py-3 rounded-xl focus:outline-none focus:border-brand-500" />
+              <input type="text" id="inp-home-search" onkeyup="if(event.key==='Enter') handleSearch()" placeholder="მოძებნეთ პროდუქცია, თხილი, ღვინო, კომპანია, HSN კოდი..." class="w-full bg-slate-950 text-xs text-white pl-10 pr-4 py-3 rounded-xl focus:outline-none focus:border-brand-500" />
             </div>
-            <button onclick="navigateTo('marketplace')" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold px-6 py-3 rounded-xl text-xs flex items-center justify-center gap-2">
-              <span>Search B2B Engine</span>
+            <button onclick="handleSearch()" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold px-6 py-3 rounded-xl text-xs flex items-center justify-center gap-2">
+              <span id="t-btn-search">ძებნა</span>
             </button>
           </div>
 
+          <!-- Live Metrics (All Clickable!) -->
           <div class="grid grid-cols-3 gap-6 pt-6 border-t border-slate-800/80 max-w-xl">
-            <div>
-              <h4 class="text-2xl font-black text-white">$48M+</h4>
-              <p class="text-xs text-slate-400 mt-1">Verified Trade Volume</p>
+            <div class="cursor-pointer group" onclick="navigateTo('marketplace')">
+              <h4 class="text-2xl font-black text-white group-hover:text-brand-400 transition-colors">$48M+</h4>
+              <p class="text-xs text-slate-400 mt-1" id="t-stat-vol">ვერიფიცირებული ვაჭრობა</p>
             </div>
-            <div>
-              <h4 class="text-2xl font-black text-brand-400">1,280+</h4>
-              <p class="text-xs text-slate-400 mt-1">Verified Enterprise Passports</p>
+            <div class="cursor-pointer group" onclick="navigateTo('admin')">
+              <h4 class="text-2xl font-black text-brand-400 group-hover:underline" id="stat-verified-count">1,280+</h4>
+              <p class="text-xs text-slate-400 mt-1" id="t-stat-comp">ვერიფიცირებული კომპანია</p>
             </div>
-            <div>
-              <h4 class="text-2xl font-black text-accent-gold">99.4%</h4>
-              <p class="text-xs text-slate-400 mt-1">Dispute-Free Settlement</p>
+            <div class="cursor-pointer group" onclick="navigateTo('dealroom')">
+              <h4 class="text-2xl font-black text-accent-gold group-hover:text-amber-300 transition-colors">99.4%</h4>
+              <p class="text-xs text-slate-400 mt-1" id="t-stat-succ">წარმატებული გარიგება</p>
             </div>
           </div>
         </div>
@@ -283,180 +276,268 @@
             <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
               <div class="flex items-center gap-2">
                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <h3 class="text-xs font-bold text-white uppercase tracking-wider">Caucasus Trade Corridor Live</h3>
+                <h3 class="text-xs font-bold text-white uppercase tracking-wider" id="t-corridor-title">კავკასიის სავაჭრო დერეფანი Live</h3>
               </div>
-              <span class="text-[10px] text-slate-400 font-mono">Poti / Batumi Ports</span>
+              <span class="text-[10px] text-slate-400 font-mono">Poti / Batumi</span>
             </div>
 
-            <div class="bg-slate-950 rounded-xl p-4 border border-slate-900 space-y-3 text-xs">
-              <div class="flex items-center justify-between p-3 rounded-lg bg-slate-900/80 border border-slate-800">
-                <div class="flex items-center gap-3">
-                  <span class="text-xl">🍷</span>
-                  <div>
-                    <p class="font-bold text-white">Kakheti Rkatsiteli (Organic)</p>
-                    <p class="text-[10px] text-slate-400">Telavi 🇬🇪 ➔ Rotterdam 🇳🇱</p>
-                  </div>
-                </div>
-                <span class="font-bold text-brand-400">24 Tonnes</span>
-              </div>
-              <div class="flex items-center justify-between p-3 rounded-lg bg-slate-900/80 border border-slate-800">
-                <div class="flex items-center gap-3">
-                  <span class="text-xl">🌰</span>
-                  <div>
-                    <p class="font-bold text-white">Samegrelo Inshell Hazelnut</p>
-                    <p class="text-[10px] text-slate-400">Poti 🇬🇪 ➔ Hamburg 🇩🇪</p>
-                  </div>
-                </div>
-                <span class="font-bold text-brand-400">40 Tonnes</span>
-              </div>
+            <div class="bg-slate-950 rounded-xl p-4 border border-slate-900 space-y-3 text-xs" id="corridor-stream-container">
+              <!-- Rendered dynamically -->
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- VIEW 2: B2B MARKETPLACE (PROMPT 3) -->
+    <!-- VIEW 2: MARKETPLACE WITH LIVE FILTERING -->
     <section id="view-marketplace" class="view-section hidden py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 class="text-3xl font-black text-white">B2B Agricultural Marketplace</h1>
-          <p class="text-slate-400 text-xs mt-1">Discover verified Sell Offers, Buyer RFQs, and 3PL Services.</p>
+          <h1 class="text-3xl font-black text-white" id="t-mkt-title">B2B აგრო ბაზარი</h1>
+          <p class="text-slate-400 text-xs mt-1" id="t-mkt-desc">იხილეთ გასაყიდი შეთავაზებები, მყიდველთა RFQ მოთხოვნები და 3PL სერვისები.</p>
         </div>
 
         <div class="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
-          <button id="tab-btn-products" onclick="switchMarketplaceTab('products')" class="px-4 py-2 rounded-lg font-bold bg-brand-500 text-slate-950 shadow">Sell Offers (14)</button>
-          <button id="tab-btn-rfqs" onclick="switchMarketplaceTab('rfqs')" class="px-4 py-2 rounded-lg font-bold text-slate-400 hover:text-white">Buyer RFQs (8)</button>
-          <button id="tab-btn-services" onclick="switchMarketplaceTab('services')" class="px-4 py-2 rounded-lg font-bold text-slate-400 hover:text-white">Services & 3PL (6)</button>
+          <button id="tab-btn-products" onclick="switchMarketplaceTab('products')" class="px-4 py-2 rounded-lg font-bold bg-brand-500 text-slate-950 shadow">
+            <span id="t-tab-offers">გასაყიდი შეთავაზებები (14)</span>
+          </button>
+          <button id="tab-btn-rfqs" onclick="switchMarketplaceTab('rfqs')" class="px-4 py-2 rounded-lg font-bold text-slate-400 hover:text-white">
+            <span id="t-tab-rfqs">მყიდველთა RFQ (8)</span>
+          </button>
+          <button id="tab-btn-services" onclick="switchMarketplaceTab('services')" class="px-4 py-2 rounded-lg font-bold text-slate-400 hover:text-white">
+            <span id="t-tab-services">სერვისები & 3PL (6)</span>
+          </button>
         </div>
+      </div>
+
+      <!-- Quick Category Filter Pills -->
+      <div class="flex items-center gap-2 mb-6 overflow-x-auto text-xs pb-2">
+        <span class="text-slate-400 font-medium whitespace-nowrap" id="t-lbl-filter">ფილტრი:</span>
+        <button onclick="filterMarketplace('all')" class="bg-brand-500/20 text-brand-400 font-bold px-3 py-1 rounded-full border border-brand-500/40" id="t-flt-all">ყველა</button>
+        <button onclick="filterMarketplace('hazelnut')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium px-3 py-1 rounded-full border border-slate-800" id="t-flt-hazelnut">🌰 თხილი</button>
+        <button onclick="filterMarketplace('wine')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium px-3 py-1 rounded-full border border-slate-800" id="t-flt-wine">🍷 ღვინო</button>
+        <button onclick="filterMarketplace('fruit')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium px-3 py-1 rounded-full border border-slate-800" id="t-flt-fruit">🍏 ხილი</button>
       </div>
 
       <div id="grid-products" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
       <div id="grid-rfqs" class="grid grid-cols-1 md:grid-cols-2 gap-6 hidden"></div>
-      <div id="grid-services" class="grid grid-cols-1 md:grid-cols-3 gap-6 hidden">
-        <div class="glass-card p-5 rounded-xl space-y-3">
-          <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xs">SGS</div>
-          <h3 class="text-sm font-bold text-white">SGS Georgia Quality Inspection</h3>
-          <p class="text-xs text-slate-400">Pre-shipment phytosanitary clearance & aflatoxin lab testing at Poti Sea Port.</p>
-          <button onclick="alert('Booking SGS Quality Inspection...')" class="w-full bg-slate-800 text-white font-bold py-2 rounded-lg text-xs">Book Inspection &rarr;</button>
-        </div>
-      </div>
+      <div id="grid-services" class="grid grid-cols-1 md:grid-cols-3 gap-6 hidden"></div>
     </section>
 
-    <!-- VIEW 3: ENTERPRISE WORKSPACE DASHBOARD (PROMPT 4) -->
+    <!-- VIEW 3: WORKSPACE DASHBOARD -->
     <section id="view-dashboard" class="view-section hidden py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="glass-panel p-6 rounded-2xl mb-8 border border-brand-500/30">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div class="flex items-center gap-4">
-            <div class="w-14 h-14 rounded-2xl bg-brand-500/20 text-brand-400 font-black text-2xl flex items-center justify-center border border-brand-500/40">KH</div>
+            <div class="w-14 h-14 rounded-2xl bg-brand-500/20 text-brand-400 font-black text-2xl flex items-center justify-center border border-brand-500/40" id="dash-avatar">KH</div>
             <div>
               <div class="flex items-center gap-2">
-                <h1 class="text-xl font-black text-white">Kakheti Heritage Agricultural Group LLC 🇬🇪</h1>
+                <h1 class="text-xl font-black text-white" id="dash-company-name">Kakheti Heritage LLC 🇬🇪</h1>
                 <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-extrabold px-2 py-0.5 rounded border border-emerald-500/40">GOLD PASSPORT</span>
               </div>
-              <p class="text-xs text-slate-400">Authenticated Daily B2B Workplace • Exporter & Producer Profile</p>
+              <p class="text-xs text-slate-400" id="dash-company-role">Authenticated B2B Workplace • Exporter Profile</p>
             </div>
           </div>
           <div class="flex items-center gap-4 text-xs">
             <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-900 text-center">
-              <span class="text-[10px] text-slate-500 block">Trust Score</span>
+              <span class="text-[10px] text-slate-500 block" id="t-lbl-trust">ნდობის რეიტინგი</span>
               <strong class="text-emerald-400 text-sm">96 / 100</strong>
             </div>
             <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-900 text-center">
-              <span class="text-[10px] text-slate-500 block">Subscription</span>
+              <span class="text-[10px] text-slate-500 block" id="t-lbl-sub">პაკეტი</span>
               <strong class="text-amber-400 text-xs">Professional Exporter</strong>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Action Priorities & AI Briefing -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
         <div class="lg:col-span-6 glass-panel p-6 rounded-2xl space-y-3 border border-brand-500/40">
           <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('ai')">
               <i data-lucide="sparkles" class="w-4 h-4 text-brand-400 animate-pulse"></i>
-              <h3 class="text-xs font-bold text-white uppercase tracking-wider">AgroIntel AI Daily Business Briefing</h3>
+              <h3 class="text-xs font-bold text-white uppercase tracking-wider" id="t-ai-briefing-title">AgroIntel AI ყოველდღიური ბრიფინგი</h3>
             </div>
-            <span class="text-[9px] text-slate-500">Updated 10m ago</span>
+            <span class="text-[9px] text-slate-500" id="t-ai-briefing-time">განახლდა 10წთ წინ</span>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            "European Union demand for Organic Bio Wine is up <strong class="text-emerald-400">+14%</strong> this week. AgriCorp Netherlands posted a new RFQ for 40 Tonnes of Shelled Hazelnuts matching your Kakheti inventory."
+          <p class="text-xs text-slate-300 leading-relaxed" id="t-ai-briefing-body">
+            "ევროკავშირში ბიო ღვინოზე მოთხოვნა გაიზარდა +14%-ით. AgriCorp Netherlands-მა გამოაქვეყნა 40 ტონა თხილის RFQ."
           </p>
+          <button onclick="navigateTo('dealroom')" class="bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 text-xs font-bold px-3 py-1.5 rounded-lg border border-brand-500/40 transition-all" id="t-btn-open-deal">გარიგების გახსნა &rarr;</button>
         </div>
 
         <div class="lg:col-span-6 glass-panel p-6 rounded-2xl space-y-3">
           <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h3 class="text-xs font-bold text-white uppercase tracking-wider">Today's Action Priorities (3)</h3>
-            <span class="bg-amber-500/20 text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded">ACTION REQUIRED</span>
+            <h3 class="text-xs font-bold text-white uppercase tracking-wider" id="t-actions-title">დღევანდელი პრიორიტეტები (3)</h3>
+            <span class="bg-amber-500/20 text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded" id="t-actions-tag">საჭიროებს ყურადღებას</span>
           </div>
-          <div class="space-y-2 text-xs">
-            <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-950 border border-slate-900">
-              <span>Upload Phytosanitary Cert for Deal #AG-2026-9042</span>
-              <button onclick="navigateTo('dealroom')" class="text-brand-400 font-bold">Upload &rarr;</button>
-            </div>
+          <div class="space-y-2 text-xs" id="dashboard-actions-list">
+            <!-- Rendered dynamically -->
           </div>
+        </div>
+      </div>
+
+      <!-- Product Inventory Table -->
+      <div class="glass-panel p-6 rounded-2xl">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <i data-lucide="box" class="w-4 h-4 text-brand-400"></i> <span id="t-inv-title">პროდუქციის მარაგების მართვა</span>
+          </h3>
+          <button onclick="triggerCSVImport()" class="text-xs bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg border border-slate-700 font-semibold">+ CSV</button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-950 text-slate-400 uppercase text-[10px]">
+              <tr>
+                <th class="p-3" id="t-th-prod">პროდუქცია</th>
+                <th class="p-3" id="t-th-qty">ხელმისაწვდომი მარაგი</th>
+                <th class="p-3" id="t-th-price">ერთეულის ფასი</th>
+                <th class="p-3" id="t-th-status">სტატუსი</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300" id="inventory-tbody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
 
-    <!-- VIEW 4: CONTRACT DEAL ROOM (PROMPT 3 & BOARD ENHANCEMENTS) -->
+    <!-- VIEW 4: DEAL ROOM WORKSPACE -->
     <section id="view-dealroom" class="view-section hidden py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-dark-border">
         <div>
           <div class="flex items-center gap-3">
             <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded border border-emerald-500/30">DEAL #AG-2026-9042</span>
-            <span class="text-xs text-emerald-400 flex items-center gap-1 font-mono"><i data-lucide="lock" class="w-3 h-3"></i> ISO 20022 ESCROW LOCKED</span>
+            <span class="text-xs text-emerald-400 flex items-center gap-1 font-mono cursor-pointer" onclick="showToast('Escrow status verified on ISO 20022 blockchain ledger.', 'info')"><i data-lucide="lock" class="w-3 h-3"></i> ESCROW LOCKED ($76,800 USD)</span>
           </div>
-          <h1 class="text-2xl font-black text-white mt-2">Contract Deal Room: 24 Tonnes Georgian Bio Hazelnuts</h1>
+          <h1 class="text-2xl font-black text-white mt-2" id="t-deal-main-title">გარიგების ოთახი: 24 ტონა ქართული ბიო თხილი</h1>
+          <p class="text-xs text-slate-400" id="t-deal-main-sub">გამყიდველი: Kakheti Heritage LLC 🇬🇪 | მყიდველი: AgriCorp Netherlands B.V. 🇳🇱</p>
         </div>
         <div class="flex items-center gap-3">
-          <button onclick="openModal('modal-negotiate')" class="bg-slate-800 text-white font-semibold px-4 py-2 rounded-xl text-xs border border-slate-700">Submit Counter-Offer</button>
-          <button onclick="advanceDealStage()" class="bg-brand-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs">+ Advance Milestone &rarr;</button>
+          <button onclick="openModal('modal-negotiate')" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-4 py-2 rounded-xl text-xs border border-slate-700" id="t-btn-counter">შეთავაზების კორექტირება</button>
+          <button onclick="advanceDealStage()" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs shadow-lg" id="t-btn-stage">+ ეტაპის წინწაწევა &rarr;</button>
         </div>
       </div>
 
-      <div class="glass-panel p-4 rounded-xl mb-6 flex items-center justify-between border border-blue-500/30 text-xs">
-        <div class="flex items-center gap-3">
-          <i data-lucide="thermometer" class="w-5 h-5 text-blue-400 animate-pulse"></i>
-          <div>
-            <span class="font-bold text-white block">Reefer Container #MAEU-992103 Live IoT Telemetry & Demurrage Monitor</span>
-            <span class="text-slate-400 text-[10px]">Temp: <strong class="text-emerald-400">+4.2°C</strong> | Humidity: <strong class="text-emerald-400">55%</strong> | Laytime Free Hours Left: <strong class="text-amber-400">48h</strong></span>
+      <!-- Milestone Timeline Progress -->
+      <div class="glass-panel p-6 rounded-2xl mb-8">
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-6" id="t-deal-milestone-heading">გარიგების 5-ეტაპიანი პროგრესი</h3>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-center text-xs" id="deal-milestones-container">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Contract Specs & Chat -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="glass-panel p-6 rounded-2xl">
+            <h3 class="text-sm font-bold text-white mb-4" id="t-deal-incoterm-title">ხელშეკრულების პირობები (Incoterms 2020)</h3>
+            <div class="grid grid-cols-2 gap-4 text-xs">
+              <div class="bg-slate-950 p-3 rounded-lg border border-slate-900">
+                <span class="text-slate-400 text-[10px] block" id="t-lbl-crop">პროდუქცია</span>
+                <span class="font-bold text-white" id="d-spec-prod">ქართული თხილი (13-15მმ)</span>
+              </div>
+              <div class="bg-slate-950 p-3 rounded-lg border border-slate-900">
+                <span class="text-slate-400 text-[10px] block" id="t-lbl-vol">მოცულობა</span>
+                <span class="font-bold text-emerald-400" id="d-spec-vol">24.0 ტონა</span>
+              </div>
+              <div class="bg-slate-950 p-3 rounded-lg border border-slate-900">
+                <span class="text-slate-400 text-[10px] block" id="t-lbl-inco">ფასი & Incoterm</span>
+                <span class="font-bold text-white" id="d-spec-price">CIF Rotterdam @ $3,200 / ტონა</span>
+              </div>
+              <div class="bg-slate-950 p-3 rounded-lg border border-slate-900">
+                <span class="text-slate-400 text-[10px] block" id="t-lbl-tot">ჯამური ღირებულება</span>
+                <span class="font-bold text-amber-400" id="d-spec-total">$76,800 USD</span>
+              </div>
+            </div>
           </div>
         </div>
-        <span class="bg-blue-500/20 text-blue-400 font-bold px-2.5 py-1 rounded text-[10px]">Poti Sea Port Terminal 2</span>
+
+        <div class="lg:col-span-5 space-y-6">
+          <div class="glass-panel p-6 rounded-2xl flex flex-col h-[400px]">
+            <h3 class="text-sm font-bold text-white pb-3 mb-3 border-b border-slate-800 flex justify-between">
+              <span id="t-chat-title">დაცული ჩათი</span>
+              <span class="text-[10px] text-emerald-400"><i data-lucide="lock" class="w-3 h-3 inline"></i> Encrypted</span>
+            </h3>
+            <div id="deal-chat-messages" class="flex-1 overflow-y-auto space-y-3 pr-2 text-xs">
+              <!-- Rendered dynamically -->
+            </div>
+            <div class="mt-3 pt-3 border-t border-slate-800 flex gap-2">
+              <input type="text" id="inp-chat-msg" onkeyup="if(event.key==='Enter') sendChatMessage()" placeholder="ჩაწერეთ შეტყობინება..." class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white" />
+              <button onclick="sendChatMessage()" class="bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold px-4 py-2 rounded-lg text-xs" id="t-btn-send">გაგზავნა</button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- VIEW 5: AGROINTEL AI HUB (PROMPT 5) -->
+    <!-- VIEW 5: SERVICES ECOSYSTEM -->
+    <section id="view-services" class="view-section hidden py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10 text-center max-w-2xl mx-auto">
+        <h1 class="text-3xl font-black text-white" id="t-srv-title">სერვისების ეკოსისტემა</h1>
+        <p class="text-xs text-slate-400 mt-2" id="t-srv-desc">B2B სავაჭრო სერვისები აგრო მიწოდების ჯაჭვის თითოეულ ეტაპზე.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="services-grid-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- VIEW 6: AGROINTEL AI ENGINE HUB -->
     <section id="view-ai" class="view-section hidden py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-black text-white mb-2">AgroIntel AI Engine Services</h1>
-      <p class="text-xs text-slate-400 mb-8">AI buyer matchmaking, semantic search, document OCR parsing, and multilingual translation.</p>
+      <h1 class="text-3xl font-black text-white mb-2" id="t-ai-hub-title">AgroIntel AI ძრავის სერვისები</h1>
+      <p class="text-xs text-slate-400 mb-8" id="t-ai-hub-desc">ხელოვნური ინტელექტის მატჩმეიკინგი, სემანტიკური ძებნა, OCR სერტიფიკატების წაკითხვა და თარგმანი.</p>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div class="lg:col-span-6 glass-panel p-6 rounded-2xl space-y-4 border border-brand-500/40">
-          <h3 class="text-sm font-bold text-white flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-brand-400"></i> AI Matchmaker Engine</h3>
-          <input type="text" value="Organic Kakheti Rkatsiteli White Amber Wine" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white" />
-          <button onclick="runAIMatchmaker()" class="w-full bg-brand-500 text-slate-950 font-bold py-2.5 rounded-lg text-xs">Scan Matchmaking Database &rarr;</button>
-          <div id="ai-match-result" class="bg-slate-950 p-4 rounded-xl border border-brand-500/30 text-xs hidden">
-            <span class="font-bold text-brand-400 block mb-1">AgriCorp Netherlands B.V. (98% Match)</span>
-            <p class="text-slate-300 text-[11px]">Letter of Credit ready. ISO 22000 required.</p>
+          <h3 class="text-sm font-bold text-white flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-brand-400"></i> <span id="t-ai-card-title">AI მატჩმეიკინგის ძრავა</span></h3>
+          <input type="text" id="inp-ai-spec" value="კახური რქაწითელი ქვევრის ღვინო (ბიო)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white" />
+          <button onclick="runAIMatchmaker()" class="w-full bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold py-2.5 rounded-lg text-xs" id="t-btn-ai-scan">მყიდველის მოძებნა &rarr;</button>
+          <div id="ai-match-result" class="bg-slate-950 p-4 rounded-xl border border-brand-500/30 text-xs hidden space-y-2">
+            <span class="font-bold text-brand-400 block" id="t-ai-res-buyer">AgriCorp Netherlands B.V. (98% თავსებადობა)</span>
+            <p class="text-slate-300 text-[11px]" id="t-ai-res-desc">აკრედიტირებული ევროპული იმპორტიორი. Letter of Credit მზადყოფნაშია.</p>
+            <button onclick="navigateTo('dealroom')" class="w-full mt-2 bg-brand-500 text-slate-950 font-bold py-1.5 rounded text-xs">შეთავაზების გაგზავნა →</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- VIEW 6: PLATFORM ADMIN CONTROL CENTER (PROMPT 6) -->
+    <!-- VIEW 7: PLATFORM ADMIN CONTROL CENTER -->
     <section id="view-admin" class="view-section hidden py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-black text-white mb-2">Platform Command & Governance Center</h1>
-      <p class="text-xs text-slate-400 mb-6">Manage passport verifications, marketplace moderation, CMS banners, and immutable audit logs.</p>
+      <h1 class="text-3xl font-black text-white mb-2" id="t-adm-main-title">პლატფორმის ადმინისტრირების ცენტრი</h1>
+      <p class="text-xs text-slate-400 mb-6" id="t-adm-main-desc">პასპორტების ვერიფიკაცია, მოდერაცია და უსაფრთხოების აუდიტი.</p>
       
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-center text-xs">
-        <div class="glass-panel p-4 rounded-xl">
-          <span class="text-slate-400 block text-[10px]">Active Verified Companies</span>
-          <strong class="text-2xl font-black text-white mt-1 block">1,280</strong>
+        <div class="glass-panel p-4 rounded-xl cursor-pointer" onclick="navigateTo('marketplace')">
+          <span class="text-slate-400 block text-[10px]" id="t-adm-lbl-comp">ვერიფიცირებული კომპანიები</span>
+          <strong class="text-2xl font-black text-white mt-1 block" id="adm-count-comp">1,280</strong>
         </div>
         <div class="glass-panel p-4 rounded-xl">
-          <span class="text-slate-400 block text-[10px]">Pending Passport Queue</span>
-          <strong class="text-2xl font-black text-amber-400 mt-1 block">14</strong>
+          <span class="text-slate-400 block text-[10px]" id="t-adm-lbl-queue">განაცხადები რიგში</span>
+          <strong class="text-2xl font-black text-amber-400 mt-1 block" id="adm-count-queue">14</strong>
+        </div>
+      </div>
+
+      <!-- Verification Queue Table -->
+      <div class="glass-panel p-6 rounded-2xl">
+        <h3 class="text-sm font-bold text-white mb-4" id="t-adm-queue-title">პასპორტის ვერიფიკაციის რიგი</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-950 text-slate-400 uppercase text-[10px]">
+              <tr>
+                <th class="p-3" id="t-adm-th-comp">კომპანია</th>
+                <th class="p-3" id="t-adm-th-cntry">ქვეყანა</th>
+                <th class="p-3" id="t-adm-th-docs">დოკუმენტები</th>
+                <th class="p-3" id="t-adm-th-act">მოქმედება</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300" id="adm-queue-body">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -464,73 +545,255 @@
   </main>
 
   <!-- MODALS -->
-  <div id="modal-rfq" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+  <div id="modal-rfq" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="if(event.target===this) closeModal('modal-rfq')">
     <div class="glass-panel w-full max-w-xl rounded-2xl p-6 relative border border-brand-500/40">
       <button onclick="closeModal('modal-rfq')" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
-      <h2 class="text-xl font-bold text-white mb-2">Post Sourcing Request (RFQ)</h2>
+      <h2 class="text-xl font-bold text-white mb-2" id="t-m-rfq-title">RFQ სავაჭრო მოთხოვნის განთავსება</h2>
       <form onsubmit="submitRFQ(event)" class="space-y-4 text-xs">
-        <input type="text" required placeholder="e.g. 50 Tonnes Organic Shelled Hazelnuts" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white" />
-        <button type="submit" class="bg-brand-500 text-slate-950 font-bold px-5 py-2 rounded-lg">Broadcast RFQ &rarr;</button>
+        <div>
+          <label class="text-slate-400 block mb-1" id="t-m-rfq-lbl1">პროდუქცია & მოცულობა</label>
+          <input type="text" id="rfq-inp-crop" required placeholder="50 Tonnes Organic Shelled Hazelnuts" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white" />
+        </div>
+        <div>
+          <label class="text-slate-400 block mb-1" id="t-m-rfq-lbl2">სამიზნე ფასი ($ / ტონა)</label>
+          <input type="text" id="rfq-inp-price" required placeholder="$3,150 USD" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white" />
+        </div>
+        <button type="submit" class="w-full bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold py-2.5 rounded-lg" id="t-m-rfq-btn">RFQ-ს გამოქვეყნება &rarr;</button>
       </form>
     </div>
   </div>
 
-  <div id="modal-negotiate" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+  <div id="modal-negotiate" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="if(event.target===this) closeModal('modal-negotiate')">
     <div class="glass-panel w-full max-w-lg rounded-2xl p-6 relative border border-amber-500/40">
       <button onclick="closeModal('modal-negotiate')" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
-      <h2 class="text-xl font-bold text-white mb-1">Structured Counter-Offer Builder</h2>
+      <h2 class="text-xl font-bold text-white mb-1" id="t-m-neg-title">შეთავაზების კორექტირება (Counter-Offer)</h2>
       <form onsubmit="submitNegotiation(event)" class="space-y-4 text-xs">
         <div class="grid grid-cols-2 gap-4">
-          <input type="number" value="3150" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white" />
-          <input type="number" value="24" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white" />
+          <div>
+            <label class="text-slate-400 block mb-1" id="t-m-neg-lbl1">ახალი ფასი ($ / ტონა)</label>
+            <input type="number" id="neg-inp-price" value="3150" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white" />
+          </div>
+          <div>
+            <label class="text-slate-400 block mb-1" id="t-m-neg-lbl2">ახალი მოცულობა (ტონა)</label>
+            <input type="number" id="neg-inp-vol" value="24" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white" />
+          </div>
         </div>
-        <button type="submit" class="bg-amber-500 text-slate-950 font-bold px-5 py-2 rounded-lg">Submit Counter-Offer &rarr;</button>
+        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2.5 rounded-lg" id="t-m-neg-btn">კორექტირებული პირობის გაგზავნა &rarr;</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-sample" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="if(event.target===this) closeModal('modal-sample')">
+    <div class="glass-panel w-full max-w-md rounded-2xl p-6 relative border border-blue-500/40">
+      <button onclick="closeModal('modal-sample')" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+      <h2 class="text-lg font-bold text-white mb-2" id="t-m-smp-title">2კგ საკონტროლო ნიმუშის შეკვეთა</h2>
+      <form onsubmit="submitSampleOrder(event)" class="space-y-3 text-xs">
+        <p class="text-slate-300" id="t-m-smp-desc">საკურიერო გაგზავნა DHL/FedEx-ის საშუალებით (48 საათში).</p>
+        <input type="text" id="inp-sample-addr" required placeholder="Delivery Address" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white" />
+        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-2.5 rounded-lg" id="t-m-smp-btn">შეკვეთის დადასტურება ($45) &rarr;</button>
       </form>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer class="bg-slate-950 border-t border-dark-border py-8 mt-auto text-xs text-center text-slate-500">
-    <p>&copy; 2026 AgroBridge Platform (agrobridge.ge). Complete Enterprise B2B Agri-Trade Operating System.</p>
+    <p>&copy; 2026 AgroBridge Platform (agrobridge.ge). <span id="t-footer-rights">ყველა უფლება დაცულია.</span></p>
   </footer>
 
   <script>
     lucide.createIcons();
 
-    const dictionary = {
-      en: {
-        ticker: "LIVE COMMODITY INDEX",
-        navHome: "Home",
-        navMarketplace: "B2B Marketplace",
-        navDashboard: "Workspace",
-        navDealroom: "Deal Room",
-        btnPostRFQ: "Post RFQ"
-      },
+    // 100% Comprehensive Translation Dictionary for Georgian, English, and Russian
+    const i18n = {
       ka: {
-        ticker: "აგრო ინდექსი პირდაპირ ეთერში",
-        navHome: "მთავარი",
-        navMarketplace: "B2B ბაზარი",
-        navDashboard: "სამუშაო სივრცე",
-        navDealroom: "გარიგების ოთახი",
-        btnPostRFQ: "RFQ განთავსება"
+        roleLbl: "როლი:",
+        tickerBadge: "AGRI INDEX LIVE",
+        navHome: "მთავარი", navMarketplace: "B2B ბაზარი", navDashboard: "სამუშაო სივრცე",
+        navDealroom: "გარიგების ოთახი", navServices: "სერვისები", navAdmin: "ადმინისტრაცია",
+        btnPostRFQ: "RFQ განთავსება",
+        heroTag: "საქართველო, კავკასია, ევროკავშირი, ცენტრალური აზია და GCC",
+        heroTitle: "ციფრული ინფრასტრუქტურა <span class='gradient-text'>გლობალური აგრო ვაჭრობისთვის</span>",
+        heroDesc: "AgroBridge არის B2B აგრო ვაჭრობის ეკოსისტემა, რომელიც აკავშირებს ვერიფიცირებულ მწარმოებლებს, ექსპორტიორებს, იმპორტიორებს, ლოჯისტიკურ ოპერატორებსა და სერტიფიცირების ორგანობს.",
+        searchPlaceholder: "მოძებნეთ პროდუქცია, თხილი, ღვინო, კომპანია...",
+        chatPlaceholder: "ჩაწერეთ შეტყობინება...",
+        sampleAddrPlaceholder: "მიწოდების მისამართი (ევროპა / GCC)",
+        btnSearch: "ძებნა", statVol: "ვერიფიცირებული ვაჭრობა", statComp: "ვერიფიცირებული კომპანია", statSucc: "წარმატებული გარიგება",
+        corridorTitle: "კავკასიის სავაჭრო დერეფანი Live", mktTitle: "B2B აგრო ბაზარი", mktDesc: "იხილეთ გასაყიდი შეთავაზებები, მყიდველთა RFQ მოთხოვნები და 3PL სერვისები.",
+        tabOffers: "გასაყიდი შეთავაზებები (14)", tabRfqs: "მყიდველთა RFQ (8)", tabServices: "სერვისები & 3PL (6)",
+        lblFilter: "ფილტრი:", fltAll: "ყველა", fltHazelnut: "🌰 თხილი", fltWine: "🍷 ღვინო", fltFruit: "🍏 ხილი",
+        lblTrust: "ნდობის რეიტინგი", lblSub: "პაკეტი",
+        aiBriefingTitle: "AgroIntel AI ყოველდღიური ბრიფინგი", aiBriefingTime: "განახლდა 10წთ წინ",
+        aiBriefingBody: '"ევროკავშირში ბიო ღვინოზე მოთხოვნა გაიზარდა +14%-ით. AgriCorp Netherlands-მა გამოაქვეყნა 40 ტონა თხილის RFQ."',
+        btnOpenDeal: "გარიგების გახსნა →", actionsTitle: "დღევანდელი პრიორიტეტები (3)", actionsTag: "საჭიროებს ყურადღებას",
+        invTitle: "პროდუქციის მარაგების მართვა", thProd: "პროდუქცია", thQty: "ხელმისაწვდომი მარაგი", thPrice: "ერთეულის ფასი", thStatus: "სტატუსი",
+        dealMainTitle: "გარიგების ოთახი: 24 ტონა ქართული ბიო თხილი",
+        dealMainSub: "გამყიდველი: Kakheti Heritage LLC 🇬🇪 | მყიდველი: AgriCorp Netherlands B.V. 🇳🇱",
+        btnCounter: "შეთავაზების კორექტირება", btnStage: "+ ეტაპის წინწაწევა →",
+        dealMilestoneHeading: "გარიგების 5-ეტაპიანი პროგრესი", dealIncotermTitle: "ხელშეკრულების პირობები (Incoterms 2020)",
+        lblCrop: "პროდუქცია", lblVol: "მოცულობა", lblInco: "ფასი & Incoterm", lblTot: "ჯამური ღირებულება",
+        chatTitle: "დაცული ჩათი", btnSend: "გაგზავნა",
+        srvTitle: "სერვისების ეკოსისტემა", srvDesc: "B2B სავაჭრო სერვისები აგრო მიწოდების ჯაჭვის თითოეულ ეტაპზე.",
+        aiHubTitle: "AgroIntel AI ძრავის სერვისები", aiHubDesc: "ხელოვნური ინტელექტის მატჩმეიკინგი, სემანტიკური ძებნა, OCR სერტიფიკატების წაკითხვა და თარგმანი.",
+        aiCardTitle: "AI მატჩმეიკინგის ძრავა", btnAiScan: "მყიდველის მოძებნა →",
+        aiResBuyer: "AgriCorp Netherlands B.V. (98% თავსებადობა)", aiResDesc: "აკრედიტირებული ევროპული იმპორტიორი. Letter of Credit მზადყოფნაშია.",
+        admMainTitle: "პლატფორმის ადმინისტრირების ცენტრი", admMainDesc: "პასპორტების ვერიფიკაცია, მოდერაცია და უსაფრთხოების აუდიტი.",
+        admLblComp: "ვერიფიცირებული კომპანიები", admLblQueue: "განაცხადები რიგში", admQueueTitle: "პასპორტის ვერიფიკაციის რიგი",
+        admThComp: "კომპანია", admThCntry: "ქვეყანა", admThDocs: "დოკუმენტები", admThAct: "მოქმედება",
+        mRfqTitle: "RFQ სავაჭრო მოთხოვნის განთავსება", mRfqLbl1: "პროდუქცია & მოცულობა", mRfqLbl2: "სამიზნე ფასი ($ / ტონა)", mRfqBtn: "RFQ-ს გამოქვეყნება →",
+        mNegTitle: "შეთავაზების კორექტირება (Counter-Offer)", mNegLbl1: "ახალი ფასი ($ / ტონა)", mNegLbl2: "ახალი მოცულობა (ტონა)", mNegBtn: "კორექტირებული პირობის გაგზავნა →",
+        mSmpTitle: "2კგ საკონტროლო ნიმუშის შეკვეთა", mSmpDesc: "საკურიერო გაგზავნა DHL/FedEx-ის საშუალებით (48 საათში).", mSmpBtn: "შეკვეთის დადასტურება ($45) →",
+        footerRights: "ყველა უფლება დაცულია.", toastLang: "ენად არჩეულია: ქართული", toastCsv: "CSV იმპორტი დაწყებულია..."
+      },
+      en: {
+        roleLbl: "Role:",
+        tickerBadge: "LIVE AGRI INDEX",
+        navHome: "Home", navMarketplace: "B2B Marketplace", navDashboard: "Workspace",
+        navDealroom: "Deal Room", navServices: "Services", navAdmin: "Admin",
+        btnPostRFQ: "Post RFQ",
+        heroTag: "Connecting Georgia, Caucasus, EU, Central Asia & GCC",
+        heroTitle: "Digital Infrastructure for <span class='gradient-text'>Global Agri-Trade</span>",
+        heroDesc: "AgroBridge is the enterprise B2B trade management ecosystem connecting verified producers, exporters, importers, logistics providers, and certification bodies.",
+        searchPlaceholder: "Search products, hazelnut, wine, supplier name, HSN code...",
+        chatPlaceholder: "Type a message...",
+        sampleAddrPlaceholder: "Delivery Address (EU / GCC)",
+        btnSearch: "Search", statVol: "Verified Trade Volume", statComp: "Verified Companies", statSucc: "Dispute-Free Settlement",
+        corridorTitle: "Caucasus Trade Corridor Live", mktTitle: "B2B Agricultural Marketplace", mktDesc: "Discover verified Sell Offers, Buyer RFQs, and 3PL Services.",
+        tabOffers: "Sell Offers (14)", tabRfqs: "Buyer RFQs (8)", tabServices: "Services & 3PL (6)",
+        lblFilter: "Filter:", fltAll: "All", fltHazelnut: "🌰 Hazelnuts", fltWine: "🍷 Wine", fltFruit: "🍏 Fruit",
+        lblTrust: "Trust Rating", lblSub: "Subscription",
+        aiBriefingTitle: "AgroIntel AI Daily Briefing", aiBriefingTime: "Updated 10m ago",
+        aiBriefingBody: '"EU demand for Organic Bio Wine rose +14%. AgriCorp Netherlands published a new RFQ for 40 Tonnes of Shelled Hazelnuts."',
+        btnOpenDeal: "Open Deal Room →", actionsTitle: "Today's Priorities (3)", actionsTag: "ACTION REQUIRED",
+        invTitle: "Inventory Batch Management", thProd: "Product", thQty: "Available Stock", thPrice: "Unit Price", thStatus: "Status",
+        dealMainTitle: "Contract Deal Room: 24 Tonnes Georgian Bio Hazelnuts",
+        dealMainSub: "Seller: Kakheti Heritage LLC 🇬🇪 | Buyer: AgriCorp Netherlands B.V. 🇳🇱",
+        btnCounter: "Submit Counter-Offer", btnStage: "+ Advance Milestone →",
+        dealMilestoneHeading: "5-Stage Contract Progress", dealIncotermTitle: "Contract Specifications (Incoterms 2020)",
+        lblCrop: "Product", lblVol: "Volume", lblInco: "Price & Incoterm", lblTot: "Total Contract Value",
+        chatTitle: "Encrypted Deal Chat", btnSend: "Send",
+        srvTitle: "Services Ecosystem", srvDesc: "B2B agricultural supply chain services across every trade milestone.",
+        aiHubTitle: "AgroIntel AI Engine Hub", aiHubDesc: "AI buyer matchmaking, semantic search, document OCR parsing, and multilingual translation.",
+        aiCardTitle: "AI Matchmaker Engine", btnAiScan: "Scan Matchmaking Database →",
+        aiResBuyer: "AgriCorp Netherlands B.V. (98% Match)", aiResDesc: "Accredited European Importer. Letter of Credit ready.",
+        admMainTitle: "Platform Command & Governance Center", admMainDesc: "Business passport verification, moderation, and immutable audit stream.",
+        admLblComp: "Verified Companies", admLblQueue: "Queue Applications", admQueueTitle: "Passport Verification Queue",
+        admThComp: "Company", admThCntry: "Country", admThDocs: "Documents", admThAct: "Action",
+        mRfqTitle: "Broadcast Sourcing Request (RFQ)", mRfqLbl1: "Crop & Volume", mRfqLbl2: "Target Price ($ / Tonne)", mRfqBtn: "Broadcast RFQ →",
+        mNegTitle: "Structured Counter-Offer Builder", mNegLbl1: "New Price ($ / Tonne)", mNegLbl2: "New Volume (Tonnes)", mNegBtn: "Submit Counter-Offer →",
+        mSmpTitle: "Order 2kg Commercial Sample Box", mSmpDesc: "Express dispatch via DHL/FedEx (within 48 hours).", mSmpBtn: "Confirm Order ($45) →",
+        footerRights: "All rights reserved.", toastLang: "Language selected: English", toastCsv: "CSV import initiated..."
       },
       ru: {
-        ticker: "ПРЯМОЙ АГРО ИНДЕКС",
-        navHome: "Главная",
-        navMarketplace: "B2B Маркетплейс",
-        navDashboard: "Кабинет",
-        navDealroom: "Сделка",
-        btnPostRFQ: "Создать RFQ"
+        roleLbl: "Роль:",
+        tickerBadge: "ПРЯМОЙ АГРО ИНДЕКС",
+        navHome: "Главная", navMarketplace: "B2B Маркетплейс", navDashboard: "Кабинет",
+        navDealroom: "Сделка", navServices: "Сервисы", navAdmin: "Админ",
+        btnPostRFQ: "Создать RFQ",
+        heroTag: "Грузия, Кавказ, ЕС, Центральная Азия и GCC",
+        heroTitle: "Цифровая инфраструктура для <span class='gradient-text'>мировой агро-торговли</span>",
+        heroDesc: "AgroBridge — международная экосистема B2B торговли для фермеров, экспортеров, импортеров и логистических операторов.",
+        searchPlaceholder: "Поиск товаров, фундука, вина, компании, кода HSN...",
+        chatPlaceholder: "Введите сообщение...",
+        sampleAddrPlaceholder: "Адрес доставки (ЕС / GCC)",
+        btnSearch: "Поиск", statVol: "Объем торговли", statComp: "Проверенных компаний", statSucc: "Успешных сделок",
+        corridorTitle: "Кавказский торговый коридор Live", mktTitle: "B2B Агро Маркетплейс", mktDesc: "Торговые предложения, запросы покупателей (RFQ) и 3PL сервисы.",
+        tabOffers: "Продажа (14)", tabRfqs: "Запросы RFQ (8)", tabServices: "Сервисы (6)",
+        lblFilter: "Фильтр:", fltAll: "Все", fltHazelnut: "🌰 Фундук", fltWine: "🍷 Вино", fltFruit: "🍏 Фрукты",
+        lblTrust: "Рейтинг доверия", lblSub: "Тариф",
+        aiBriefingTitle: "Ежедневный брифинг AgroIntel AI", aiBriefingTime: "Обновлено 10 мин назад",
+        aiBriefingBody: '"Спрос в ЕС на органическое вино вырос на +14%. AgriCorp Netherlands опубликовали запрос на 40 тонн фундука."',
+        btnOpenDeal: "Открыть сделку →", actionsTitle: "Приоритеты на сегодня (3)", actionsTag: "ТРЕБУЕТ ВНИМАНИЯ",
+        invTitle: "Управление товарными запасами", thProd: "Продукция", thQty: "Доступный остаток", thPrice: "Цена за единицу", thStatus: "Статус",
+        dealMainTitle: "Комната сделки: 24 тонны грузинского био фундука",
+        dealMainSub: "Продавец: Kakheti Heritage LLC 🇬🇪 | Покупатель: AgriCorp Netherlands B.V. 🇳🇱",
+        btnCounter: "Изменить условия", btnStage: "+ Продвинуть этап →",
+        dealMilestoneHeading: "5-этапный прогресс сделки", dealIncotermTitle: "Условия контракта (Incoterms 2020)",
+        lblCrop: "Продукция", lblVol: "Объем", lblInco: "Цена и Incoterm", lblTot: "Общая сумма контракта",
+        chatTitle: "Защищенный чат сделки", btnSend: "Отправить",
+        srvTitle: "Экосистема сервисов", srvDesc: "B2B сервисы для каждого этапа агро-логистической цепи.",
+        aiHubTitle: "Сервисы ИИ AgroIntel", aiHubDesc: "Умный подбор покупателей, семантический поиск, OCR распознавание документов и перевод.",
+        aiCardTitle: "ИИ модуль подбора сделок", btnAiScan: "Сканировать базу покупателей →",
+        aiResBuyer: "AgriCorp Netherlands B.V. (98% совпадение)", aiResDesc: "Аккредитованный европейский импортер. Аккредитив готов.",
+        admMainTitle: "Центр управления платформой", admMainDesc: "Верификация паспортов компаний, модерация и аудит.",
+        admLblComp: "Проверенные компании", admLblQueue: "Заявки в очереди", admQueueTitle: "Очередь верификации паспортов",
+        admThComp: "Компания", admThCntry: "Страна", admThDocs: "Документы", admThAct: "Действие",
+        mRfqTitle: "Создать запрос на покупку (RFQ)", mRfqLbl1: "Культура и объем", mRfqLbl2: "Целевая цена ($ / тонна)", mRfqBtn: "Опубликовать RFQ →",
+        mNegTitle: "Конструктор встречного предложения", mNegLbl1: "Новая цена ($ / тонна)", mNegLbl2: "Новый объем (тонн)", mNegBtn: "Отправить условия →",
+        mSmpTitle: "Заказать 2кг образцов продукции", mSmpDesc: "Экспресс-доставка через DHL/FedEx (за 48 часов).", mSmpBtn: "Подтвердить заказ ($45) →",
+        footerRights: "Все права защищены.", toastLang: "Язык выбран: Русский", toastCsv: "Импорт CSV запущен..."
       }
     };
 
+    // State Store
     const state = {
-      currentLang: 'en',
-      products: [
-        { id: 'prod-1', title: 'Georgian Organic Shelled Hazelnuts (13-15mm)', supplier: 'Kakheti Heritage LLC 🇬🇪', price: '$3,200 / Tonne', image: '🌰' },
-        { id: 'prod-2', title: 'Kakheti Rkatsiteli Qvevri White Amber Wine 2024', supplier: 'Telavi Wine Cellars 🇬🇪', price: '$1,850 / Tonne', image: '🍷' }
+      currentLang: 'ka',
+      activeRole: 'exporter',
+      dealStage: 2,
+      verifiedCompanyCount: 1280,
+      dealSpecs: { product: 'ქართული თხილი (13-15მმ)', volume: 24.0, unitPrice: 3200, total: 76800 }
+    };
+
+    const localizedProducts = {
+      ka: [
+        { id: 'p1', title: 'ქართული ორგანული თხილი (13-15მმ)', category: 'hazelnut', supplier: 'შპს კახეთის მემკვიდრეობა 🇬🇪', price: '$3,200 / ტონა', image: '🌰', badge: 'EUR.1 DCFTA 0%' },
+        { id: 'p2', title: 'კახური რქაწითელი ქვევრის ღვინო 2024', category: 'wine', supplier: 'თელავის ღვინის მარანი 🇬🇪', price: '$1,850 / ტონა', image: '🍷', badge: 'ISO 22000' },
+        { id: 'p3', title: 'ქართული წითელი ვაშლი (გრადუსი A)', category: 'fruit', supplier: 'გორის ბაღები 🇬🇪', price: '$650 / ტონა', image: '🍏', badge: 'GLOBALG.A.P' }
+      ],
+      en: [
+        { id: 'p1', title: 'Georgian Organic Shelled Hazelnuts (13-15mm)', category: 'hazelnut', supplier: 'Kakheti Heritage LLC 🇬🇪', price: '$3,200 / Tonne', image: '🌰', badge: 'EUR.1 DCFTA 0%' },
+        { id: 'p2', title: 'Kakheti Rkatsiteli Qvevri White Amber Wine 2024', category: 'wine', supplier: 'Telavi Wine Cellars 🇬🇪', price: '$1,850 / Tonne', image: '🍷', badge: 'ISO 22000' },
+        { id: 'p3', title: 'Georgian Red Gala Apples (Grade A)', category: 'fruit', supplier: 'Gori Orchards 🇬🇪', price: '$650 / Tonne', image: '🍏', badge: 'GLOBALG.A.P' }
+      ],
+      ru: [
+        { id: 'p1', title: 'Грузинский очищенный био фундук (13-15мм)', category: 'hazelnut', supplier: 'Kakheti Heritage LLC 🇬🇪', price: '$3,200 / тонна', image: '🌰', badge: 'EUR.1 DCFTA 0%' },
+        { id: 'p2', title: 'Кахетинское Ркацители Квеври 2024', category: 'wine', supplier: 'Telavi Wine Cellars 🇬🇪', price: '$1,850 / тонна', image: '🍷', badge: 'ISO 22000' },
+        { id: 'p3', title: 'Грузинские красные яблоки Gala (Сорт А)', category: 'fruit', supplier: 'Сады Гори 🇬🇪', price: '$650 / тонна', image: '🍏', badge: 'GLOBALG.A.P' }
       ]
     };
+
+    const localizedRFQs = {
+      ka: [
+        { id: 'r1', title: '40 ტონა ქართული თხილის შესყიდვა', buyer: 'AgriCorp Netherlands B.V. 🇳🇱', budget: '$3,150 / ტონა' },
+        { id: 'r2', title: '10,000 ბოთლი რქაწითელის შესყიდვა', buyer: 'Bordeaux Imports SA 🇫🇷', budget: '$1,800 / ტონა' }
+      ],
+      en: [
+        { id: 'r1', title: 'Sourcing 40 Tonnes Organic Shelled Hazelnuts', buyer: 'AgriCorp Netherlands B.V. 🇳🇱', budget: '$3,150 / Tonne' },
+        { id: 'r2', title: 'Sourcing 10,000 Bottles Qvevri Amber Wine', buyer: 'Bordeaux Imports SA 🇫🇷', budget: '$1,800 / Tonne' }
+      ],
+      ru: [
+        { id: 'r1', title: 'Закупка 40 тонн био фундука', buyer: 'AgriCorp Netherlands B.V. 🇳🇱', budget: '$3,150 / тонна' },
+        { id: 'r2', title: 'Закупка 10,000 бутылок вина Квеври', buyer: 'Bordeaux Imports SA 🇫🇷', budget: '$1,800 / тонна' }
+      ]
+    };
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const bgClass = type === 'success' ? 'bg-emerald-600 border-emerald-400' : 'bg-slate-800 border-brand-500';
+      toast.className = `${bgClass} text-white text-xs px-4 py-3 rounded-xl shadow-2xl border flex items-center gap-2 pointer-events-auto transition-all transform translate-y-2`;
+      toast.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4 text-brand-400"></i> <span>${message}</span>`;
+      container.appendChild(toast);
+      lucide.createIcons();
+      setTimeout(() => { toast.remove(); }, 3500);
+    }
+
+    function switchUserRole(role) {
+      state.activeRole = role;
+      if (role === 'exporter') {
+        document.getElementById('dash-company-name').innerText = 'Kakheti Heritage LLC 🇬🇪';
+        document.getElementById('dash-company-role').innerText = state.currentLang === 'ka' ? 'ავტორიზებული B2B სამუშაო სივრცე • ექსპორტიორი' : (state.currentLang === 'ru' ? 'Авторизованный кабинет • Экспортер' : 'Authenticated B2B Workplace • Exporter');
+        document.getElementById('dash-avatar').innerText = 'KH';
+      } else if (role === 'importer') {
+        document.getElementById('dash-company-name').innerText = 'AgriCorp Netherlands B.V. 🇳🇱';
+        document.getElementById('dash-company-role').innerText = state.currentLang === 'ka' ? 'ავტორიზებული B2B სამუშაო სივრცე • ევროპელი იმპორტიორი' : (state.currentLang === 'ru' ? 'Авторизованный кабинет • Импортер ЕС' : 'Authenticated B2B Workplace • European Importer');
+        document.getElementById('dash-avatar').innerText = 'AN';
+      } else {
+        document.getElementById('dash-company-name').innerText = 'AgroBridge Super Admin Desk';
+        document.getElementById('dash-company-role').innerText = state.currentLang === 'ka' ? 'პლატფორმის გლობალური მართვის ცენტრი' : (state.currentLang === 'ru' ? 'Глобальный центр управления' : 'Global Platform Command Center');
+        document.getElementById('dash-avatar').innerText = 'AD';
+      }
+      showToast(`Role: ${role.toUpperCase()}`, 'success');
+    }
 
     function navigateTo(viewId) {
       document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
@@ -552,13 +815,320 @@
 
     function changeLanguage(lang) {
       state.currentLang = lang;
-      const dict = dictionary[lang];
-      document.getElementById('txt-ticker-title').innerText = dict.ticker;
-      document.getElementById('lbl-nav-home').innerText = dict.navHome;
-      document.getElementById('lbl-nav-marketplace').innerText = dict.navMarketplace;
-      document.getElementById('lbl-nav-dashboard').innerText = dict.navDashboard;
-      document.getElementById('lbl-nav-dealroom').innerText = dict.navDealroom;
-      document.getElementById('btn-txt-post-rfq').innerText = dict.btnPostRFQ;
+      const dict = i18n[lang];
+
+      // Update ALL static elements
+      document.getElementById('t-lbl-role').innerText = dict.roleLbl;
+      document.getElementById('t-ticker-badge').innerText = dict.tickerBadge;
+      document.getElementById('t-nav-home').innerText = dict.navHome;
+      document.getElementById('t-nav-marketplace').innerText = dict.navMarketplace;
+      document.getElementById('t-nav-dashboard').innerText = dict.navDashboard;
+      document.getElementById('t-nav-dealroom').innerText = dict.navDealroom;
+      document.getElementById('t-nav-services').innerText = dict.navServices;
+      document.getElementById('t-nav-admin').innerText = dict.navAdmin;
+      document.getElementById('t-btn-post-rfq').innerText = dict.btnPostRFQ;
+      document.getElementById('t-hero-tag').innerText = dict.heroTag;
+      document.getElementById('t-hero-title').innerHTML = dict.heroTitle;
+      document.getElementById('t-hero-desc').innerText = dict.heroDesc;
+
+      // UPDATE INPUT PLACEHOLDERS DYNAMICALLY
+      document.getElementById('inp-home-search').placeholder = dict.searchPlaceholder;
+      document.getElementById('inp-chat-msg').placeholder = dict.chatPlaceholder;
+      document.getElementById('inp-sample-addr').placeholder = dict.sampleAddrPlaceholder;
+
+      document.getElementById('t-btn-search').innerText = dict.btnSearch;
+      document.getElementById('t-stat-vol').innerText = dict.statVol;
+      document.getElementById('t-stat-comp').innerText = dict.statComp;
+      document.getElementById('t-stat-succ').innerText = dict.statSucc;
+      document.getElementById('t-corridor-title').innerText = dict.corridorTitle;
+      document.getElementById('t-mkt-title').innerText = dict.mktTitle;
+      document.getElementById('t-mkt-desc').innerText = dict.mktDesc;
+      document.getElementById('t-tab-offers').innerText = dict.tabOffers;
+      document.getElementById('t-tab-rfqs').innerText = dict.tabRfqs;
+      document.getElementById('t-tab-services').innerText = dict.tabServices;
+      document.getElementById('t-lbl-filter').innerText = dict.lblFilter;
+      document.getElementById('t-flt-all').innerText = dict.fltAll;
+      document.getElementById('t-flt-hazelnut').innerText = dict.fltHazelnut;
+      document.getElementById('t-flt-wine').innerText = dict.fltWine;
+      document.getElementById('t-flt-fruit').innerText = dict.fltFruit;
+      document.getElementById('t-lbl-trust').innerText = dict.lblTrust;
+      document.getElementById('t-lbl-sub').innerText = dict.lblSub;
+      document.getElementById('t-ai-briefing-title').innerText = dict.aiBriefingTitle;
+      document.getElementById('t-ai-briefing-time').innerText = dict.aiBriefingTime;
+      document.getElementById('t-ai-briefing-body').innerHTML = dict.aiBriefingBody;
+      document.getElementById('t-btn-open-deal').innerText = dict.btnOpenDeal;
+      document.getElementById('t-actions-title').innerText = dict.actionsTitle;
+      document.getElementById('t-actions-tag').innerText = dict.actionsTag;
+      document.getElementById('t-inv-title').innerText = dict.invTitle;
+      document.getElementById('t-th-prod').innerText = dict.thProd;
+      document.getElementById('t-th-qty').innerText = dict.thQty;
+      document.getElementById('t-th-price').innerText = dict.thPrice;
+      document.getElementById('t-th-status').innerText = dict.thStatus;
+      document.getElementById('t-deal-main-title').innerText = dict.dealMainTitle;
+      document.getElementById('t-deal-main-sub').innerText = dict.dealMainSub;
+      document.getElementById('t-btn-counter').innerText = dict.btnCounter;
+      document.getElementById('t-btn-stage').innerText = dict.btnStage;
+      document.getElementById('t-deal-milestone-heading').innerText = dict.dealMilestoneHeading;
+      document.getElementById('t-deal-incoterm-title').innerText = dict.dealIncotermTitle;
+      document.getElementById('t-lbl-crop').innerText = dict.lblCrop;
+      document.getElementById('t-lbl-vol').innerText = dict.lblVol;
+      document.getElementById('t-lbl-inco').innerText = dict.lblInco;
+      document.getElementById('t-lbl-tot').innerText = dict.lblTot;
+      document.getElementById('t-chat-title').innerText = dict.chatTitle;
+      document.getElementById('t-btn-send').innerText = dict.btnSend;
+      document.getElementById('t-srv-title').innerText = dict.srvTitle;
+      document.getElementById('t-srv-desc').innerText = dict.srvDesc;
+      document.getElementById('t-ai-hub-title').innerText = dict.aiHubTitle;
+      document.getElementById('t-ai-hub-desc').innerText = dict.aiHubDesc;
+      document.getElementById('t-ai-card-title').innerText = dict.aiCardTitle;
+      document.getElementById('t-btn-ai-scan').innerText = dict.btnAiScan;
+      document.getElementById('t-ai-res-buyer').innerText = dict.aiResBuyer;
+      document.getElementById('t-ai-res-desc').innerText = dict.aiResDesc;
+      document.getElementById('t-adm-main-title').innerText = dict.admMainTitle;
+      document.getElementById('t-adm-main-desc').innerText = dict.admMainDesc;
+      document.getElementById('t-adm-lbl-comp').innerText = dict.admLblComp;
+      document.getElementById('t-adm-lbl-queue').innerText = dict.admLblQueue;
+      document.getElementById('t-adm-queue-title').innerText = dict.admQueueTitle;
+      document.getElementById('t-adm-th-comp').innerText = dict.admThComp;
+      document.getElementById('t-adm-th-cntry').innerText = dict.admThCntry;
+      document.getElementById('t-adm-th-docs').innerText = dict.admThDocs;
+      document.getElementById('t-adm-th-act').innerText = dict.admThAct;
+      document.getElementById('t-m-rfq-title').innerText = dict.mRfqTitle;
+      document.getElementById('t-m-rfq-lbl1').innerText = dict.mRfqLbl1;
+      document.getElementById('t-m-rfq-lbl2').innerText = dict.mRfqLbl2;
+      document.getElementById('t-m-rfq-btn').innerText = dict.mRfqBtn;
+      document.getElementById('t-m-neg-title').innerText = dict.mNegTitle;
+      document.getElementById('t-m-neg-lbl1').innerText = dict.mNegLbl1;
+      document.getElementById('t-m-neg-lbl2').innerText = dict.mNegLbl2;
+      document.getElementById('t-m-neg-btn').innerText = dict.mNegBtn;
+      document.getElementById('t-m-smp-title').innerText = dict.mSmpTitle;
+      document.getElementById('t-m-smp-desc').innerText = dict.mSmpDesc;
+      document.getElementById('t-m-smp-btn').innerText = dict.mSmpBtn;
+      document.getElementById('t-footer-rights').innerText = dict.footerRights;
+
+      // Re-render localized dynamic components
+      renderProducts();
+      renderRFQs();
+      renderCorridorStream();
+      renderDashboardActions();
+      renderInventoryTable();
+      renderServicesGrid();
+      renderAdminQueue();
+      renderMilestones();
+      renderChat();
+
+      showToast(dict.toastLang, 'success');
+    }
+
+    function renderCorridorStream() {
+      const container = document.getElementById('corridor-stream-container');
+      if (!container) return;
+      const isKa = state.currentLang === 'ka';
+      const isRu = state.currentLang === 'ru';
+      container.innerHTML = `
+        <div class="flex items-center justify-between p-3 rounded-lg bg-slate-900/80 border border-slate-800 cursor-pointer hover:border-brand-500/40 transition-all" onclick="navigateTo('dealroom')">
+          <div class="flex items-center gap-3">
+            <span class="text-xl">🍷</span>
+            <div>
+              <p class="font-bold text-white">${isKa ? 'კახური რქაწითელი (ბიო)' : (isRu ? 'Кахетинское Ркацители (Био)' : 'Kakheti Rkatsiteli (Organic)')}</p>
+              <p class="text-[10px] text-slate-400">${isKa ? 'თელავი 🇬🇪 ➔ როტერდამი 🇳🇱' : (isRu ? 'Телави 🇬🇪 ➔ Роттердам 🇳🇱' : 'Telavi 🇬🇪 ➔ Rotterdam 🇳🇱')}</p>
+            </div>
+          </div>
+          <span class="font-bold text-brand-400">${isKa ? '24 ტონა' : (isRu ? '24 тонн' : '24 Tonnes')}</span>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-lg bg-slate-900/80 border border-slate-800 cursor-pointer hover:border-brand-500/40 transition-all" onclick="navigateTo('dealroom')">
+          <div class="flex items-center gap-3">
+            <span class="text-xl">🌰</span>
+            <div>
+              <p class="font-bold text-white">${isKa ? 'სამეგრელოს თხილი (გულგული)' : (isRu ? 'Самегрело Фундук (Очищенный)' : 'Samegrelo Inshell Hazelnut')}</p>
+              <p class="text-[10px] text-slate-400">${isKa ? 'ფოთი 🇬🇪 ➔ ჰამბურგი 🇩🇪' : (isRu ? 'Поти 🇬🇪 ➔ Гамбург 🇩🇪' : 'Poti 🇬🇪 ➔ Hamburg 🇩🇪')}</p>
+            </div>
+          </div>
+          <span class="font-bold text-brand-400">${isKa ? '40 ტონა' : (isRu ? '40 тонн' : '40 Tonnes')}</span>
+        </div>
+      `;
+    }
+
+    function renderDashboardActions() {
+      const container = document.getElementById('dashboard-actions-list');
+      if (!container) return;
+      const isKa = state.currentLang === 'ka';
+      const isRu = state.currentLang === 'ru';
+      container.innerHTML = `
+        <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-950 border border-slate-900">
+          <span class="text-slate-200">${isKa ? 'ატვირთეთ ფითოსანიტარიული სერტიფიკატი (Deal #AG-2026-9042)' : (isRu ? 'Загрузите фитосанитарный сертификат (Сделка #AG-2026-9042)' : 'Upload Phytosanitary Cert (Deal #AG-2026-9042)')}</span>
+          <button onclick="navigateTo('dealroom')" class="text-brand-400 font-bold hover:underline">${isKa ? 'ატვირთვა →' : (isRu ? 'Загрузить →' : 'Upload →')}</button>
+        </div>
+        <div class="flex items-center justify-between p-2.5 rounded-lg bg-slate-950 border border-slate-900">
+          <span class="text-slate-200">${isKa ? 'პასუხგაუცემელი შეტყობინება: AgriCorp Netherlands' : (isRu ? 'Неотвеченное сообщение: AgriCorp Netherlands' : 'Unanswered message: AgriCorp Netherlands')}</span>
+          <button onclick="navigateTo('dealroom')" class="text-brand-400 font-bold hover:underline">${isKa ? 'პასუხი →' : (isRu ? 'Ответить →' : 'Reply →')}</button>
+        </div>
+      `;
+    }
+
+    function renderInventoryTable() {
+      const tbody = document.getElementById('inventory-tbody');
+      if (!tbody) return;
+      const isKa = state.currentLang === 'ka';
+      const isRu = state.currentLang === 'ru';
+      tbody.innerHTML = `
+        <tr class="cursor-pointer hover:bg-slate-900/40" onclick="navigateTo('dealroom')">
+          <td class="p-3 font-bold text-white">${isKa ? 'ქართული თხილი (გულგული 13-15მმ)' : (isRu ? 'Грузинский фундук (13-15мм)' : 'Georgian Shelled Hazelnuts (13-15mm)')}</td>
+          <td class="p-3">24.0 ${isKa ? 'ტონა' : (isRu ? 'тонн' : 'Tonnes')}</td>
+          <td class="p-3 text-brand-400 font-bold">$3,200 USD / ${isKa ? 'ტონა' : (isRu ? 'тонна' : 'Tonne')}</td>
+          <td class="p-3"><span class="bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded text-[10px]">${isKa ? 'აქტიური' : (isRu ? 'Активно' : 'Active')}</span></td>
+        </tr>
+        <tr class="cursor-pointer hover:bg-slate-900/40" onclick="navigateTo('dealroom')">
+          <td class="p-3 font-bold text-white">${isKa ? 'რქაწითელი ქვევრის ღვინო 2024' : (isRu ? 'Ркацители Квеври 2024' : 'Rkatsiteli Qvevri Wine 2024')}</td>
+          <td class="p-3">6.0 ${isKa ? 'ტონა' : (isRu ? 'тонн' : 'Tonnes')}</td>
+          <td class="p-3 text-brand-400 font-bold">$1,850 USD / ${isKa ? 'ტონა' : (isRu ? 'тонна' : 'Tonne')}</td>
+          <td class="p-3"><span class="bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded text-[10px]">${isKa ? 'აქტიური' : (isRu ? 'Активно' : 'Active')}</span></td>
+        </tr>
+      `;
+    }
+
+    function renderServicesGrid() {
+      const container = document.getElementById('services-grid-container');
+      if (!container) return;
+      const isKa = state.currentLang === 'ka';
+      const isRu = state.currentLang === 'ru';
+      container.innerHTML = `
+        <div class="glass-card p-6 rounded-2xl space-y-3">
+          <i data-lucide="truck" class="w-8 h-8 text-brand-400"></i>
+          <h3 class="text-base font-bold text-white">${isKa ? '3PL მულტიმოდალური გადაზიდვა' : (isRu ? '3PL Мультимодальные перевозки' : '3PL Multimodal Freight')}</h3>
+          <p class="text-xs text-slate-400">${isKa ? 'საავტომობილო, საზღვაო და სარკინიგზო გადაზიდვები ფოთისა და ბათუმის პორტებიდან.' : (isRu ? 'Авто, морские и ж/д перевозки из портов Поти и Батуми.' : 'Road, sea, and rail freight transport from Poti and Batumi ports.')}</p>
+          <button onclick="showToast('3PL Freight Dispatch Requested!', 'success')" class="w-full mt-2 bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 font-bold py-2 rounded text-xs">Book Transport →</button>
+        </div>
+        <div class="glass-card p-6 rounded-2xl space-y-3">
+          <i data-lucide="thermometer" class="w-8 h-8 text-amber-400"></i>
+          <h3 class="text-base font-bold text-white">${isKa ? 'საცივრე საწყობები' : (isRu ? 'Холодильные склады' : 'Cold Storage Warehousing')}</h3>
+          <p class="text-xs text-slate-400">${isKa ? 'კონტროლირებადი ტემპერატურული საწყობები (-25°C-დან +10°C-მდე).' : (isRu ? 'Температурные склады (-25°C до +10°C) в Поти и Тбилиси.' : 'Temperature-controlled warehousing (-25°C to +10°C) at Poti port.')}</p>
+          <button onclick="showToast('Cold Storage Reserved at Poti Port!', 'success')" class="w-full mt-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 font-bold py-2 rounded text-xs">Reserve Warehouse →</button>
+        </div>
+        <div class="glass-card p-6 rounded-2xl space-y-3">
+          <i data-lucide="shield-check" class="w-8 h-8 text-sky-400"></i>
+          <h3 class="text-base font-bold text-white">${isKa ? 'SGS ლაბორატორიული ტესტირება' : (isRu ? 'Лабораторные тесты SGS' : 'SGS Quality & Lab Testing')}</h3>
+          <p class="text-xs text-slate-400">${isKa ? 'დატვირთვამდელი ხარისხის შემოწმება და აფლატოქსინის ტესტები.' : (isRu ? 'Инспекция качества перед погрузкой и фитосанитарные тесты.' : 'Pre-shipment inspection, aflatoxin lab testing, and phytosanitary clearance.')}</p>
+          <button onclick="showToast('SGS Quality Inspection Booked!', 'success')" class="w-full mt-2 bg-sky-500/20 hover:bg-sky-500/30 text-sky-400 font-bold py-2 rounded text-xs">Book SGS Inspection →</button>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    function renderAdminQueue() {
+      const tbody = document.getElementById('adm-queue-body');
+      if (!tbody) return;
+      const isKa = state.currentLang === 'ka';
+      const isRu = state.currentLang === 'ru';
+      tbody.innerHTML = `
+        <tr>
+          <td class="p-3 font-bold text-white">${isKa ? 'შპს სამეგრელოს აგრო ექსპორტი' : (isRu ? 'ООО Самегрело Агро Экспорт' : 'Samegrelo Agro Export LLC')}</td>
+          <td class="p-3">${isKa ? 'საქართველო 🇬🇪' : (isRu ? 'Грузия 🇬🇪' : 'Georgia 🇬🇪')}</td>
+          <td class="p-3 font-mono">NAPR #401928 + ISO 22000</td>
+          <td class="p-3">
+            <button onclick="approvePassport(this)" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3 py-1 rounded text-[10px]">${isKa ? 'დამტკიცება' : (isRu ? 'Одобрить' : 'Approve')}</button>
+          </td>
+        </tr>
+      `;
+    }
+
+    function renderMilestones() {
+      const container = document.getElementById('deal-milestones-container');
+      if (!container) return;
+      const isKa = state.currentLang === 'ka';
+      const isRu = state.currentLang === 'ru';
+
+      const stages = [
+        { num: 1, title: isKa ? '1. ხელშეკრულება' : (isRu ? '1. Контракт' : '1. Contract Signing'), date: isKa ? '28 ივლისი' : (isRu ? '28 Июля' : 'July 28') },
+        { num: 2, title: isKa ? '2. L/C Escrow' : (isRu ? '2. L/C Эскроу' : '2. L/C Escrow Holding'), date: '$76,800 USD' },
+        { num: 3, title: isKa ? '3. SGS ლაბორატორია' : (isRu ? '3. Лаборатория SGS' : '3. SGS Inspection'), date: isKa ? 'ფოთის პორტი' : (isRu ? 'Порт Поти' : 'Poti Port') },
+        { num: 4, title: isKa ? '4. საზღვაო ფრახტი' : (isRu ? '4. Морской фрахт' : '4. Vessel Freight'), date: isKa ? 'მოლოდინში' : (isRu ? 'Ожидание' : 'Pending') },
+        { num: 5, title: isKa ? '5. საბაჟო & ანგარიშსწორება' : (isRu ? '5. Таможня и расчеты' : '5. Customs & Settlement'), date: isKa ? 'საბოლოო' : (isRu ? 'Финал' : 'Final') }
+      ];
+
+      container.innerHTML = stages.map(st => {
+        const isCurrent = st.num === state.dealStage;
+        const isPast = st.num < state.dealStage;
+        const borderClass = isCurrent ? 'border-2 border-amber-500 shadow-lg shadow-amber-500/10' : (isPast ? 'border-2 border-emerald-500' : 'border border-slate-800 opacity-60');
+        const statusText = isCurrent ? (isKa ? 'მიმდინარეობს' : (isRu ? 'В процессе' : 'In Progress')) : (isPast ? (isKa ? 'შესრულებულია' : (isRu ? 'Завершено' : 'Completed')) : (isKa ? 'მოლოდინში' : (isRu ? 'Ожидание' : 'Pending')));
+        const colorClass = isCurrent ? 'text-amber-400 font-bold animate-pulse' : (isPast ? 'text-emerald-400 font-bold' : 'text-slate-500');
+        return `
+          <div class="bg-slate-950 p-3 rounded-xl ${borderClass} cursor-pointer" onclick="showToast('Milestone #${st.num}: ${st.title}', 'info')">
+            <span class="font-bold text-white block">${st.title}</span>
+            <span class="text-[9px] ${colorClass}">${statusText} (${st.date})</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderChat() {
+      const msgList = document.getElementById('deal-chat-messages');
+      if (!msgList) return;
+      const isKa = state.currentLang === 'ka';
+      const isRu = state.currentLang === 'ru';
+      msgList.innerHTML = `
+        <div class="bg-slate-950 p-3 rounded-xl border border-slate-900">
+          <span class="font-bold text-brand-400 block">Kakheti Heritage (Exporter)</span>
+          <p class="text-slate-300">${isKa ? 'პროდუქცია მიყვანილია ფოთის პორტში. SGS ლაბორატორიული ტესტირება მიმდინარეობს.' : (isRu ? 'Товар доставлен в порт Поти. Проводится лабораторное тестирование SGS.' : 'Cargo delivered to Poti Port terminal. SGS lab testing in progress.')}</p>
+        </div>
+      `;
+    }
+
+    function renderProducts(list = localizedProducts[state.currentLang]) {
+      const grid = document.getElementById('grid-products');
+      if (!grid) return;
+      grid.innerHTML = list.map(p => `
+        <div class="glass-card rounded-xl p-5 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-3xl">${p.image}</span>
+              <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-extrabold px-2 py-0.5 rounded border border-emerald-500/30">${p.badge}</span>
+            </div>
+            <h3 class="text-sm font-bold text-white cursor-pointer hover:text-brand-400 transition-colors" onclick="navigateTo('dealroom')">${p.title}</h3>
+            <p class="text-[11px] text-slate-400 mb-3">${p.supplier}</p>
+            <p class="text-xs text-brand-400 font-bold">${p.price}</p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="openModal('modal-sample')" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 rounded-lg text-xs">${state.currentLang === 'ka' ? '2კგ ნიმუში' : (state.currentLang === 'ru' ? 'Образец 2кг' : '2kg Sample')}</button>
+            <button onclick="navigateTo('dealroom')" class="flex-1 bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold py-2 rounded-lg text-xs">${state.currentLang === 'ka' ? 'გარიგება →' : (state.currentLang === 'ru' ? 'Сделка →' : 'Initiate Deal →')}</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderRFQs() {
+      const grid = document.getElementById('grid-rfqs');
+      if (!grid) return;
+      const list = localizedRFQs[state.currentLang];
+      grid.innerHTML = list.map(r => `
+        <div class="glass-card p-5 rounded-xl border-l-4 border-l-accent-gold space-y-3">
+          <h3 class="font-bold text-white text-sm cursor-pointer hover:text-amber-400" onclick="navigateTo('dealroom')">${r.title}</h3>
+          <p class="text-xs text-slate-400">Buyer: ${r.buyer}</p>
+          <p class="text-xs text-amber-400 font-bold">Target Budget: ${r.budget}</p>
+          <button onclick="navigateTo('dealroom')" class="w-full bg-accent-gold hover:bg-amber-400 text-slate-950 font-bold py-2 rounded-lg text-xs">${state.currentLang === 'ka' ? 'შეთავაზების გაგზავნა →' : (state.currentLang === 'ru' ? 'Отправить предложение →' : 'Submit Proposal →')}</button>
+        </div>
+      `).join('');
+    }
+
+    function triggerCSVImport() {
+      showToast(state.currentLang === 'ka' ? 'CSV ფაილის იმპორტი წარმატებით დასრულდა! (24 ჩანაწერი)' : 'CSV File imported successfully! (24 records updated)', 'success');
+    }
+
+    function advanceDealStage() {
+      if (state.dealStage < 5) {
+        state.dealStage++;
+        renderMilestones();
+        showToast(state.currentLang === 'ka' ? `გარიგების ეტაპი წინ გადავიდა #${state.dealStage}-ზე!` : (state.currentLang === 'ru' ? `Этап сделки продвинут до #${state.dealStage}!` : `Deal advanced to Stage #${state.dealStage}!`), 'success');
+      } else {
+        showToast(state.currentLang === 'ka' ? 'გარიგება უკვე დასრულების ეტაპზეა!' : (state.currentLang === 'ru' ? 'Сделка уже завершена!' : 'Deal is already completed!'), 'info');
+      }
+    }
+
+    function filterMarketplace(cat) {
+      const currentList = localizedProducts[state.currentLang];
+      const filtered = cat === 'all' ? currentList : currentList.filter(p => p.category === cat);
+      renderProducts(filtered);
+      showToast(`Filter: ${cat.toUpperCase()}`, 'info');
     }
 
     function switchMarketplaceTab(tab) {
@@ -566,38 +1136,94 @@
       const gridR = document.getElementById('grid-rfqs');
       const gridS = document.getElementById('grid-services');
       gridP.classList.add('hidden'); gridR.classList.add('hidden'); gridS.classList.add('hidden');
-      if (tab === 'products') gridP.classList.remove('hidden');
-      else if (tab === 'rfqs') gridR.classList.remove('hidden');
-      else if (tab === 'services') gridS.classList.remove('hidden');
+      
+      document.getElementById('tab-btn-products').className = "px-4 py-2 rounded-lg font-bold text-slate-400 hover:text-white";
+      document.getElementById('tab-btn-rfqs').className = "px-4 py-2 rounded-lg font-bold text-slate-400 hover:text-white";
+      document.getElementById('tab-btn-services').className = "px-4 py-2 rounded-lg font-bold text-slate-400 hover:text-white";
+
+      if (tab === 'products') {
+        gridP.classList.remove('hidden');
+        document.getElementById('tab-btn-products').className = "px-4 py-2 rounded-lg font-bold bg-brand-500 text-slate-950 shadow";
+      } else if (tab === 'rfqs') {
+        gridR.classList.remove('hidden');
+        document.getElementById('tab-btn-rfqs').className = "px-4 py-2 rounded-lg font-bold bg-brand-500 text-slate-950 shadow";
+      } else if (tab === 'services') {
+        gridS.classList.remove('hidden');
+        document.getElementById('tab-btn-services').className = "px-4 py-2 rounded-lg font-bold bg-brand-500 text-slate-950 shadow";
+      }
     }
 
-    function renderProducts(items) {
-      const grid = document.getElementById('grid-products');
-      if (!grid) return;
-      grid.innerHTML = items.map(p => `
-        <div class="glass-card rounded-xl p-5 flex flex-col justify-between space-y-4">
-          <div>
-            <span class="text-3xl">${p.image}</span>
-            <h3 class="text-sm font-bold text-white mt-2">${p.title}</h3>
-            <p class="text-[11px] text-slate-400 mb-3">${p.supplier}</p>
-            <p class="text-xs text-brand-400 font-bold mb-4">${p.price}</p>
-          </div>
-          <div class="flex gap-2">
-            <button onclick="alert('Ordering 2kg Sample Box...')" class="flex-1 bg-slate-800 text-white font-bold py-2 rounded-lg text-xs">Sample Box</button>
-            <button onclick="navigateTo('dealroom')" class="flex-1 bg-brand-500 text-slate-950 font-bold py-2 rounded-lg text-xs">Initiate Deal &rarr;</button>
-          </div>
-        </div>
-      `).join('');
+    function sendChatMessage() {
+      const inp = document.getElementById('inp-chat-msg');
+      if (!inp || !inp.value.trim()) return;
+      const msgList = document.getElementById('deal-chat-messages');
+      const newBox = document.createElement('div');
+      newBox.className = 'bg-slate-950 p-3 rounded-xl border border-slate-900';
+      newBox.innerHTML = `<span class="font-bold text-brand-400 block">${state.currentLang === 'ka' ? 'თქვენ (მომხმარებელი)' : (state.currentLang === 'ru' ? 'Вы (Пользователь)' : 'You (User)')}</span><p class="text-slate-300">${inp.value.trim()}</p>`;
+      msgList.appendChild(newBox);
+      inp.value = '';
+      msgList.scrollTop = msgList.scrollHeight;
+      showToast(state.currentLang === 'ka' ? 'შეტყობინება გაიგზავნა!' : (state.currentLang === 'ru' ? 'Сообщение отправлено!' : 'Message sent!'), 'success');
     }
 
-    function runAIMatchmaker() { document.getElementById('ai-match-result').classList.remove('hidden'); }
-    function advanceDealStage() { alert('Trade Milestone Advanced to Stage 3!'); }
+    function handleSearch() {
+      const val = document.getElementById('inp-home-search').value;
+      navigateTo('marketplace');
+      showToast(`Search: "${val || 'All'}"`, 'info');
+    }
+
+    function runAIMatchmaker() {
+      document.getElementById('ai-match-result').classList.remove('hidden');
+      showToast(state.currentLang === 'ka' ? 'AI მატჩმეიკინგის სკანირება დასრულდა!' : (state.currentLang === 'ru' ? 'Сканирование AI завершено!' : 'AI Matchmaker scan complete!'), 'success');
+    }
+
+    function approvePassport(btn) {
+      btn.innerText = state.currentLang === 'ka' ? 'დამტკიცებულია ✓' : (state.currentLang === 'ru' ? 'Одобрено ✓' : 'Approved ✓');
+      btn.disabled = true;
+      btn.className = 'bg-slate-800 text-emerald-400 font-bold px-3 py-1 rounded text-[10px]';
+      state.verifiedCompanyCount++;
+      document.getElementById('stat-verified-count').innerText = `${state.verifiedCompanyCount}+`;
+      document.getElementById('adm-count-comp').innerText = state.verifiedCompanyCount;
+      showToast(state.currentLang === 'ka' ? 'კომპანიის პასპორტი დამტკიცებულია!' : (state.currentLang === 'ru' ? 'Паспорт компании одобрен!' : 'Company passport approved!'), 'success');
+    }
+
+    function submitSampleOrder(e) {
+      e.preventDefault();
+      closeModal('modal-sample');
+      showToast(state.currentLang === 'ka' ? '2კგ საკონტროლო ნიმუშის შეკვეთა მიღებულია!' : (state.currentLang === 'ru' ? 'Заказ 2кг образцов принят!' : '2kg sample box order confirmed!'), 'success');
+    }
+
+    function submitRFQ(e) {
+      e.preventDefault();
+      closeModal('modal-rfq');
+      switchMarketplaceTab('rfqs');
+      navigateTo('marketplace');
+      showToast(state.currentLang === 'ka' ? 'RFQ წარმატებით გამოქვეყნდა!' : (state.currentLang === 'ru' ? 'RFQ успешно опубликован!' : 'RFQ successfully broadcasted!'), 'success');
+    }
+
+    function submitNegotiation(e) {
+      e.preventDefault();
+      const p = parseFloat(document.getElementById('neg-inp-price').value);
+      const v = parseFloat(document.getElementById('neg-inp-vol').value);
+      state.dealSpecs.unitPrice = p;
+      state.dealSpecs.volume = v;
+      state.dealSpecs.total = p * v;
+
+      document.getElementById('d-spec-vol').innerText = `${v.toFixed(1)} ${state.currentLang === 'ka' ? 'ტონა' : (state.currentLang === 'ru' ? 'тонн' : 'Tonnes')}`;
+      document.getElementById('d-spec-price').innerText = `CIF Rotterdam @ $${p.toLocaleString()} / ${state.currentLang === 'ka' ? 'ტონა' : (state.currentLang === 'ru' ? 'тонна' : 'Tonne')}`;
+      document.getElementById('d-spec-total').innerText = `$${(p * v).toLocaleString()} USD`;
+
+      closeModal('modal-negotiate');
+      showToast(state.currentLang === 'ka' ? 'ხელშეკრულების პირობები განახლდა!' : (state.currentLang === 'ru' ? 'Условия контракта обновлены!' : 'Contract terms updated!'), 'success');
+    }
+
     function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-    function submitRFQ(e) { e.preventDefault(); closeModal('modal-rfq'); alert('RFQ Broadcasted to Exporters!'); }
-    function submitNegotiation(e) { e.preventDefault(); closeModal('modal-negotiate'); alert('Counter-Offer Sent!'); }
 
-    document.addEventListener('DOMContentLoaded', () => { renderProducts(state.products); });
+    // Initialize App
+    document.addEventListener('DOMContentLoaded', () => {
+      changeLanguage('ka');
+    });
   </script>
 </body>
 </html>
