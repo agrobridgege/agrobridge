@@ -42,9 +42,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       background-color: #f8fafc;
       color: #0f172a;
@@ -53,11 +51,7 @@
       -webkit-font-smoothing: antialiased;
       padding-bottom: 68px;
     }
-    @media (min-width: 1024px) {
-      body {
-        padding-bottom: 0;
-      }
-    }
+    @media (min-width: 1024px) { body { padding-bottom: 0; } }
 
     .ui-panel {
       background: #ffffff;
@@ -79,19 +73,11 @@
       transform: translateY(-2px);
     }
     
-    .gradient-hero-text {
-      color: #059669;
-    }
+    .gradient-hero-text { color: #059669; }
 
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Skeleton Loading pulse */
     .skeleton {
       background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
       background-size: 200% 100%;
@@ -148,27 +134,22 @@
 
         <!-- Right Side Controls -->
         <div class="flex items-center space-x-1.5 sm:space-x-3">
-          
-          <!-- 3-Language Selector -->
           <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs text-slate-800 font-extrabold focus:outline-none cursor-pointer shadow-sm">
             <option value="ka" selected>🇬🇪 ქართული</option>
             <option value="en">🇬🇧 English</option>
             <option value="ru">🇷🇺 Русский</option>
           </select>
 
-          <!-- Sign In Button -->
           <button onclick="openAuthModal('login')" class="hidden sm:flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-slate-900 px-3 sm:px-3.5 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all">
             <i data-lucide="log-in" class="w-3.5 h-3.5 text-slate-500"></i>
             <span id="t-btn-login">შესვლა</span>
           </button>
 
-          <!-- Create Listing Button -->
-          <button onclick="openModal('modal-rfq')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl text-[11px] sm:text-xs shadow-md shadow-brand-600/20 transition-all flex items-center gap-1.5">
+          <button onclick="navigateTo('create-placeholder')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl text-[11px] sm:text-xs shadow-md shadow-brand-600/20 transition-all flex items-center gap-1.5">
             <i data-lucide="plus-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
             <span id="t-btn-create-listing">+ განცხადება</span>
           </button>
 
-          <!-- Mobile Hamburger Toggle -->
           <button onclick="toggleMobileDrawer()" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100">
             <i data-lucide="menu" class="w-5 h-5"></i>
           </button>
@@ -196,7 +177,7 @@
           <button onclick="openAuthModal('login'); toggleMobileDrawer()" class="w-full text-center py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-800">
             <span id="m-btn-login">შესვლა</span>
           </button>
-          <button onclick="openModal('modal-rfq'); toggleMobileDrawer()" class="w-full text-center py-2.5 rounded-xl bg-brand-600 text-xs font-bold text-white shadow-sm">
+          <button onclick="navigateTo('create-placeholder'); toggleMobileDrawer()" class="w-full text-center py-2.5 rounded-xl bg-brand-600 text-xs font-bold text-white shadow-sm">
             <span id="m-btn-create-listing">+ განცხადება</span>
           </button>
         </div>
@@ -273,7 +254,6 @@
             აკავშირებს ადგილობრივ მწარმოებლებს, საბითუმო მყიდველებს, ექსპორტიორებსა და ლოჯისტიკურ სერვისებს უშუალოდ, შუამავლების გარეშე.
           </p>
 
-          <!-- Direct Responsive Search Bar -->
           <div class="bg-white p-1.5 sm:p-2 rounded-2xl border border-slate-200 shadow-md flex flex-col sm:flex-row gap-2 max-w-2xl mx-auto">
             <div class="flex-1 relative flex items-center">
               <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5"></i>
@@ -286,7 +266,6 @@
             </button>
           </div>
 
-          <!-- Quick Search Tag Pills -->
           <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs pt-1">
             <span class="text-slate-400 font-medium hidden sm:inline" id="t-lbl-quicktags">პოპულარული:</span>
             <button onclick="selectCategoryFilter('Nuts'); navigateTo('marketplace')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-700 font-bold border border-slate-200 transition-all" id="t-tag-hazelnut">🌰 თხილი</button>
@@ -295,12 +274,11 @@
             <button onclick="selectCategoryFilter('Honey'); navigateTo('marketplace')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-700 font-bold border border-slate-200 transition-all" id="t-tag-honey">🍯 თაფლი</button>
           </div>
 
-          <!-- Primary & Secondary Action Buttons -->
           <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 pt-3 border-t border-slate-100">
             <button onclick="navigateTo('marketplace')" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl text-xs shadow-lg shadow-brand-600/20 transition-all flex items-center justify-center gap-2">
               <span id="t-cta-primary">პროდუქციის დათვალიერება</span> &rarr;
             </button>
-            <button onclick="openModal('modal-rfq')" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-800 font-bold px-6 py-3 rounded-xl text-xs border border-slate-200 shadow-sm transition-all flex items-center justify-center gap-2">
+            <button onclick="navigateTo('create-placeholder')" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-800 font-bold px-6 py-3 rounded-xl text-xs border border-slate-200 shadow-sm transition-all flex items-center justify-center gap-2">
               <i data-lucide="plus-circle" class="w-4 h-4 text-brand-600"></i>
               <span id="t-cta-secondary">განცხადების დამატება</span>
             </button>
@@ -424,14 +402,13 @@
     <!-- VIEW 2: COMPLETE B2B MARKETPLACE CATALOG & FILTERING ROUTE -->
     <section id="view-marketplace" class="view-section hidden py-6 sm:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
       
-      <!-- 1. MARKETPLACE HEADER -->
+      <!-- MARKETPLACE HEADER -->
       <div class="ui-panel p-6 sm:p-8 bg-gradient-to-b from-white to-slate-50 border border-slate-200/80 space-y-4">
         <div class="max-w-3xl">
           <h1 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight" id="t-mkt-header-title">Explore agricultural products</h1>
           <p class="text-xs sm:text-sm text-slate-600 mt-1 font-medium" id="t-mkt-header-sub">Discover products from farmers, producers, cooperatives, and agricultural companies.</p>
         </div>
 
-        <!-- Prominent Multi-field Search Bar -->
         <div class="bg-white p-2 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row gap-2 max-w-4xl">
           <div class="flex-1 relative flex items-center">
             <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5"></i>
@@ -445,15 +422,11 @@
         </div>
       </div>
 
-      <!-- 2. HORIZONTAL CATEGORY NAVIGATION CHIPS -->
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 text-xs" id="mkt-category-chips-row">
-        <!-- Rendered dynamically -->
-      </div>
+      <!-- CATEGORY CHIPS -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 text-xs" id="mkt-category-chips-row"></div>
 
-      <!-- 3. MAIN MARKETPLACE LAYOUT (DESKTOP SIDEBAR + RESULTS) -->
+      <!-- MAIN MARKETPLACE LAYOUT -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        
-        <!-- DESKTOP FILTERING SIDEBAR -->
         <aside class="hidden lg:block lg:col-span-3 ui-panel p-5 bg-white space-y-6 sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
           <div class="flex items-center justify-between pb-3 border-b border-slate-100">
             <div class="flex items-center gap-2">
@@ -463,15 +436,11 @@
             <button onclick="clearAllFilters()" class="text-[11px] font-bold text-brand-700 hover:underline" id="t-flt-clear-btn">Clear All</button>
           </div>
 
-          <!-- Category Filter -->
           <div class="space-y-1.5">
             <label class="text-slate-700 font-bold text-xs block" id="t-flt-lbl-cat">Category</label>
-            <select id="flt-sel-category" onchange="applyMarketplaceFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-800 font-medium focus:outline-none focus:border-brand-500">
-              <!-- Rendered dynamically -->
-            </select>
+            <select id="flt-sel-category" onchange="applyMarketplaceFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-800 font-medium focus:outline-none focus:border-brand-500"></select>
           </div>
 
-          <!-- Country & Region Location Filter -->
           <div class="space-y-2">
             <label class="text-slate-700 font-bold text-xs block" id="t-flt-lbl-loc">Location</label>
             <select id="flt-sel-country" onchange="applyMarketplaceFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-800 font-medium focus:outline-none focus:border-brand-500">
@@ -492,7 +461,6 @@
             </select>
           </div>
 
-          <!-- Product Condition / Type -->
           <div class="space-y-1.5">
             <label class="text-slate-700 font-bold text-xs block" id="t-flt-lbl-type">Product Type</label>
             <select id="flt-sel-type" onchange="applyMarketplaceFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-800 font-medium focus:outline-none focus:border-brand-500">
@@ -506,7 +474,6 @@
             </select>
           </div>
 
-          <!-- Price Range & Currency -->
           <div class="space-y-2">
             <div class="flex items-center justify-between">
               <label class="text-slate-700 font-bold text-xs block" id="t-flt-lbl-price">Price Range</label>
@@ -526,7 +493,6 @@
             </label>
           </div>
 
-          <!-- Available Quantity -->
           <div class="space-y-2">
             <label class="text-slate-700 font-bold text-xs block" id="t-flt-lbl-qty">Min Available Qty</label>
             <div class="grid grid-cols-2 gap-2">
@@ -540,7 +506,6 @@
             </div>
           </div>
 
-          <!-- Seller Type -->
           <div class="space-y-1.5">
             <label class="text-slate-700 font-bold text-xs block" id="t-flt-lbl-sellertype">Seller Type</label>
             <select id="flt-sel-sellertype" onchange="applyMarketplaceFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-800 font-medium focus:outline-none">
@@ -554,7 +519,6 @@
             </select>
           </div>
 
-          <!-- Verification Toggle -->
           <div class="pt-2 border-t border-slate-100">
             <label class="flex items-center justify-between text-xs text-slate-800 font-bold cursor-pointer">
               <span id="t-flt-verifiedonly">Verified Sellers Only</span>
@@ -562,43 +526,23 @@
             </label>
           </div>
 
-          <!-- Certifications -->
-          <div class="space-y-1.5 pt-2 border-t border-slate-100">
-            <label class="text-slate-700 font-bold text-xs block" id="t-flt-lbl-certs">Certifications</label>
-            <div class="space-y-1 text-xs text-slate-600 font-medium">
-              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="Organic" onchange="applyMarketplaceFilters()" class="cert-chk rounded border-slate-300 text-brand-600" /> Organic Bio</label>
-              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="GlobalG.A.P." onchange="applyMarketplaceFilters()" class="cert-chk rounded border-slate-300 text-brand-600" /> GlobalG.A.P.</label>
-              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="ISO 22000" onchange="applyMarketplaceFilters()" class="cert-chk rounded border-slate-300 text-brand-600" /> ISO 22000</label>
-              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="HACCP" onchange="applyMarketplaceFilters()" class="cert-chk rounded border-slate-300 text-brand-600" /> HACCP</label>
-            </div>
-          </div>
-
-          <button onclick="applyMarketplaceFilters()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl text-xs shadow-md shadow-brand-600/20 transition-all text-center" id="t-flt-btn-apply">
-            Apply Filters
-          </button>
+          <button onclick="applyMarketplaceFilters()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl text-xs shadow-md shadow-brand-600/20 transition-all text-center" id="t-flt-btn-apply">Apply Filters</button>
         </aside>
 
-        <!-- RIGHT SIDE LISTING RESULTS CONTAINER -->
         <div class="lg:col-span-9 space-y-4">
-          
-          <!-- Results Top Bar (Count, Mobile Filter Button, Sort Dropdown, Active Filter Chips) -->
           <div class="ui-panel p-4 bg-white flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-            
             <div class="flex items-center justify-between sm:justify-start gap-3">
-              <!-- Mobile Filters Button -->
               <button onclick="openMobileFilterDrawer()" class="lg:hidden bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold px-3.5 py-2 rounded-xl text-xs border border-slate-200 flex items-center gap-1.5 shadow-sm">
                 <i data-lucide="sliders-horizontal" class="w-4 h-4 text-brand-600"></i>
                 <span id="t-btn-mobile-filters">Filters</span>
                 <span id="mobile-filter-badge" class="bg-brand-600 text-white text-[10px] font-extrabold px-1.5 py-0.2 rounded-full hidden">0</span>
               </button>
-
               <div>
                 <h3 class="text-xs sm:text-sm font-bold text-slate-900" id="mkt-results-count">Showing listings</h3>
                 <span class="text-[11px] text-slate-500 font-medium" id="mkt-active-cat-label">All Categories</span>
               </div>
             </div>
 
-            <!-- Sorting Dropdown -->
             <div class="flex items-center gap-2 text-xs self-end sm:self-auto">
               <label class="text-slate-500 font-medium hidden sm:inline" id="t-lbl-sortby">Sort by:</label>
               <select id="mkt-sort-select" onchange="applyMarketplaceFilters()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-slate-800 focus:outline-none cursor-pointer">
@@ -609,26 +553,11 @@
                 <option value="qty-high">Largest Quantity</option>
               </select>
             </div>
-
           </div>
 
-          <!-- Active Filter Chips Row -->
           <div id="mkt-active-chips-container" class="flex flex-wrap items-center gap-2 text-xs hidden"></div>
+          <div id="mkt-products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4"></div>
 
-          <!-- PRODUCT LISTING CARDS GRID (Responsive 4/3/2/1 Grid) -->
-          <div id="mkt-products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
-            <!-- Rendered dynamically -->
-          </div>
-
-          <!-- SKELETON LOADING STATE CONTAINER (Hidden by default) -->
-          <div id="mkt-skeleton-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 hidden">
-            <div class="ui-card p-4 space-y-3"><div class="h-36 rounded-xl skeleton"></div><div class="h-4 w-3/4 skeleton rounded"></div><div class="h-3 w-1/2 skeleton rounded"></div></div>
-            <div class="ui-card p-4 space-y-3"><div class="h-36 rounded-xl skeleton"></div><div class="h-4 w-3/4 skeleton rounded"></div><div class="h-3 w-1/2 skeleton rounded"></div></div>
-            <div class="ui-card p-4 space-y-3"><div class="h-36 rounded-xl skeleton"></div><div class="h-4 w-3/4 skeleton rounded"></div><div class="h-3 w-1/2 skeleton rounded"></div></div>
-            <div class="ui-card p-4 space-y-3"><div class="h-36 rounded-xl skeleton"></div><div class="h-4 w-3/4 skeleton rounded"></div><div class="h-3 w-1/2 skeleton rounded"></div></div>
-          </div>
-
-          <!-- EMPTY / NO RESULTS STATE -->
           <div id="mkt-no-results" class="ui-panel p-10 text-center space-y-4 bg-white hidden max-w-lg mx-auto">
             <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 mx-auto flex items-center justify-center">
               <i data-lucide="search-x" class="w-6 h-6"></i>
@@ -641,24 +570,18 @@
             </div>
           </div>
 
-          <!-- PAGINATION / LOAD MORE BUTTON -->
           <div class="text-center pt-4" id="mkt-loadmore-container">
             <button onclick="loadMoreProducts()" class="bg-white hover:bg-slate-50 text-slate-800 font-bold px-7 py-3 rounded-xl text-xs border border-slate-200 shadow-sm transition-all inline-flex items-center gap-2" id="t-btn-loadmore">
               <span>Load More Products</span>
               <i data-lucide="chevron-down" class="w-4 h-4"></i>
             </button>
           </div>
-
         </div>
-
       </div>
-
     </section>
 
-    <!-- VIEW 3: INDIVIDUAL PRODUCT DETAIL ROUTE / VIEW (/marketplace/[id]) -->
+    <!-- VIEW 3: PRODUCT DETAIL ROUTE (/marketplace/[id]) -->
     <section id="view-product-detail" class="view-section hidden py-6 sm:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-      
-      <!-- A. BREADCRUMBS -->
       <nav class="flex items-center space-x-2 text-xs text-slate-500 font-medium overflow-x-auto no-scrollbar py-1">
         <button onclick="navigateTo('marketplace')" class="hover:text-brand-600 transition-colors">Marketplace</button>
         <span>/</span>
@@ -667,26 +590,16 @@
         <span id="dtl-crumb-title" class="text-slate-900 font-bold line-clamp-1">Georgian Shelled Hazelnuts</span>
       </nav>
 
-      <!-- MAIN PRODUCT DETAIL GRID (LEFT: GALLERY & SPECS, RIGHT: PRICING & INQUIRY FORM) -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
-        
-        <!-- LEFT COLUMN: IMAGE GALLERY, SPECS, DESCRIPTION, CERTS, SAFETY -->
         <div class="lg:col-span-7 space-y-6 sm:space-y-8">
-          
-          <!-- B. IMAGE GALLERY -->
           <div class="ui-panel p-4 bg-white space-y-3">
             <div class="relative w-full h-72 sm:h-96 rounded-2xl overflow-hidden bg-slate-100 flex items-center justify-center border border-slate-200">
               <img id="dtl-main-img" src="" alt="Product Image" class="w-full h-full object-cover" />
               <div class="absolute bottom-3 right-3 bg-slate-900/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-sm" id="dtl-img-counter">1 of 2</div>
             </div>
-
-            <!-- Thumbnail Row -->
-            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar" id="dtl-thumbs-row">
-              <!-- Rendered dynamically -->
-            </div>
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar" id="dtl-thumbs-row"></div>
           </div>
 
-          <!-- C. PRIMARY PRODUCT INFO & HEADER -->
           <div class="ui-panel p-6 bg-white space-y-4">
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-4">
               <div>
@@ -695,7 +608,6 @@
                 <p id="dtl-location" class="text-xs text-slate-500 font-medium mt-1">Zugdidi, Samegrelo, Georgia</p>
               </div>
 
-              <!-- Favorite & Share Buttons -->
               <div class="flex items-center gap-2">
                 <button onclick="toggleProductFavorite(currentDetailProductId)" id="dtl-fav-btn" class="p-2.5 rounded-xl border border-slate-200 hover:bg-rose-50 text-slate-400 hover:text-rose-500 transition-colors shadow-sm" aria-label="Favorite">
                   <i data-lucide="heart" class="w-5 h-5"></i>
@@ -707,51 +619,34 @@
               </div>
             </div>
 
-            <!-- Badges Row -->
-            <div class="flex flex-wrap items-center gap-2 text-xs" id="dtl-badges-container">
-              <!-- Rendered dynamically -->
-            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs" id="dtl-badges-container"></div>
 
-            <!-- Meta details -->
             <div class="flex items-center justify-between text-[11px] text-slate-400 pt-2 font-mono">
               <span>Listing ID: <strong id="dtl-listing-id" class="text-slate-700">#prod-1</strong></span>
               <span>Published: <strong id="dtl-created-at" class="text-slate-700">2 days ago</strong></span>
             </div>
           </div>
 
-          <!-- D. PRODUCT SPECIFICATIONS GRID -->
           <div class="ui-panel p-6 bg-white space-y-4">
             <h3 class="text-sm font-bold text-slate-900 border-b border-slate-100 pb-3" id="t-dtl-specs-heading">Product Specifications</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs" id="dtl-specs-grid">
-              <!-- Rendered dynamically -->
-            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs" id="dtl-specs-grid"></div>
           </div>
 
-          <!-- F. PRODUCT DESCRIPTION -->
           <div class="ui-panel p-6 bg-white space-y-3">
             <h3 class="text-sm font-bold text-slate-900 border-b border-slate-100 pb-3" id="t-dtl-desc-heading">Product Description</h3>
-            <p id="dtl-description" class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal whitespace-pre-line">
-              Product description content...
-            </p>
+            <p id="dtl-description" class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal whitespace-pre-line"></p>
           </div>
 
-          <!-- G. CERTIFICATIONS AND DOCUMENTS -->
           <div class="ui-panel p-6 bg-white space-y-3">
             <h3 class="text-sm font-bold text-slate-900 border-b border-slate-100 pb-3" id="t-dtl-certs-heading">Certifications & Documents</h3>
-            <div id="dtl-certs-container" class="space-y-2 text-xs">
-              <!-- Rendered dynamically -->
-            </div>
+            <div id="dtl-certs-container" class="space-y-2 text-xs"></div>
           </div>
 
-          <!-- H. DELIVERY AND TRADE OPTIONS -->
           <div class="ui-panel p-6 bg-white space-y-3">
             <h3 class="text-sm font-bold text-slate-900 border-b border-slate-100 pb-3" id="t-dtl-trade-heading">Delivery & Trade Options</h3>
-            <div id="dtl-trade-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <!-- Rendered dynamically -->
-            </div>
+            <div id="dtl-trade-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs"></div>
           </div>
 
-          <!-- K. SAFETY INFORMATION BOX -->
           <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-5 space-y-2 text-xs text-amber-900">
             <div class="flex items-center gap-2 font-bold text-amber-900 text-sm">
               <i data-lucide="shield-alert" class="w-5 h-5 text-amber-600"></i>
@@ -760,17 +655,13 @@
             <ul class="list-disc list-inside space-y-1 text-amber-800 font-medium">
               <li>Verify company registration and tax identification before initiating payment.</li>
               <li>Confirm phytosanitary and laboratory quality certificates.</li>
-              <li>Order a 2kg physical sample box prior to full container loading.</li>
+              <li>Order a physical sample box prior to full container loading.</li>
               <li>Note: Integrated ISO 20022 Escrow payment services are planned for future automated release.</li>
             </ul>
           </div>
-
         </div>
 
-        <!-- RIGHT COLUMN: PRICE CARD, SELLER CARD, CONTACT/INQUIRY FORM -->
         <div class="lg:col-span-5 space-y-6 sticky top-24">
-          
-          <!-- PRICE & QUANTITY CARD -->
           <div class="ui-panel p-6 bg-white space-y-4 border border-brand-200 shadow-md">
             <div>
               <span class="text-[10px] font-bold uppercase text-slate-400 block" id="t-dtl-lbl-unitprice">Unit Price</span>
@@ -797,13 +688,10 @@
             </button>
           </div>
 
-          <!-- I. SELLER CARD -->
           <div class="ui-panel p-6 bg-white space-y-4">
             <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 pb-3" id="t-seller-card-heading">Seller Information</h3>
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-700 font-black text-2xl flex items-center justify-center border border-brand-200 shrink-0" id="dtl-seller-logo">
-                🍇
-              </div>
+              <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-700 font-black text-2xl flex items-center justify-center border border-brand-200 shrink-0" id="dtl-seller-logo">🍇</div>
               <div>
                 <div class="flex items-center gap-1.5">
                   <h4 id="dtl-seller-name" class="font-bold text-slate-900 text-sm">Caucasus Nut Cooperative</h4>
@@ -825,7 +713,6 @@
             </div>
           </div>
 
-          <!-- J. CONTACT OR INQUIRY FORM -->
           <div id="inquiry-form-container" class="ui-panel p-6 bg-white space-y-4 border border-slate-200">
             <h3 class="text-sm font-bold text-slate-900 border-b border-slate-100 pb-3" id="t-inquiry-heading">Send Inquiry to Seller</h3>
             
@@ -883,22 +770,32 @@
               </button>
             </form>
           </div>
-
         </div>
-
       </div>
 
-      <!-- L. SIMILAR PRODUCTS -->
       <div class="ui-panel p-6 bg-white space-y-4 pt-8 border-t border-slate-200">
         <h3 class="text-lg font-bold text-slate-900" id="t-similar-heading">Similar Products</h3>
-        <div id="dtl-similar-products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
-          <!-- Rendered dynamically -->
-        </div>
+        <div id="dtl-similar-products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4"></div>
       </div>
-
     </section>
 
-    <!-- VIEW 4: WORKSPACE DASHBOARD -->
+    <!-- VIEW 4: SAFE CREATE LISTING PLACEHOLDER PAGE (Requirement 13) -->
+    <section id="view-create-placeholder" class="view-section hidden py-12 sm:py-16 max-w-xl mx-auto px-4 text-center">
+      <div class="ui-panel p-8 sm:p-12 bg-white space-y-4">
+        <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mx-auto border border-brand-200">
+          <i data-lucide="plus-circle" class="w-7 h-7"></i>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-black text-slate-900">Create a Listing</h1>
+        <p class="text-xs sm:text-sm text-slate-500 font-medium">Listing creation is being prepared.</p>
+        <div class="pt-2">
+          <button onclick="navigateTo('marketplace')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl text-xs shadow-md shadow-brand-600/20 transition-all">
+            Back to Marketplace &rarr;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: WORKSPACE DASHBOARD -->
     <section id="view-dashboard" class="view-section hidden py-6 sm:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="ui-panel p-5 sm:p-6 mb-6 bg-white">
         <div class="flex items-center gap-4">
@@ -910,8 +807,11 @@
         </div>
       </div>
 
-      <div class="ui-panel p-4 sm:p-6 bg-white">
-        <h3 class="text-xs sm:text-sm font-bold text-slate-900 mb-4" id="t-dash-inv-title">ჩემი პროდუქციის მარაგები</h3>
+      <div class="ui-panel p-4 sm:p-6 bg-white space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs sm:text-sm font-bold text-slate-900" id="t-dash-inv-title">ჩემი პროდუქციის მარაგები</h3>
+          <button onclick="navigateTo('create-placeholder')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-3 py-1.5 rounded-xl text-xs shadow-sm">+ New Listing</button>
+        </div>
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs min-w-[400px]">
             <thead class="bg-slate-50 text-slate-500 uppercase text-[10px] font-bold border-b border-slate-200">
@@ -922,15 +822,13 @@
                 <th class="p-3" id="t-th-status">სტატუსი</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-slate-100 font-medium" id="inventory-tbody">
-              <!-- Rendered dynamically -->
-            </tbody>
+            <tbody class="divide-y divide-slate-100 font-medium" id="inventory-tbody"></tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- VIEW 5: DEAL ROOM WORKSPACE -->
+    <!-- VIEW 6: DEAL ROOM WORKSPACE -->
     <section id="view-dealroom" class="view-section hidden py-6 sm:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="ui-panel p-5 sm:p-6 mb-6 bg-white space-y-3">
         <div class="flex items-center justify-between">
@@ -943,23 +841,19 @@
 
       <div class="ui-panel p-5 sm:p-6 bg-white">
         <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4" id="t-deal-milestone-lbl">გარიგების ეტაპები</h3>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3 text-center text-xs" id="deal-milestones-grid">
-          <!-- Rendered dynamically -->
-        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3 text-center text-xs" id="deal-milestones-grid"></div>
       </div>
     </section>
 
-    <!-- VIEW 6: SERVICES -->
+    <!-- VIEW 7: SERVICES -->
     <section id="view-services" class="view-section hidden py-6 sm:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-xl sm:text-2xl font-black text-slate-900 mb-6" id="t-srv-page-title">სერვისები & ლოჯისტიკა</h1>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="services-page-grid">
-        <!-- Rendered dynamically -->
-      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="services-page-grid"></div>
     </section>
 
   </main>
 
-  <!-- MOBILE FILTERS DRAWER / MODAL -->
+  <!-- MOBILE FILTERS DRAWER -->
   <div id="modal-mobile-filters" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden lg:hidden flex items-end sm:items-center justify-center p-0 sm:p-4" onclick="if(event.target===this) closeMobileFilterDrawer()">
     <div class="bg-white w-full sm:max-w-lg rounded-t-3xl sm:rounded-2xl p-5 sm:p-6 max-h-[85vh] overflow-y-auto space-y-4 relative border border-slate-200">
       <div class="flex items-center justify-between pb-3 border-b border-slate-100">
@@ -970,13 +864,10 @@
         <button onclick="closeMobileFilterDrawer()" class="p-1 text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
 
-      <!-- Mobile Filters content cloned -->
       <div class="space-y-4 text-xs">
         <div>
           <label class="text-slate-700 font-bold block mb-1">Category</label>
-          <select id="mflt-sel-category" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-800 font-medium">
-            <!-- Rendered dynamically -->
-          </select>
+          <select id="mflt-sel-category" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-800 font-medium"></select>
         </div>
         <div>
           <label class="text-slate-700 font-bold block mb-1">Country</label>
@@ -1054,25 +945,6 @@
     </div>
   </div>
 
-  <!-- RFQ MODAL -->
-  <div id="modal-rfq" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto" onclick="if(event.target===this) closeModal('modal-rfq')">
-    <div class="bg-white w-full max-w-sm sm:max-w-lg rounded-2xl p-5 sm:p-6 relative border border-slate-200 shadow-2xl my-auto">
-      <button onclick="closeModal('modal-rfq')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
-      <h2 class="text-base sm:text-lg font-bold text-slate-900 mb-2" id="t-rfq-modal-title">განცხადების / მოთხოვნის დამატება</h2>
-      <form onsubmit="submitRFQ(event)" class="space-y-3.5 text-xs">
-        <div>
-          <label class="text-slate-600 font-bold block mb-1" id="t-rfq-lbl-crop">პროდუქცია & რაოდენობა</label>
-          <input type="text" id="inp-rfq-crop" required placeholder="მაგ: 10 ტონა თხილი" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5" />
-        </div>
-        <div>
-          <label class="text-slate-600 font-bold block mb-1" id="t-rfq-lbl-price">ფასი ($ / ტონა)</label>
-          <input type="text" id="inp-rfq-price" required placeholder="$3,200 USD" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5" />
-        </div>
-        <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow-md shadow-brand-600/20" id="t-rfq-btn">გამოქვეყნება &rarr;</button>
-      </form>
-    </div>
-  </div>
-
   <!-- FOOTER -->
   <footer class="bg-white border-t border-slate-200 py-8 sm:py-10 mt-auto text-xs text-slate-600">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
@@ -1085,7 +957,7 @@
     </div>
   </footer>
 
-  <!-- IMPORT STRUCTURED MOCK MARKETPLACE DATA MODEL -->
+  <!-- MOCK MARKETPLACE DATA -->
   <script type="module">
     import { MOCK_SELLERS, MOCK_LISTINGS } from './mockMarketplaceData.js';
     window.MOCK_SELLERS = MOCK_SELLERS;
@@ -1093,7 +965,6 @@
   </script>
 
   <script>
-    // Fallback inline mock dataset if ES module loading fails over file://
     const INLINE_MOCK_LISTINGS = [
       {
         id: "prod-1",
@@ -1209,7 +1080,6 @@
       return (window.MOCK_SELLERS && window.MOCK_SELLERS.length) ? window.MOCK_SELLERS : INLINE_MOCK_SELLERS;
     }
 
-    // 14 CATEGORIES LIST
     const CATEGORIES = [
       { id: "all", name: { ka: "ყველა პროდუქცია", en: "All Products", ru: "Все товары" }, icon: "🛍️" },
       { id: "Fruits", name: { ka: "ხილი & კენკრა", en: "Fruits", ru: "Фрукты" }, icon: "🍎" },
@@ -1217,7 +1087,7 @@
       { id: "Nuts", name: { ka: "თხილი & კაკალი", en: "Nuts", ru: "Фундук и орехи" }, icon: "🌰" },
       { id: "Honey", name: { ka: "თაფლი & ფუტკარი", en: "Honey", ru: "Мед" }, icon: "🍯" },
       { id: "Herbs and Spices", name: { ka: "მცენარეები & სუნელები", en: "Herbs and Spices", ru: "Травы и специи" }, icon: "🌿" },
-      { id: "Grains", name: { ka: "მარცვლეული", en: "Grains", ru: "Зерновые" }, icon: "🌾" },
+      { id: "Grains", name: { ka: "მარცვლეული", en: "Grains", ru: "Зერნвые" }, icon: "🌾" },
       { id: "Tea", name: { ka: "ჩაი", en: "Tea", ru: "Чай" }, icon: "🍵" },
       { id: "Wine", name: { ka: "ღვინო & მარანი", en: "Wine", ru: "Вино" }, icon: "🍷" },
       { id: "Seeds", name: { ka: "თესლები", en: "Seeds", ru: "Семена" }, icon: "🌱" },
@@ -1227,7 +1097,6 @@
       { id: "Packaging", name: { ka: "შეფუთვა & 3PL", en: "Packaging", ru: "Упаковка" }, icon: "📦" }
     ];
 
-    // MARKETPLACE FILTER STATE
     const filterState = {
       searchQuery: "",
       category: "all",
@@ -1249,7 +1118,6 @@
 
     let currentDetailProductId = "prod-1";
 
-    // 100% Comprehensive Multilingual Dictionary for ka, en, ru
     const i18n = {
       ka: {
         brandSub: "DIRECT FARM MARKETPLACE",
@@ -1290,7 +1158,6 @@
         loginLblEmail: "ელ-ფოსტა / ტელეფონი", loginLblPass: "პაროლი", loginBtn: "სისტემაში შესვლა →",
         regEntityLegal: "იურიდიული პირი", regEntityIndividual: "ფიზიკური პირი",
         regLblName: "სახელი / კომპანია", regLblTax: "საიდენტიფიკაციო / პირადი N", regBtn: "ანგარიშის შექმნა →",
-        rfqModalTitle: "განცხადების / მოთხოვნის დამატება", rfqLblCrop: "პროდუქცია & რაოდენობა", rfqLblPrice: "ფასი ($ / ტონა)", rfqBtn: "გამოქვეყნება →",
         footerRights: "ყველა უფლება დაცულია.", toastLang: "ენა: ქართული 🇬🇪"
       },
       en: {
@@ -1332,7 +1199,6 @@
         loginLblEmail: "Email / Phone Number", loginLblPass: "Password", loginBtn: "Sign In →",
         regEntityLegal: "Legal Entity", regEntityIndividual: "Individual / Farmer",
         regLblName: "Company / Full Name", regLblTax: "Tax ID / Personal ID Number", regBtn: "Create Account →",
-        rfqModalTitle: "Post Listing or Buying RFQ", rfqLblCrop: "Produce & Quantity", rfqLblPrice: "Target Price ($ / Tonne)", rfqBtn: "Publish Listing →",
         footerRights: "All rights reserved.", toastLang: "Language: English 🇬🇧"
       },
       ru: {
@@ -1374,7 +1240,6 @@
         loginLblEmail: "Email / Телефон", loginLblPass: "Пароль", loginBtn: "Войти в систему →",
         regEntityLegal: "Юридическое лицо", regEntityIndividual: "Физическое лицо",
         regLblName: "Имя / Компания", regLblTax: "ИНН / Личный номер", regBtn: "Создать аккаунт →",
-        rfqModalTitle: "Добавить объявление или запрос", rfqLblCrop: "Продукция и количество", rfqLblPrice: "Целевая цена ($ / тонна)", rfqBtn: "Опубликовать →",
         footerRights: "Все права защищены.", toastLang: "Язык: Русский 🇷🇺"
       }
     };
@@ -1422,14 +1287,14 @@
       e.preventDefault();
       closeModal('modal-auth');
       navigateTo('dashboard');
-      showToast(currentLang === 'ka' ? 'ავტორიზაცია წარმატებულია!' : (currentLang === 'ru' ? 'Вход выполнен успешно!' : 'Sign in successful!'), 'success');
+      showToast(currentLang === 'ka' ? 'ავტორიზაცია წარმატებულია!' : 'Sign in successful!', 'success');
     }
 
     function handleRegistration(e) {
       e.preventDefault();
       closeModal('modal-auth');
       navigateTo('dashboard');
-      showToast(currentLang === 'ka' ? 'რეგისტრაცია წარმატებულია!' : (currentLang === 'ru' ? 'Регистрация успешна!' : 'Registration successful!'), 'success');
+      showToast(currentLang === 'ka' ? 'რეგისტრაცია წარმატებულია!' : 'Registration successful!', 'success');
     }
 
     function showToast(message, type = 'info') {
@@ -1442,7 +1307,7 @@
       setTimeout(() => { toast.remove(); }, 3500);
     }
 
-    function navigateTo(viewId, params = null) {
+    function navigateTo(viewId) {
       document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
       const activeEl = document.getElementById(`view-${viewId}`);
       if (activeEl) activeEl.classList.remove('hidden');
@@ -1614,11 +1479,6 @@
       document.getElementById('t-reg-lbl-tax').innerText = dict.regLblTax;
       document.getElementById('t-reg-btn').innerText = dict.regBtn;
 
-      document.getElementById('t-rfq-modal-title').innerText = dict.rfqModalTitle;
-      document.getElementById('t-rfq-lbl-crop').innerText = dict.rfqLblCrop;
-      document.getElementById('t-rfq-lbl-price').innerText = dict.rfqLblPrice;
-      document.getElementById('t-rfq-btn').innerText = dict.rfqBtn;
-
       document.getElementById('t-footer-rights').innerText = dict.footerRights;
 
       renderCategories();
@@ -1642,12 +1502,11 @@
     function renderCategories() {
       const container = document.getElementById('grid-categories');
       if (!container) return;
-      const list = categoriesData[currentLang];
-      container.innerHTML = list.map(c => `
-        <div onclick="selectCategoryFilter('${c.name.en || c.name.ka}'); navigateTo('marketplace')" class="ui-card p-3 sm:p-4 text-center cursor-pointer hover:bg-slate-50 transition-all flex flex-col items-center justify-center space-y-1.5 sm:space-y-2">
+      container.innerHTML = CATEGORIES.slice(1).map(c => `
+        <div onclick="selectCategoryFilter('${c.id}'); navigateTo('marketplace')" class="ui-card p-3 sm:p-4 text-center cursor-pointer hover:bg-slate-50 transition-all flex flex-col items-center justify-center space-y-1.5 sm:space-y-2">
           <span class="text-2xl sm:text-3xl">${c.icon}</span>
-          <h3 class="text-[11px] sm:text-xs font-bold text-slate-900 line-clamp-1">${c.name}</h3>
-          <span class="text-[9px] sm:text-[10px] text-slate-500 font-medium bg-slate-100 px-2 py-0.5 rounded-full">${c.count}</span>
+          <h3 class="text-[11px] sm:text-xs font-bold text-slate-900 line-clamp-1">${c.name[currentLang] || c.name.en}</h3>
+          <span class="text-[9px] sm:text-[10px] text-slate-500 font-medium bg-slate-100 px-2 py-0.5 rounded-full">Explore</span>
         </div>
       `).join('');
     }
@@ -1660,9 +1519,6 @@
       lucide.createIcons();
     }
 
-    // ----------------------------------------------------
-    // REUSABLE PRODUCT CARD COMPONENT GENERATOR
-    // ----------------------------------------------------
     function createProductCardHTML(p) {
       const isFav = filterState.favorites.includes(p.id);
       const titleStr = typeof p.title === 'object' ? (p.title[currentLang] || p.title.en) : p.title;
@@ -1678,7 +1534,6 @@
       return `
         <div class="ui-card rounded-2xl p-4 flex flex-col justify-between space-y-3 bg-white border border-slate-200 cursor-pointer group" onclick="openProductDetailPage('${p.id}')">
           <div>
-            <!-- Image & Favorite Button -->
             <div class="relative w-full h-44 rounded-xl overflow-hidden bg-slate-100 mb-3 border border-slate-100">
               <img src="${mainImg}" alt="${titleStr}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
               <button onclick="event.stopPropagation(); toggleProductFavorite('${p.id}')" class="absolute top-2.5 right-2.5 p-2 rounded-full bg-white/90 hover:bg-white shadow-md text-slate-400 hover:text-rose-500 transition-all ${isFav ? 'text-rose-500' : ''}">
@@ -1690,18 +1545,15 @@
               </div>
             </div>
 
-            <!-- Title & Category -->
             <span class="text-[10px] font-extrabold text-brand-700 uppercase tracking-wider block">${p.category}</span>
             <h3 class="text-sm font-bold text-slate-900 line-clamp-2 mt-0.5 group-hover:text-brand-600 transition-colors">${titleStr}</h3>
             
-            <!-- Seller & Location -->
             <div class="flex items-center gap-1.5 text-[11px] text-slate-500 mt-1 font-medium">
               <span>${p.sellerName}</span>
               <span class="text-slate-300">•</span>
               <span>${p.location}</span>
             </div>
 
-            <!-- Price & Available Qty -->
             <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
               <div>
                 <span class="text-[9px] text-slate-400 font-semibold block uppercase">${currentLang === 'ka' ? 'მარაგი' : 'Available'}</span>
@@ -1713,7 +1565,6 @@
             </div>
           </div>
 
-          <!-- Bottom Action Buttons -->
           <div class="flex gap-2 pt-1" onclick="event.stopPropagation()">
             <button onclick="showToast('${sampleTxt} requested!', 'success')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-2 rounded-xl text-[11px] border border-slate-200 transition-all">${sampleTxt}</button>
             <button onclick="openProductDetailPage('${p.id}')" class="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-bold py-2 rounded-xl text-[11px] shadow-sm transition-all">${dealTxt}</button>
@@ -1722,9 +1573,6 @@
       `;
     }
 
-    // ----------------------------------------------------
-    // MARKETPLACE MAIN CATALOG & FILTERING ENGINE
-    // ----------------------------------------------------
     function renderMarketplacePage() {
       renderCategoryChips();
       populateFilterCategorySelect();
@@ -1765,7 +1613,6 @@
       document.getElementById('flt-sel-category').value = catId;
       renderCategoryChips();
       applyMarketplaceFilters();
-      syncURLState();
     }
 
     function handleMarketplaceSearchInput(e) {
@@ -1803,63 +1650,44 @@
 
       let filtered = [...getListingsData()];
 
-      // Keyword search over title, category, seller, country, region
       if (kw) {
         filtered = filtered.filter(p => {
           const t = (p.title[currentLang] || p.title.en || '').toLowerCase();
           const d = (p.description[currentLang] || p.description.en || '').toLowerCase();
           const c = (p.category || '').toLowerCase();
           const s = (p.sellerName || '').toLowerCase();
-          const cntry = (p.country || '').toLowerCase();
-          const reg = (p.region || '').toLowerCase();
-          return t.includes(kw) || d.includes(kw) || c.includes(kw) || s.includes(kw) || cntry.includes(kw) || reg.includes(kw);
+          return t.includes(kw) || d.includes(kw) || c.includes(kw) || s.includes(kw);
         });
       }
 
-      // Category filter
       if (cat && cat !== 'all') {
         filtered = filtered.filter(p => p.category.toLowerCase() === cat.toLowerCase());
       }
-
-      // Location Country
       if (country && country !== 'all') {
         filtered = filtered.filter(p => p.country.toLowerCase() === country.toLowerCase());
       }
-
-      // Location Region
       if (region && region !== 'all') {
         filtered = filtered.filter(p => p.region.toLowerCase() === region.toLowerCase());
       }
-
-      // Product Type
       if (prodType && prodType !== 'all') {
         filtered = filtered.filter(p => p.productType.toLowerCase() === prodType.toLowerCase());
       }
-
-      // Price Range & Price on request
       if (minP !== null) {
         filtered = filtered.filter(p => p.price >= minP || (priceReq && p.priceOnRequest));
       }
       if (maxP !== null) {
         filtered = filtered.filter(p => p.price <= maxP || (priceReq && p.priceOnRequest));
       }
-
-      // Min Qty
       if (minQ !== null) {
         filtered = filtered.filter(p => p.availableQuantity >= minQ);
       }
-
-      // Seller Type
       if (sellerType && sellerType !== 'all') {
         filtered = filtered.filter(p => p.sellerType.toLowerCase() === sellerType.toLowerCase());
       }
-
-      // Verified Only
       if (verifiedOnly) {
         filtered = filtered.filter(p => p.sellerVerified === true);
       }
 
-      // Sorting
       if (sort === 'newest') {
         filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       } else if (sort === 'price-low') {
@@ -1872,7 +1700,6 @@
 
       renderMarketplaceResults(filtered);
       renderActiveChips();
-      syncURLState();
     }
 
     function renderMarketplaceResults(list) {
@@ -1882,7 +1709,7 @@
       const catLbl = document.getElementById('mkt-active-cat-label');
       if (!grid) return;
 
-      countEl.innerText = `${list.length} ${currentLang === 'ka' ? 'პროდუქტი მოიძებნა' : (currentLang === 'ru' ? 'товаров найдено' : 'products found')}`;
+      countEl.innerText = `${list.length} ${currentLang === 'ka' ? 'პროდუქტი მოიძებნა' : 'products found'}`;
       const catObj = CATEGORIES.find(c => c.id.toLowerCase() === filterState.category.toLowerCase());
       catLbl.innerText = catObj ? (catObj.name[currentLang] || catObj.name.en) : 'All Categories';
 
@@ -1905,7 +1732,6 @@
       const chips = [];
       if (filterState.category !== 'all') chips.push({ label: `Category: ${filterState.category}`, key: 'category' });
       if (filterState.country !== 'all') chips.push({ label: `Country: ${filterState.country}`, key: 'country' });
-      if (filterState.productType !== 'all') chips.push({ label: `Type: ${filterState.productType}`, key: 'productType' });
       if (filterState.verifiedOnly) chips.push({ label: `Verified Sellers`, key: 'verifiedOnly' });
       if (filterState.searchQuery) chips.push({ label: `Search: "${filterState.searchQuery}"`, key: 'searchQuery' });
 
@@ -1936,7 +1762,6 @@
     function removeFilterChip(key) {
       if (key === 'category') { filterState.category = 'all'; document.getElementById('flt-sel-category').value = 'all'; }
       if (key === 'country') { filterState.country = 'all'; document.getElementById('flt-sel-country').value = 'all'; }
-      if (key === 'productType') { filterState.productType = 'all'; document.getElementById('flt-sel-type').value = 'all'; }
       if (key === 'verifiedOnly') { filterState.verifiedOnly = false; document.getElementById('flt-chk-verified').checked = false; }
       if (key === 'searchQuery') { filterState.searchQuery = ''; document.getElementById('mkt-search-input').value = ''; }
       renderCategoryChips();
@@ -1974,12 +1799,8 @@
       showToast('All filters cleared!', 'info');
     }
 
-    function openMobileFilterDrawer() {
-      document.getElementById('modal-mobile-filters').classList.remove('hidden');
-    }
-    function closeMobileFilterDrawer() {
-      document.getElementById('modal-mobile-filters').classList.add('hidden');
-    }
+    function openMobileFilterDrawer() { document.getElementById('modal-mobile-filters').classList.remove('hidden'); }
+    function closeMobileFilterDrawer() { document.getElementById('modal-mobile-filters').classList.add('hidden'); }
     function applyMobileFilterDrawer() {
       const cat = document.getElementById('mflt-sel-category').value;
       const country = document.getElementById('mflt-sel-country').value;
@@ -1994,25 +1815,10 @@
       applyMarketplaceFilters();
     }
 
-    function syncURLState() {
-      if (window.history && window.history.replaceState) {
-        const query = new URLSearchParams();
-        if (filterState.category !== 'all') query.set('category', filterState.category);
-        if (filterState.country !== 'all') query.set('country', filterState.country);
-        if (filterState.verifiedOnly) query.set('verified', 'true');
-        if (filterState.searchQuery) query.set('search', filterState.searchQuery);
-        const newUrl = `${window.location.pathname}?${query.toString()}`;
-        window.history.replaceState(null, '', newUrl);
-      }
-    }
-
     function loadMoreProducts() {
       showToast(currentLang === 'ka' ? 'ყველა ხელმისაწვდომი პროდუქტი ჩატვირთულია!' : 'All available products loaded!', 'info');
     }
 
-    // ----------------------------------------------------
-    // INDIVIDUAL PRODUCT DETAIL ROUTE & COMPONENT (/marketplace/[id])
-    // ----------------------------------------------------
     function openProductDetailPage(prodId) {
       currentDetailProductId = prodId;
       renderProductDetailPage(prodId);
@@ -2029,21 +1835,19 @@
       document.getElementById('dtl-crumb-category').innerText = listing.category;
       document.getElementById('dtl-crumb-title').innerText = titleStr;
 
-      // Gallery
       const mainImg = (listing.images && listing.images.length) ? listing.images[0] : 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800&q=80';
       document.getElementById('dtl-main-img').src = mainImg;
       document.getElementById('dtl-img-counter').innerText = `1 of ${listing.images.length || 1}`;
 
       const thumbsRow = document.getElementById('dtl-thumbs-row');
       if (thumbsRow) {
-        thumbsRow.innerHTML = (listing.images || [mainImg]).map((img, idx) => `
+        thumbsRow.innerHTML = (listing.images || [mainImg]).map(img => `
           <div onclick="document.getElementById('dtl-main-img').src='${img}'" class="w-16 h-16 rounded-xl overflow-hidden border border-slate-200 cursor-pointer shrink-0 hover:opacity-80">
             <img src="${img}" class="w-full h-full object-cover" />
           </div>
         `).join('');
       }
 
-      // Title & Badges
       document.getElementById('dtl-badge-category').innerText = listing.category;
       document.getElementById('dtl-title').innerText = titleStr;
       document.getElementById('dtl-location').innerText = `${listing.location}, ${listing.country}`;
@@ -2054,11 +1858,9 @@
         badgesBox.innerHTML = `
           ${listing.sellerVerified ? `<span class="bg-emerald-50 text-emerald-700 font-extrabold px-2.5 py-1 rounded-full border border-emerald-200">✓ VERIFIED SELLER</span>` : ''}
           ${(listing.certifications || []).map(c => `<span class="bg-brand-50 text-brand-700 font-extrabold px-2.5 py-1 rounded-full border border-brand-200">🏆 ${c}</span>`).join('')}
-          ${listing.exportAvailable ? `<span class="bg-blue-50 text-blue-700 font-extrabold px-2.5 py-1 rounded-full border border-blue-200">✈️ Export Ready</span>` : ''}
         `;
       }
 
-      // Specifications Grid
       const specsGrid = document.getElementById('dtl-specs-grid');
       if (specsGrid) {
         const attrs = listing.productAttributes || {};
@@ -2074,25 +1876,18 @@
         }).join('');
       }
 
-      // Description
       document.getElementById('dtl-description').innerText = descStr;
 
-      // Certifications
       const certsBox = document.getElementById('dtl-certs-container');
       if (certsBox) {
-        if (listing.certifications && listing.certifications.length) {
-          certsBox.innerHTML = listing.certifications.map(c => `
-            <div class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-100">
-              <i data-lucide="award" class="w-4 h-4 text-brand-600"></i>
-              <span class="font-bold text-slate-900">${c} Certificate (Verified Data)</span>
-            </div>
-          `).join('');
-        } else {
-          certsBox.innerHTML = `<p class="text-slate-500 italic">No certification documents have been uploaded.</p>`;
-        }
+        certsBox.innerHTML = (listing.certifications || []).map(c => `
+          <div class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-100">
+            <i data-lucide="award" class="w-4 h-4 text-brand-600"></i>
+            <span class="font-bold text-slate-900">${c} Certificate (Verified Data)</span>
+          </div>
+        `).join('');
       }
 
-      // Trade Options
       const tradeBox = document.getElementById('dtl-trade-container');
       if (tradeBox) {
         tradeBox.innerHTML = (listing.deliveryOptions || ['Domestic delivery', 'Export available']).map(opt => `
@@ -2103,21 +1898,18 @@
         `).join('');
       }
 
-      // Price & Qty
       const isPriceReq = listing.priceOnRequest || listing.price === 0;
-      document.getElementById('dtl-price-val').innerText = isPriceReq ? (currentLang === 'ka' ? 'ფასი შეთანხმებით' : 'Price on Request') : `$${listing.price.toFixed(2)}`;
+      document.getElementById('dtl-price-val').innerText = isPriceReq ? 'Price on Request' : `$${listing.price.toFixed(2)}`;
       document.getElementById('dtl-price-unit').innerText = isPriceReq ? '' : `/ ${listing.pricingUnit}`;
       document.getElementById('dtl-avail-qty').innerText = `${listing.availableQuantity} ${listing.quantityUnit}s`;
       document.getElementById('dtl-min-order').innerText = `${listing.minimumOrder} ${listing.quantityUnit}`;
 
-      // Seller Card
       document.getElementById('dtl-seller-logo').innerText = seller.logo || '🍇';
       document.getElementById('dtl-seller-name').innerText = seller.name;
       document.getElementById('dtl-seller-type').innerText = `${seller.type} • ${seller.location}`;
       document.getElementById('dtl-seller-since').innerText = seller.memberSince;
       document.getElementById('dtl-seller-listings-count').innerText = `${seller.activeListings} Listings`;
 
-      // Similar Products (4 items from same or other category)
       const similarGrid = document.getElementById('dtl-similar-products-grid');
       if (similarGrid) {
         const similars = getListingsData().filter(p => p.id !== prodId).slice(0, 4);
@@ -2135,11 +1927,7 @@
     function handleInquirySubmit(e) {
       e.preventDefault();
       const name = document.getElementById('inq-inp-name').value;
-      const comp = document.getElementById('inq-inp-company').value;
-      const email = document.getElementById('inq-inp-email').value;
-
-      // TODO: Connect inquiry form submission to Supabase database (`inquiries` table)
-      showToast(currentLang === 'ka' ? `მოთხოვნა გაიგზავნა! (${name}, ${comp || email})` : `Inquiry submitted successfully for ${name}!`, 'success');
+      showToast(`Inquiry submitted successfully for ${name}!`, 'success');
     }
 
     function toggleProductFavorite(prodId) {
@@ -2159,18 +1947,11 @@
 
     function shareProduct() {
       if (navigator.share) {
-        navigator.share({
-          title: document.title,
-          url: window.location.href
-        }).catch(() => {});
+        navigator.share({ title: document.title, url: window.location.href }).catch(() => {});
       } else {
         navigator.clipboard.writeText(window.location.href);
-        showToast(currentLang === 'ka' ? 'ბმული დაკოპირებულია!' : 'Link copied to clipboard!', 'success');
+        showToast('Link copied to clipboard!', 'success');
       }
-    }
-
-    function UserRoleSwitcher(role) {
-      showToast(`Switched view to ${role}`, 'info');
     }
 
     function renderUserTypes() {
@@ -2239,24 +2020,24 @@
       const isRu = currentLang === 'ru';
       container.innerHTML = `
         <div class="ui-card p-4 sm:p-5 rounded-2xl bg-white space-y-1.5 sm:space-y-2">
-          <span class="text-[10px] sm:text-xs font-bold text-slate-400">${isKa ? 'საქართველო 🇬🇪' : (isRu ? 'Грузия 🇬🇪' : 'Georgia 🇬🇪')}</span>
-          <h3 class="text-xs sm:text-sm font-bold text-slate-900">${isKa ? 'შპს კახეთის მემკვიდრეობა' : 'Kakheti Heritage LLC'}</h3>
-          <p class="text-[11px] sm:text-xs text-slate-500">${isKa ? '🌰 თხილი, 🍷 ბიო ღვინო' : (isRu ? '🌰 Фундук, 🍷 Био вино' : '🌰 Hazelnuts, 🍷 Bio Wine')}</p>
+          <span class="text-[10px] sm:text-xs font-bold text-slate-400">Georgia 🇬🇪</span>
+          <h3 class="text-xs sm:text-sm font-bold text-slate-900">Kakheti Heritage LLC</h3>
+          <p class="text-[11px] sm:text-xs text-slate-500">🌰 Hazelnuts, 🍷 Bio Wine</p>
         </div>
         <div class="ui-card p-4 sm:p-5 rounded-2xl bg-white space-y-1.5 sm:space-y-2">
-          <span class="text-[10px] sm:text-xs font-bold text-slate-400">${isKa ? 'საქართველო 🇬🇪' : (isRu ? 'Грузия 🇬🇪' : 'Georgia 🇬🇪')}</span>
-          <h3 class="text-xs sm:text-sm font-bold text-slate-900">${isKa ? 'თელავის ღვინის მარანი' : 'Telavi Wine Cellar'}</h3>
-          <p class="text-[11px] sm:text-xs text-slate-500">${isKa ? '🍷 ქვევრის ღვინო' : (isRu ? '🍷 Вино Квеври' : '🍷 Qvevri Amber Wine')}</p>
+          <span class="text-[10px] sm:text-xs font-bold text-slate-400">Georgia 🇬🇪</span>
+          <h3 class="text-xs sm:text-sm font-bold text-slate-900">Telavi Wine Cellar</h3>
+          <p class="text-[11px] sm:text-xs text-slate-500">🍷 Qvevri Amber Wine</p>
         </div>
         <div class="ui-card p-4 sm:p-5 rounded-2xl bg-white space-y-1.5 sm:space-y-2">
-          <span class="text-[10px] sm:text-xs font-bold text-slate-400">${isKa ? 'საქართველო 🇬🇪' : (isRu ? 'Грузия 🇬🇪' : 'Georgia 🇬🇪')}</span>
-          <h3 class="text-xs sm:text-sm font-bold text-slate-900">${isKa ? 'გორის ბაღები & ექსპორტი' : 'Gori Orchards & Export'}</h3>
-          <p class="text-[11px] sm:text-xs text-slate-500">${isKa ? '🍏 წითელი ვაშლი Gala' : (isRu ? '🍏 Красные яблоки Gala' : '🍏 Red Gala Apples')}</p>
+          <span class="text-[10px] sm:text-xs font-bold text-slate-400">Georgia 🇬🇪</span>
+          <h3 class="text-xs sm:text-sm font-bold text-slate-900">Gori Orchards & Export</h3>
+          <p class="text-[11px] sm:text-xs text-slate-500">🍏 Red Gala Apples</p>
         </div>
         <div class="ui-card p-4 sm:p-5 rounded-2xl bg-white space-y-1.5 sm:space-y-2">
-          <span class="text-[10px] sm:text-xs font-bold text-slate-400">${isKa ? 'ნიდერლანდები 🇳🇱' : (isRu ? 'Нидерланды 🇳🇱' : 'Netherlands 🇳🇱')}</span>
+          <span class="text-[10px] sm:text-xs font-bold text-slate-400">Netherlands 🇳🇱</span>
           <h3 class="text-xs sm:text-sm font-bold text-slate-900">AgriCorp Netherlands B.V.</h3>
-          <p class="text-[11px] sm:text-xs text-slate-500">${isKa ? '🚢 ევროპული იმპორტიორები' : (isRu ? '🚢 Импортер ЕС' : '🚢 EU Importer & Wholesale')}</p>
+          <p class="text-[11px] sm:text-xs text-slate-500">🚢 EU Importer & Wholesale</p>
         </div>
       `;
     }
@@ -2268,10 +2049,10 @@
       const isRu = currentLang === 'ru';
       tbody.innerHTML = `
         <tr class="hover:bg-slate-50 cursor-pointer" onclick="openProductDetailPage('prod-1')">
-          <td class="p-3 font-bold text-slate-900">${isKa ? 'ქართული თხილი (13-15მმ)' : (isRu ? 'Грузинский фундук (13-15мм)' : 'Georgian Hazelnuts (13-15mm)')}</td>
-          <td class="p-3">24.0 ${isKa ? 'ტონა' : (isRu ? 'тонн' : 'Tonnes')}</td>
-          <td class="p-3 text-brand-700 font-bold">$3,200 / ${isKa ? 'ტონა' : (isRu ? 'тонна' : 'Tonne')}</td>
-          <td class="p-3"><span class="bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-full text-[10px]">${isKa ? 'აქტიური' : (isRu ? 'Активно' : 'Active')}</span></td>
+          <td class="p-3 font-bold text-slate-900">${isKa ? 'ქართული თხილი (13-15მმ)' : 'Georgian Hazelnuts (13-15mm)'}</td>
+          <td class="p-3">24.0 ${isKa ? 'ტონა' : 'Tonnes'}</td>
+          <td class="p-3 text-brand-700 font-bold">$3,200 / Tonne</td>
+          <td class="p-3"><span class="bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-full text-[10px]">Active</span></td>
         </tr>
       `;
     }
@@ -2279,14 +2060,12 @@
     function renderDealMilestones() {
       const grid = document.getElementById('deal-milestones-grid');
       if (!grid) return;
-      const isKa = currentLang === 'ka';
-      const isRu = currentLang === 'ru';
       grid.innerHTML = `
-        <div class="p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50/50 font-bold text-emerald-800">${isKa ? '1. შეთანხმება ✓' : (isRu ? '1. Договор ✓' : '1. Agreement ✓')}</div>
-        <div class="p-3 rounded-xl border-2 border-amber-500 bg-amber-50/50 font-bold text-amber-800">${isKa ? '2. Escrow ($76,800)' : (isRu ? '2. Эскроу ($76,800)' : '2. Escrow ($76,800)')}</div>
-        <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-400">${isKa ? '3. ინსპექტირება' : (isRu ? '3. Инспекция' : '3. Inspection')}</div>
-        <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-400">${isKa ? '4. ტრანსპორტირება' : (isRu ? '4. Транспорт' : '4. Transport')}</div>
-        <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-400">${isKa ? '5. მიღება' : (isRu ? '5. Приемка' : '5. Delivery')}</div>
+        <div class="p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50/50 font-bold text-emerald-800">1. Agreement ✓</div>
+        <div class="p-3 rounded-xl border-2 border-amber-500 bg-amber-50/50 font-bold text-amber-800">2. Escrow ($76,800)</div>
+        <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-400">3. Inspection</div>
+        <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-400">4. Transport</div>
+        <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-400">5. Delivery</div>
       `;
     }
 
@@ -2296,17 +2075,9 @@
       renderServices();
     }
 
-    function submitRFQ(e) {
-      e.preventDefault();
-      closeModal('modal-rfq');
-      navigateTo('marketplace');
-      showToast(currentLang === 'ka' ? 'განცხადება წარმატებით დაემატა!' : (currentLang === 'ru' ? 'Объявление опубликовано!' : 'Listing published!'), 'success');
-    }
-
     function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
-    // Make functions globally accessible
     window.selectCategoryFilter = selectCategoryFilter;
     window.applyMarketplaceFilters = applyMarketplaceFilters;
     window.clearAllFilters = clearAllFilters;
