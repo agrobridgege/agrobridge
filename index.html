@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>AgroBridge — Direct B2B Agricultural Marketplace</title>
-  <meta name="description" content="Direct farm marketplace connecting producers, local buyers, exporters, and agricultural services." />
+  <title>AgroBridge — From producers directly to buyers</title>
+  <meta name="description" content="Direct agricultural marketplace connecting producers, bulk buyers, exporters, and agricultural services." />
   
   <!-- Fonts: Inter & Noto Sans Georgian -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +56,7 @@
     .ui-panel {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 16px;
+      border-radius: 20px;
       box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02);
     }
     
@@ -73,20 +73,8 @@
       transform: translateY(-2px);
     }
     
-    .gradient-hero-text { color: #059669; }
-
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    .skeleton {
-      background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
-      background-size: 200% 100%;
-      animation: skeleton-loading 1.5s infinite;
-    }
-    @keyframes skeleton-loading {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
@@ -96,13 +84,13 @@
 
   <!-- CLEAN RESPONSIVE HEADER -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 sm:h-20">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14 sm:h-20">
         
-        <!-- Logo -->
-        <div class="flex items-center space-x-2.5 sm:space-x-3 cursor-pointer shrink-0" onclick="navigateTo('home')">
-          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-brand-600 flex items-center justify-center shadow-md shadow-brand-600/20 text-white">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Left: Logo -->
+        <div class="flex items-center space-x-2 sm:space-x-3 cursor-pointer shrink-0" onclick="navigateTo('home')">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-brand-600 flex items-center justify-center shadow-md shadow-brand-600/20 text-white">
+            <svg class="w-4 h-4 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M7 20h10"></path>
               <path d="M12 20V10"></path>
               <path d="M12 10a5 5 0 0 1 5-5h2v2a5 5 0 0 1-5 5h-2z"></path>
@@ -111,51 +99,48 @@
           </div>
           <div>
             <div class="flex items-center gap-1">
-              <span class="text-lg sm:text-xl font-black tracking-tight text-slate-900">Agro<span class="text-brand-600">Bridge</span></span>
+              <span class="text-base sm:text-xl font-black tracking-tight text-slate-900">Agro<span class="text-brand-600">Bridge</span></span>
             </div>
-            <p class="text-[9px] sm:text-[10px] text-slate-400 font-bold tracking-wider uppercase" id="t-brand-sub">DIRECT FARM MARKETPLACE</p>
+            <p class="hidden sm:block text-[9px] sm:text-[10px] text-slate-400 font-bold tracking-wider uppercase" id="t-brand-sub">DIRECT FARM MARKETPLACE</p>
           </div>
         </div>
 
-        <!-- Desktop Navigation Links -->
+        <!-- Center: Navigation Links -->
         <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2">
-          <button onclick="navigateTo('home')" id="nav-home" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-brand-700 bg-brand-50">
-            <span id="t-nav-home">მთავარი</span>
-          </button>
           <button onclick="navigateTo('marketplace')" id="nav-marketplace" class="px-3.5 py-2 rounded-xl text-xs font-semibold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            <span id="t-nav-marketplace">პროდუქცია & ბაზარი</span>
+            <span id="t-nav-marketplace">Marketplace</span>
           </button>
           <button onclick="navigateTo('services')" id="nav-services" class="px-3.5 py-2 rounded-xl text-xs font-semibold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            <span id="t-nav-services">სერვისები & ლოჯისტიკა</span>
+            <span id="t-nav-services">Services</span>
           </button>
           <button onclick="scrollToSection('sec-how')" id="nav-how" class="px-3.5 py-2 rounded-xl text-xs font-semibold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            <span id="t-nav-how">როგორ მუშაობს</span>
+            <span id="t-nav-how">How It Works</span>
           </button>
           <button onclick="navigateTo('dashboard')" id="nav-dashboard" class="px-3.5 py-2 rounded-xl text-xs font-semibold transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center gap-1.5">
             <i data-lucide="user" class="w-3.5 h-3.5 text-brand-600"></i>
-            <span id="t-nav-dashboard">კაბინეტი</span>
+            <span id="t-nav-dashboard">Cabinet</span>
           </button>
         </nav>
 
-        <!-- Right Side Controls -->
-        <div class="flex items-center space-x-1.5 sm:space-x-3">
-          <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs text-slate-800 font-extrabold focus:outline-none cursor-pointer shadow-sm">
-            <option value="ka" selected>🇬🇪 ქართული</option>
-            <option value="en">🇬🇧 English</option>
-            <option value="ru">🇷🇺 Русский</option>
+        <!-- Right: Language & Action Controls -->
+        <div class="flex items-center space-x-1.5 sm:space-x-3 shrink-0">
+          <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-slate-50 border border-slate-200 rounded-xl px-2 py-1.5 text-[11px] sm:text-xs text-slate-800 font-extrabold focus:outline-none cursor-pointer shadow-sm">
+            <option value="ka" selected>ქართული</option>
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
           </select>
 
           <button onclick="openAuthModal('login')" class="hidden sm:flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-slate-900 px-3 sm:px-3.5 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all">
             <i data-lucide="log-in" class="w-3.5 h-3.5 text-slate-500"></i>
-            <span id="t-btn-login">შესვლა</span>
+            <span id="t-btn-login">Sign In</span>
           </button>
 
-          <button onclick="navigateTo('create-placeholder')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl text-[11px] sm:text-xs shadow-md shadow-brand-600/20 transition-all flex items-center gap-1.5">
-            <i data-lucide="plus-circle" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
-            <span id="t-btn-create-listing">+ განცხადება</span>
+          <button onclick="navigateTo('create-placeholder')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-2.5 sm:px-3.5 py-2 sm:py-2.5 rounded-xl text-xs shadow-md shadow-brand-600/20 transition-all flex items-center gap-1.5" title="Create Listing">
+            <i data-lucide="plus-circle" class="w-4 h-4"></i>
+            <span class="hidden sm:inline" id="t-btn-create-listing">Create Listing</span>
           </button>
 
-          <button onclick="toggleMobileDrawer()" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100">
+          <button onclick="toggleMobileDrawer()" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 flex items-center justify-center" aria-label="Toggle Menu">
             <i data-lucide="menu" class="w-5 h-5"></i>
           </button>
         </div>
@@ -187,28 +172,28 @@
 
         <div class="grid grid-cols-2 gap-2 mb-6">
           <button onclick="openAuthModal('login'); toggleMobileDrawer()" class="w-full text-center py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-800">
-            <span id="m-btn-login">შესვლა</span>
+            <span id="m-btn-login">Sign In</span>
           </button>
           <button onclick="navigateTo('create-placeholder'); toggleMobileDrawer()" class="w-full text-center py-2.5 rounded-xl bg-brand-600 text-xs font-bold text-white shadow-sm">
-            <span id="m-btn-create-listing">+ განცხადება</span>
+            <span id="m-btn-create-listing">Create Listing</span>
           </button>
         </div>
 
         <nav class="space-y-1.5">
           <button onclick="navigateTo('home'); toggleMobileDrawer()" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center gap-3">
-            <i data-lucide="home" class="w-4 h-4 text-slate-500"></i> <span id="m-nav-home">მთავარი</span>
+            <i data-lucide="home" class="w-4 h-4 text-slate-500"></i> <span id="m-nav-home">Home</span>
           </button>
           <button onclick="navigateTo('marketplace'); toggleMobileDrawer()" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center gap-3">
-            <i data-lucide="store" class="w-4 h-4 text-slate-500"></i> <span id="m-nav-marketplace">პროდუქცია & ბაზარი</span>
+            <i data-lucide="store" class="w-4 h-4 text-slate-500"></i> <span id="m-nav-marketplace">Marketplace</span>
           </button>
           <button onclick="navigateTo('services'); toggleMobileDrawer()" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center gap-3">
-            <i data-lucide="truck" class="w-4 h-4 text-slate-500"></i> <span id="m-nav-services">სერვისები & ლოჯისტიკა</span>
+            <i data-lucide="truck" class="w-4 h-4 text-slate-500"></i> <span id="m-nav-services">Services</span>
           </button>
           <button onclick="navigateTo('dashboard'); toggleMobileDrawer()" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center gap-3">
-            <i data-lucide="user" class="w-4 h-4 text-brand-600"></i> <span id="m-nav-dashboard">პირადი კაბინეტი</span>
+            <i data-lucide="user" class="w-4 h-4 text-brand-600"></i> <span id="m-nav-dashboard">Cabinet</span>
           </button>
           <button onclick="navigateTo('dealroom'); toggleMobileDrawer()" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-800 hover:bg-slate-100 flex items-center gap-3">
-            <i data-lucide="shield-check" class="w-4 h-4 text-amber-500"></i> <span id="m-nav-dealroom">გარიგების ოთახი</span>
+            <i data-lucide="shield-check" class="w-4 h-4 text-amber-500"></i> <span id="m-nav-dealroom">Deal</span>
           </button>
         </nav>
       </div>
@@ -219,191 +204,232 @@
     </div>
   </div>
 
-  <!-- FIXED MOBILE BOTTOM NAVIGATION BAR -->
-  <div class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 lg:hidden px-2 py-2 flex items-center justify-around text-[10px] font-bold shadow-lg">
-    <button onclick="navigateTo('home')" class="flex flex-col items-center gap-0.5 text-brand-700">
-      <i data-lucide="home" class="w-4 h-4"></i>
-      <span id="m-bnav-home">მთავარი</span>
-    </button>
-    <button onclick="navigateTo('marketplace')" class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-slate-900">
-      <i data-lucide="store" class="w-4 h-4"></i>
-      <span id="m-bnav-marketplace">ბაზარი</span>
-    </button>
-    <button onclick="navigateTo('dashboard')" class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-slate-900">
-      <i data-lucide="user" class="w-4 h-4"></i>
-      <span id="m-bnav-dashboard">კაბინეტი</span>
-    </button>
-    <button onclick="navigateTo('dealroom')" class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-slate-900">
-      <i data-lucide="shield-check" class="w-4 h-4 text-amber-500"></i>
-      <span id="m-bnav-dealroom">გარიგება</span>
-    </button>
-    <button onclick="openAuthModal('login')" class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-slate-900">
-      <i data-lucide="log-in" class="w-4 h-4"></i>
-      <span id="m-bnav-login">შესვლა</span>
-    </button>
-  </div>
-
   <!-- MAIN APP CONTAINER -->
   <main id="app-container" class="flex-grow">
     
-    <!-- VIEW 1: HOMEPAGE -->
-    <div id="view-home" class="view-section space-y-8 sm:space-y-16 py-4 sm:py-10">
+    <!-- VIEW 1: HOMEPAGE (Simplified, Premium Airbnb/Faire/Stripe Style) -->
+    <div id="view-home" class="view-section space-y-12 sm:space-y-20 py-4 sm:py-8">
       
-      <!-- HERO SECTION -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="ui-panel p-5 sm:p-10 md:p-12 text-center max-w-4xl mx-auto bg-gradient-to-b from-emerald-50/50 via-white to-white space-y-4 sm:space-y-6">
+      <!-- 2. HERO SECTION (Asymmetric 2-Column Hero) -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 text-emerald-800 text-[11px] sm:text-xs font-bold mx-auto">
-            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-brand-600"></i>
-            <span id="t-hero-tag">პირდაპირი აგრო ბაზარი ფერმერებისგან</span>
-          </span>
+          <!-- LEFT COLUMN: Content & Search -->
+          <div class="lg:col-span-6 space-y-5 text-left">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 text-emerald-800 text-xs font-bold border border-emerald-200">
+              <i data-lucide="sprout" class="w-3.5 h-3.5 text-brand-600"></i>
+              <span id="t-hero-tag">პირდაპირი აგრო ბაზარი</span>
+            </span>
 
-          <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight" id="t-hero-headline">
-            იპოვეთ და გაყიდეთ ნამდვილი აგრო პროდუქცია <span class="gradient-hero-text">პირდაპირ ფერმერებისგან</span>
-          </h1>
+            <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]" id="t-hero-headline">
+              მწარმოებლისგან პირდაპირ მყიდველთან
+            </h1>
 
-          <p class="text-xs sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed" id="t-hero-subtext">
-            აკავშირებს ადგილობრივ მწარმოებლებს, საბითუმო მყიდველებს, ექსპორტიორებსა და ლოჯისტიკურ სერვისებს უშუალოდ, შუამავლების გარეშე.
-          </p>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl font-medium" id="t-hero-subtext">
+              აღმოაჩინეთ აგრო პროდუქცია, დაუკავშირდით სანდო სავაჭრო პარტნიორებს და გაზარდეთ თქვენი ბიზნესი ერთი მარტივი პლატფორმით.
+            </p>
 
-          <div class="bg-white p-1.5 sm:p-2 rounded-2xl border border-slate-200 shadow-md flex flex-col sm:flex-row gap-2 max-w-2xl mx-auto">
-            <div class="flex-1 relative flex items-center">
-              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5"></i>
-              <input type="text" id="inp-hero-keyword" placeholder="რა პროდუქციას ეძებთ? (თხილი, ღვინო...)" class="w-full bg-slate-50 text-xs text-slate-900 placeholder:text-slate-400 pl-10 pr-4 py-2.5 sm:py-3 rounded-xl border border-slate-100 focus:outline-none focus:border-brand-500 focus:bg-white" />
+            <!-- Search Field -->
+            <div class="bg-white p-2 rounded-2xl border border-slate-200 shadow-md flex flex-col sm:flex-row gap-2 max-w-lg">
+              <div class="flex-1 relative flex items-center">
+                <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5"></i>
+                <input type="text" id="inp-hero-keyword" placeholder="მოძებნეთ თხილი, ღვინო, თაფლი, ხილი..." class="w-full bg-slate-50 text-xs text-slate-900 placeholder:text-slate-400 pl-10 pr-4 py-3 rounded-xl border border-slate-100 focus:outline-none focus:border-brand-500 focus:bg-white" />
+              </div>
+              <button onclick="handleHeroSearch()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md shadow-brand-600/20 transition-all">
+                <i data-lucide="search" class="w-4 h-4"></i>
+                <span id="t-btn-hero-search">ძებნა</span>
+              </button>
             </div>
 
-            <button onclick="handleHeroSearch()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-2.5 sm:py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md shadow-brand-600/20 transition-all">
-              <i data-lucide="search" class="w-4 h-4"></i>
-              <span id="t-btn-hero-search">ძებნა</span>
-            </button>
+            <!-- Popular Tags -->
+            <div class="flex flex-wrap items-center gap-2 text-xs pt-0.5">
+              <span class="text-slate-400 font-medium" id="t-lbl-quicktags">პოპულარული:</span>
+              <button onclick="selectCategoryFilter('Nuts'); navigateTo('marketplace')" class="px-3 py-1 rounded-full bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-700 font-bold border border-slate-200 transition-all" id="t-tag-hazelnut">🌰 თხილი</button>
+              <button onclick="selectCategoryFilter('Wine'); navigateTo('marketplace')" class="px-3 py-1 rounded-full bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-700 font-bold border border-slate-200 transition-all" id="t-tag-wine">🍷 ღვინო</button>
+              <button onclick="selectCategoryFilter('Fruits'); navigateTo('marketplace')" class="px-3 py-1 rounded-full bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-700 font-bold border border-slate-200 transition-all" id="t-tag-fruit">🍎 ხილი</button>
+              <button onclick="selectCategoryFilter('Honey'); navigateTo('marketplace')" class="px-3 py-1 rounded-full bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-700 font-bold border border-slate-200 transition-all" id="t-tag-honey">🍯 თაფლი</button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+              <button onclick="navigateTo('marketplace')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3.5 rounded-xl text-xs shadow-lg shadow-brand-600/20 transition-all flex items-center justify-center gap-2">
+                <span id="t-cta-primary">ბაზრის დათვალიერება</span> &rarr;
+              </button>
+              <button onclick="navigateTo('create-placeholder')" class="bg-white hover:bg-slate-50 text-slate-800 font-bold px-6 py-3.5 rounded-xl text-xs border border-slate-200 shadow-sm transition-all flex items-center justify-center gap-2">
+                <i data-lucide="plus-circle" class="w-4 h-4 text-brand-600"></i>
+                <span id="t-cta-secondary">განცხადების დამატება</span>
+              </button>
+            </div>
           </div>
 
-          <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs pt-1">
-            <span class="text-slate-400 font-medium hidden sm:inline" id="t-lbl-quicktags">პოპულარული:</span>
-            <button onclick="selectCategoryFilter('Nuts'); navigateTo('marketplace')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-700 font-bold border border-slate-200 transition-all" id="t-tag-hazelnut">🌰 თხილი</button>
-            <button onclick="selectCategoryFilter('Wine'); navigateTo('marketplace')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-700 font-bold border border-slate-200 transition-all" id="t-tag-wine">🍷 ღვინო</button>
-            <button onclick="selectCategoryFilter('Fruits'); navigateTo('marketplace')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-700 font-bold border border-slate-200 transition-all" id="t-tag-fruit">🍎 ხილი</button>
-            <button onclick="selectCategoryFilter('Honey'); navigateTo('marketplace')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-700 font-bold border border-slate-200 transition-all" id="t-tag-honey">🍯 თაფლი</button>
-          </div>
+          <!-- RIGHT COLUMN: Asymmetric Overlapping Cards Composition -->
+          <div class="lg:col-span-6 relative flex items-center justify-center mt-4 lg:mt-0">
+            <div class="absolute inset-0 bg-gradient-to-tr from-emerald-100/40 via-amber-50/50 to-slate-100/60 rounded-3xl transform rotate-1 scale-105 -z-10 blur-xl"></div>
+            
+            <div class="w-full max-w-lg space-y-4 relative py-2">
+              
+              <!-- TOP BADGE: Delivery route -->
+              <div class="bg-white/90 backdrop-blur-sm border border-emerald-200 px-3.5 py-2 rounded-2xl shadow-sm text-xs font-bold text-emerald-900 inline-flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>🚚 Direct Trade Route • Georgia ➔ EU / GCC</span>
+              </div>
 
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 pt-3 border-t border-slate-100">
-            <button onclick="navigateTo('marketplace')" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl text-xs shadow-lg shadow-brand-600/20 transition-all flex items-center justify-center gap-2">
-              <span id="t-cta-primary">პროდუქციის დათვალიერება</span> &rarr;
-            </button>
-            <button onclick="navigateTo('create-placeholder')" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-800 font-bold px-6 py-3 rounded-xl text-xs border border-slate-200 shadow-sm transition-all flex items-center justify-center gap-2">
-              <i data-lucide="plus-circle" class="w-4 h-4 text-brand-600"></i>
-              <span id="t-cta-secondary">განცხადების დამატება</span>
-            </button>
+              <!-- MAIN CARD: Georgian Shelled Hazelnuts -->
+              <div onclick="openProductDetailPage('prod-1')" class="ui-card p-4 bg-white rounded-2xl border border-slate-200 shadow-md transform -rotate-1 hover:rotate-0 transition-transform duration-300 cursor-pointer space-y-3">
+                <div class="flex gap-4">
+                  <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800&q=80" alt="Hazelnuts" class="w-24 h-24 rounded-xl object-cover border border-slate-100 shrink-0" />
+                  <div class="flex-1 space-y-1 text-xs">
+                    <div class="flex items-center justify-between">
+                      <span class="bg-brand-50 text-brand-700 text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-brand-200">NUTS</span>
+                      <span class="text-[10px] font-bold text-slate-400">Samegrelo 🇬🇪</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-sm line-clamp-1">Georgian Shelled Hazelnuts (13-15mm)</h3>
+                    <p class="text-slate-500 text-[11px]">Caucasus Nut Cooperative</p>
+                    <div class="flex items-baseline justify-between pt-1 border-t border-slate-100">
+                      <span class="text-emerald-700 font-black text-sm">$4.80 <span class="text-[10px] text-slate-500 font-medium">/ kg</span></span>
+                      <span class="text-[10px] font-bold text-slate-600">Stock: 20 tonnes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECOND OVERLAPPING CARD: Qvevri Amber Wine -->
+              <div onclick="openProductDetailPage('prod-2')" class="ui-card p-3.5 bg-white rounded-2xl border border-slate-200 shadow-md transform translate-x-3 sm:translate-x-6 -mt-3 rotate-1 hover:rotate-0 transition-transform duration-300 cursor-pointer space-y-2">
+                <div class="flex items-center justify-between text-xs">
+                  <div class="flex items-center gap-2">
+                    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" alt="Qvevri Wine" class="w-10 h-10 rounded-lg object-cover border border-slate-100" />
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-xs">Kakheti Qvevri Amber Wine 2024</h4>
+                      <p class="text-[10px] text-slate-500">Telavi, Kakheti 🇬🇪</p>
+                    </div>
+                  </div>
+                  <span class="text-emerald-700 font-extrabold text-xs">$1,850 / ton</span>
+                </div>
+              </div>
+
+              <!-- THIRD OVERLAPPING CARD: Apples -->
+              <div onclick="openProductDetailPage('prod-3')" class="ui-card p-3 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200 shadow-sm transform -translate-x-2 -mt-2 -rotate-1 hover:rotate-0 transition-transform duration-300 cursor-pointer flex items-center justify-between text-xs">
+                <div class="flex items-center gap-2.5">
+                  <span class="text-xl">🍏</span>
+                  <div>
+                    <h4 class="font-bold text-slate-900 text-xs">Georgian Red Gala Apples</h4>
+                    <p class="text-[10px] text-slate-500">Gori, Shida Kartli 🇬🇪</p>
+                  </div>
+                </div>
+                <span class="bg-slate-100 text-slate-800 font-bold px-2.5 py-1 rounded-full text-[10px] border border-slate-200">$0.65 / kg</span>
+              </div>
+
+            </div>
           </div>
 
         </div>
       </section>
 
-      <!-- POPULAR CATEGORIES GRID -->
+      <!-- 3. POPULAR CATEGORIES ("Explore by category") -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-4 sm:mb-6">
+        <div class="flex items-center justify-between mb-5">
           <div>
-            <h2 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight" id="t-sec-categories-title">პოპულარული კატეგორიები</h2>
-            <p class="text-slate-500 text-[11px] sm:text-xs mt-0.5" id="t-sec-categories-sub">აირჩიეთ სასურველი აგრო პროდუქტი ან სერვისი</p>
+            <h2 class="text-xl sm:text-3xl font-black text-slate-900 tracking-tight" id="t-sec-categories-title">Explore by category</h2>
+            <p class="text-slate-500 text-xs mt-0.5" id="t-sec-categories-sub">Discover agricultural produce directly from verified growers</p>
           </div>
           <button onclick="navigateTo('marketplace')" class="text-xs font-bold text-brand-700 hover:text-brand-800 flex items-center gap-1">
-            <span id="t-btn-view-all-cat">ყველას ნახვა</span> &rarr;
+            <span id="t-btn-view-all-cat">View all categories</span> &rarr;
           </button>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-4" id="grid-categories">
-          <!-- Rendered dynamically -->
-        </div>
-      </section>
-
-      <!-- FEATURED PRODUCE / PRODUCTS SECTION -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-4 sm:mb-6">
-          <div>
-            <h2 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight" id="t-sec-featured-title">ახალი დამატებული პროდუქცია</h2>
-            <p class="text-slate-500 text-[11px] sm:text-xs mt-0.5" id="t-sec-featured-sub">პირდაპირი შეთავაზებები ვერიფიცირებული ფერმერებისგან</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3 sm:gap-4">
+          <div onclick="selectCategoryFilter('Fruits'); navigateTo('marketplace')" class="ui-card p-4 rounded-2xl bg-white border border-slate-200 text-center cursor-pointer group hover:border-brand-300 transition-all flex flex-col items-center justify-center space-y-2">
+            <div class="w-12 h-12 rounded-xl bg-rose-50 text-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">🍎</div>
+            <h3 class="text-xs font-bold text-slate-900">Fruits</h3>
           </div>
-          <button onclick="navigateTo('marketplace')" class="bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs border border-brand-200 transition-all flex items-center gap-1">
-            <span id="t-btn-view-all-products">ყველა პროდუქტი (14)</span> &rarr;
+          <div onclick="selectCategoryFilter('Vegetables'); navigateTo('marketplace')" class="ui-card p-4 rounded-2xl bg-white border border-slate-200 text-center cursor-pointer group hover:border-brand-300 transition-all flex flex-col items-center justify-center space-y-2">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">🥦</div>
+            <h3 class="text-xs font-bold text-slate-900">Vegetables</h3>
+          </div>
+          <div onclick="selectCategoryFilter('Nuts'); navigateTo('marketplace')" class="ui-card p-4 rounded-2xl bg-white border border-slate-200 text-center cursor-pointer group hover:border-brand-300 transition-all flex flex-col items-center justify-center space-y-2">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">🌰</div>
+            <h3 class="text-xs font-bold text-slate-900">Nuts</h3>
+          </div>
+          <div onclick="selectCategoryFilter('Honey'); navigateTo('marketplace')" class="ui-card p-4 rounded-2xl bg-white border border-slate-200 text-center cursor-pointer group hover:border-brand-300 transition-all flex flex-col items-center justify-center space-y-2">
+            <div class="w-12 h-12 rounded-xl bg-amber-100/60 text-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">🍯</div>
+            <h3 class="text-xs font-bold text-slate-900">Honey</h3>
+          </div>
+          <div onclick="selectCategoryFilter('Wine'); navigateTo('marketplace')" class="ui-card p-4 rounded-2xl bg-white border border-slate-200 text-center cursor-pointer group hover:border-brand-300 transition-all flex flex-col items-center justify-center space-y-2">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">🍷</div>
+            <h3 class="text-xs font-bold text-slate-900">Wine</h3>
+          </div>
+          <div onclick="selectCategoryFilter('Herbs and Spices'); navigateTo('marketplace')" class="ui-card p-4 rounded-2xl bg-white border border-slate-200 text-center cursor-pointer group hover:border-brand-300 transition-all flex flex-col items-center justify-center space-y-2">
+            <div class="w-12 h-12 rounded-xl bg-teal-50 text-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">🌿</div>
+            <h3 class="text-xs font-bold text-slate-900">Herbs & Spices</h3>
+          </div>
+          <div onclick="navigateTo('marketplace')" class="ui-card p-4 rounded-2xl bg-slate-900 text-white text-center cursor-pointer group hover:bg-slate-800 transition-all flex flex-col items-center justify-center space-y-2 col-span-2 sm:col-span-1">
+            <div class="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center text-xs font-bold">&rarr;</div>
+            <h3 class="text-xs font-bold" id="t-btn-all-cat-card">View All</h3>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. FEATURED PRODUCTS ("Fresh opportunities") -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h2 class="text-xl sm:text-3xl font-black text-slate-900 tracking-tight" id="t-sec-featured-title">Fresh opportunities</h2>
+            <p class="text-slate-500 text-xs mt-0.5" id="t-sec-featured-sub">Recently added agricultural products from producers and companies.</p>
+          </div>
+          <button onclick="navigateTo('marketplace')" class="bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold px-4 py-2 rounded-xl text-xs border border-brand-200 transition-all flex items-center gap-1">
+            <span id="t-btn-view-all-products">View all products</span> &rarr;
           </button>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6" id="grid-featured-products">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="grid-featured-products">
           <!-- Rendered dynamically -->
         </div>
       </section>
 
-      <!-- USER TYPES -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-xl mx-auto mb-6 sm:mb-8">
-          <h2 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight" id="t-sec-usertype-title">ვისთვის არის AgroBridge?</h2>
-          <p class="text-slate-500 text-[11px] sm:text-xs mt-0.5" id="t-sec-usertype-sub">მარტივი პლატფორმა აგრო სექტორის ყველა მონაწილისთვის</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6" id="grid-usertypes">
-          <!-- Rendered dynamically -->
-        </div>
-      </section>
-
-      <!-- HOW IT WORKS SECTION -->
+      <!-- 5. HOW AGROBRIDGE WORKS ("One platform. A simpler trade process.") -->
       <section id="sec-how" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="ui-panel p-5 sm:p-10 bg-white">
-          <div class="text-center max-w-xl mx-auto mb-6 sm:mb-8">
-            <h2 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight" id="t-sec-how-title">როგორ მუშაობს?</h2>
-            <p class="text-slate-500 text-[11px] sm:text-xs mt-0.5" id="t-sec-how-sub">3 მარტივი ნაბიჯი პირდაპირი გარიგების დასადებად</p>
+        <div class="ui-panel p-6 sm:p-10 bg-white space-y-6">
+          <div class="text-center max-w-xl mx-auto space-y-1">
+            <h2 class="text-xl sm:text-3xl font-black text-slate-900 tracking-tight" id="t-sec-how-title">One platform. A simpler trade process.</h2>
+            <p class="text-slate-500 text-xs" id="t-sec-how-sub">Three clear steps to connect and trade directly</p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6" id="grid-how-steps">
-            <!-- Rendered dynamically -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+            <div class="ui-card p-6 rounded-2xl bg-slate-50/60 border border-slate-200 space-y-3 relative">
+              <span class="w-8 h-8 rounded-xl bg-brand-600 text-white font-black text-xs flex items-center justify-center shadow-md">1</span>
+              <h3 class="text-sm font-bold text-slate-900" id="t-how-step1-title">1. Find or publish a product</h3>
+              <p class="text-xs text-slate-600 leading-relaxed font-medium" id="t-how-step1-desc">Browse agricultural listings or post your produce in minutes.</p>
+            </div>
+            <div class="ui-card p-6 rounded-2xl bg-slate-50/60 border border-slate-200 space-y-3 relative">
+              <span class="w-8 h-8 rounded-xl bg-brand-600 text-white font-black text-xs flex items-center justify-center shadow-md">2</span>
+              <h3 class="text-sm font-bold text-slate-900" id="t-how-step2-title">2. Connect with a trade partner</h3>
+              <p class="text-xs text-slate-600 leading-relaxed font-medium" id="t-how-step2-desc">Communicate directly with producers, wholesale buyers, and exporters.</p>
+            </div>
+            <div class="ui-card p-6 rounded-2xl bg-slate-50/60 border border-slate-200 space-y-3 relative">
+              <span class="w-8 h-8 rounded-xl bg-brand-600 text-white font-black text-xs flex items-center justify-center shadow-md">3</span>
+              <h3 class="text-sm font-bold text-slate-900" id="t-how-step3-title">3. Agree on supply and delivery</h3>
+              <p class="text-xs text-slate-600 leading-relaxed font-medium" id="t-how-step3-desc">Finalize pricing, minimum order quantities, and logistics terms.</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-center gap-6 pt-2 text-xs font-bold">
+            <button onclick="openAuthModal('register')" class="text-brand-700 hover:underline" id="t-link-sellers">For sellers &rarr;</button>
+            <button onclick="navigateTo('marketplace')" class="text-brand-700 hover:underline" id="t-link-buyers">For buyers &rarr;</button>
           </div>
         </div>
       </section>
 
-      <!-- PROFESSIONAL SERVICES & LOGISTICS -->
+      <!-- 6. FINAL CALL TO ACTION -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-4 sm:mb-6">
-          <div>
-            <h2 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight" id="t-sec-services-title">სერვისები & ლოჯისტიკა</h2>
-            <p class="text-slate-500 text-[11px] sm:text-xs mt-0.5" id="t-sec-services-sub">3PL გადაზიდვები, საწყობები და საბაჟო მომსახურება</p>
-          </div>
-          <button onclick="navigateTo('services')" class="text-xs font-bold text-brand-700 hover:text-brand-800 flex items-center gap-1">
-            <span id="t-btn-all-services">ყველა სერვისი</span> &rarr;
-          </button>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6" id="grid-pro-services">
-          <!-- Rendered dynamically -->
-        </div>
-      </section>
-
-      <!-- TRUSTED SUPPLIERS -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-4 sm:mb-6">
-          <div>
-            <h2 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight" id="t-sec-suppliers-title">ვერიფიცირებული მწარმოებლები</h2>
-            <p class="text-slate-500 text-[11px] sm:text-xs mt-0.5" id="t-sec-suppliers-sub">სანდო აგრო კომპანიები და მარნები</p>
-          </div>
-          <button onclick="navigateTo('marketplace')" class="bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs border border-brand-200 transition-all flex items-center gap-1">
-            <span id="t-btn-all-suppliers">ყველა მომწოდებელი</span> &rarr;
-          </button>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6" id="grid-trusted-suppliers">
-          <!-- Rendered dynamically -->
-        </div>
-      </section>
-
-      <!-- FINAL CTA -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-r from-emerald-50 to-brand-50 rounded-3xl p-6 sm:p-10 border border-brand-200 text-center space-y-3 sm:space-y-4">
-          <h2 class="text-xl sm:text-3xl font-black text-slate-900 tracking-tight" id="t-sec-finalcta-title">გსურთ პროდუქციის გაყიდვა ან ყიდვა?</h2>
-          <p class="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto" id="t-sec-finalcta-sub">შემოუერთდით AgroBridge-ის პირდაპირ ფერმერულ ბაზარს უფასოდ.</p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 pt-2">
-            <button onclick="openAuthModal('register')" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl text-xs shadow-md shadow-brand-600/20 transition-all">
-              <span id="t-btn-cta-account">უფასო ანგარიშის შექმნა</span>
+        <div class="bg-gradient-to-r from-emerald-50/60 via-white to-amber-50/60 rounded-3xl p-8 sm:p-12 border border-slate-200 text-center space-y-4 shadow-sm">
+          <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight" id="t-sec-finalcta-title">Ready to find your next trade partner?</h2>
+          <p class="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto font-medium" id="t-sec-finalcta-sub">Join AgroBridge and become part of Georgia's growing agricultural trade network.</p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <button onclick="openAuthModal('register')" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold px-7 py-3.5 rounded-xl text-xs shadow-md shadow-brand-600/20 transition-all">
+              <span id="t-btn-cta-account">Create Free Account</span>
             </button>
-            <button onclick="navigateTo('marketplace')" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-800 font-bold px-6 py-3 rounded-xl text-xs border border-slate-200 transition-all">
-              <span id="t-btn-cta-explore">პროდუქციის დათვალიერება</span>
+            <button onclick="navigateTo('marketplace')" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-800 font-bold px-7 py-3.5 rounded-xl text-xs border border-slate-200 transition-all">
+              <span id="t-btn-cta-explore">Explore Marketplace</span>
             </button>
           </div>
         </div>
@@ -791,7 +817,7 @@
       </div>
     </section>
 
-    <!-- VIEW 4: SAFE CREATE LISTING PLACEHOLDER PAGE (Requirement 13) -->
+    <!-- VIEW 4: SAFE CREATE LISTING PLACEHOLDER PAGE -->
     <section id="view-create-placeholder" class="view-section hidden py-12 sm:py-16 max-w-xl mx-auto px-4 text-center">
       <div class="ui-panel p-8 sm:p-12 bg-white space-y-4">
         <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mx-auto border border-brand-200">
@@ -814,24 +840,24 @@
           <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-50 text-brand-700 font-black text-lg sm:text-xl flex items-center justify-center border border-brand-200">KH</div>
           <div>
             <h1 class="text-lg sm:text-xl font-black text-slate-900">Kakheti Heritage LLC 🇬🇪</h1>
-            <p class="text-xs text-slate-500 mt-0.5" id="t-dash-role">ვერიფიცირებული ფერმერი & ექსპორტიორი</p>
+            <p class="text-xs text-slate-500 mt-0.5" id="t-dash-role">Verified Farmer & Exporter</p>
           </div>
         </div>
       </div>
 
       <div class="ui-panel p-4 sm:p-6 bg-white space-y-4">
         <div class="flex items-center justify-between">
-          <h3 class="text-xs sm:text-sm font-bold text-slate-900" id="t-dash-inv-title">ჩემი პროდუქციის მარაგები</h3>
+          <h3 class="text-xs sm:text-sm font-bold text-slate-900" id="t-dash-inv-title">My Product Inventory</h3>
           <button onclick="navigateTo('create-placeholder')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-3 py-1.5 rounded-xl text-xs shadow-sm">+ New Listing</button>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs min-w-[400px]">
             <thead class="bg-slate-50 text-slate-500 uppercase text-[10px] font-bold border-b border-slate-200">
               <tr>
-                <th class="p-3" id="t-th-prod">პროდუქცია</th>
-                <th class="p-3" id="t-th-qty">მარაგი</th>
-                <th class="p-3" id="t-th-price">ფასი</th>
-                <th class="p-3" id="t-th-status">სტატუსი</th>
+                <th class="p-3" id="t-th-prod">Product</th>
+                <th class="p-3" id="t-th-qty">Stock Qty</th>
+                <th class="p-3" id="t-th-price">Unit Price</th>
+                <th class="p-3" id="t-th-status">Status</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100 font-medium" id="inventory-tbody"></tbody>
@@ -847,23 +873,47 @@
           <span class="bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full border border-emerald-200">DEAL #AG-2026-9042</span>
           <span class="text-xs text-emerald-700 font-bold"><i data-lucide="lock" class="w-3.5 h-3.5 inline"></i> ESCROW PROTECTED</span>
         </div>
-        <h1 class="text-lg sm:text-2xl font-black text-slate-900" id="t-deal-title">გარიგება: 24 ტონა ქართული თხილი</h1>
-        <p class="text-xs text-slate-500" id="t-deal-sub">გამყიდველი: Kakheti Heritage LLC 🇬🇪 | მყიდველი: AgriCorp Netherlands B.V. 🇳🇱</p>
+        <h1 class="text-lg sm:text-2xl font-black text-slate-900" id="t-deal-title">Deal #9042: 24 Tonnes Georgian Hazelnuts</h1>
+        <p class="text-xs text-slate-500" id="t-deal-sub">Seller: Kakheti Heritage LLC 🇬🇪 | Buyer: AgriCorp Netherlands B.V. 🇳🇱</p>
       </div>
 
       <div class="ui-panel p-5 sm:p-6 bg-white">
-        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4" id="t-deal-milestone-lbl">გარიგების ეტაპები</h3>
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4" id="t-deal-milestone-lbl">Deal Milestones</h3>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3 text-center text-xs" id="deal-milestones-grid"></div>
       </div>
     </section>
 
     <!-- VIEW 7: SERVICES -->
     <section id="view-services" class="view-section hidden py-6 sm:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-xl sm:text-2xl font-black text-slate-900 mb-6" id="t-srv-page-title">სერვისები & ლოჯისტიკა</h1>
+      <h1 class="text-xl sm:text-2xl font-black text-slate-900 mb-6" id="t-srv-page-title">Services & Freight Logistics</h1>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="services-page-grid"></div>
     </section>
 
   </main>
+
+  <!-- FIXED MOBILE BOTTOM NAVIGATION BAR -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 lg:hidden px-2 py-2 flex items-center justify-around text-[10px] font-bold shadow-lg">
+    <button onclick="navigateTo('home')" class="flex flex-col items-center gap-1 text-brand-600">
+      <i data-lucide="home" class="w-4 h-4"></i>
+      <span id="bnav-home">Home</span>
+    </button>
+    <button onclick="navigateTo('marketplace')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-slate-900">
+      <i data-lucide="store" class="w-4 h-4"></i>
+      <span id="bnav-marketplace">Market</span>
+    </button>
+    <button onclick="navigateTo('dashboard')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-slate-900">
+      <i data-lucide="user" class="w-4 h-4"></i>
+      <span id="bnav-dashboard">Cabinet</span>
+    </button>
+    <button onclick="navigateTo('dealroom')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-slate-900">
+      <i data-lucide="shield-check" class="w-4 h-4"></i>
+      <span id="bnav-dealroom">Deal</span>
+    </button>
+    <button onclick="openAuthModal('login')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-slate-900">
+      <i data-lucide="log-in" class="w-4 h-4"></i>
+      <span id="bnav-login">Sign In</span>
+    </button>
+  </div>
 
   <!-- MOBILE FILTERS DRAWER -->
   <div id="modal-mobile-filters" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden lg:hidden flex items-end sm:items-center justify-center p-0 sm:p-4" onclick="if(event.target===this) closeMobileFilterDrawer()">
@@ -911,68 +961,112 @@
       
       <div class="flex items-center bg-slate-100 p-1 rounded-xl mb-5 text-xs font-bold border border-slate-200">
         <button id="auth-tab-login" onclick="switchAuthTab('login')" class="flex-1 py-2 rounded-lg text-center bg-white text-slate-900 shadow-sm">
-          <span id="t-auth-tab-login">🔑 შესვლა</span>
+          <span id="t-auth-tab-login">🔑 Sign In</span>
         </button>
         <button id="auth-tab-register" onclick="switchAuthTab('register')" class="flex-1 py-2 rounded-lg text-center text-slate-500 hover:text-slate-900">
-          <span id="t-auth-tab-register">📝 რეგისტრაცია</span>
+          <span id="t-auth-tab-register">📝 Registration</span>
         </button>
       </div>
 
       <form id="form-login" onsubmit="handleLogin(event)" class="space-y-3.5 text-xs">
         <div>
-          <label class="text-slate-700 font-bold block mb-1" id="t-login-lbl-email">ელ-ფოსტა / ტელეფონი</label>
+          <label class="text-slate-700 font-bold block mb-1" id="t-login-lbl-email">Email / Phone</label>
           <input type="text" required id="login-email-inp" placeholder="info@farm.ge" class="w-full bg-slate-50 text-slate-900 px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-500" />
         </div>
         <div>
-          <label class="text-slate-700 font-bold block mb-1" id="t-login-lbl-pass">პაროლი</label>
+          <label class="text-slate-700 font-bold block mb-1" id="t-login-lbl-pass">Password</label>
           <input type="password" required placeholder="••••••••" class="w-full bg-slate-50 text-slate-900 px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-500" />
         </div>
         <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl text-xs shadow-md shadow-brand-600/20" id="t-login-btn">
-          სისტემაში შესვლა &rarr;
+          Sign In &rarr;
         </button>
       </form>
 
       <form id="form-register" onsubmit="handleRegistration(event)" class="space-y-3 text-xs hidden">
         <div class="grid grid-cols-2 gap-2 bg-slate-100 p-1 rounded-xl border border-slate-200 text-[11px] font-bold">
           <button type="button" id="entity-btn-legal" onclick="switchEntityType('legal')" class="py-2 rounded-lg text-center bg-white text-brand-700 shadow-sm">
-            <span id="t-reg-entity-legal">იურიდიული პირი</span>
+            <span id="t-reg-entity-legal">Legal Entity</span>
           </button>
           <button type="button" id="entity-btn-individual" onclick="switchEntityType('individual')" class="py-2 rounded-lg text-center text-slate-500">
-            <span id="t-reg-entity-individual">ფიზიკური პირი</span>
+            <span id="t-reg-entity-individual">Individual / Farmer</span>
           </button>
         </div>
 
         <div>
-          <label class="text-slate-700 font-bold block mb-1" id="t-reg-lbl-name">სახელი / კომპანია</label>
-          <input type="text" id="reg-company" required placeholder="შპს აგრო ფერმა" class="w-full bg-slate-50 px-3.5 py-2.5 rounded-xl border border-slate-200" />
+          <label class="text-slate-700 font-bold block mb-1" id="t-reg-lbl-name">Company / Full Name</label>
+          <input type="text" id="reg-company" required placeholder="LTD Agro Farm" class="w-full bg-slate-50 px-3.5 py-2.5 rounded-xl border border-slate-200" />
         </div>
         <div>
-          <label class="text-slate-700 font-bold block mb-1" id="t-reg-lbl-tax">საიდენტიფიკაციო / პირადი N</label>
+          <label class="text-slate-700 font-bold block mb-1" id="t-reg-lbl-tax">Tax ID / Personal ID Number</label>
           <input type="text" required placeholder="401928374" class="w-full bg-slate-50 px-3.5 py-2.5 rounded-xl border border-slate-200" />
         </div>
         <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl text-xs shadow-md shadow-brand-600/20" id="t-reg-btn">
-          ანგარიშის შექმნა &rarr;
+          Create Account &rarr;
         </button>
       </form>
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="bg-white border-t border-slate-200 py-8 sm:py-10 mt-auto text-xs text-slate-600">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-      <div class="flex items-center space-x-2">
-        <div class="w-6 h-6 rounded-lg bg-brand-600 flex items-center justify-center text-white">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 20h10"></path>
-            <path d="M12 20V10"></path>
-            <path d="M12 10a5 5 0 0 1 5-5h2v2a5 5 0 0 1-5 5h-2z"></path>
-            <path d="M12 10a5 5 0 0 0-5-5H5v2a5 5 0 0 0 5 5h2z"></path>
-          </svg>
+  <!-- 7. FOOTER (Simplified 4-Column Layout) -->
+  <footer class="bg-white border-t border-slate-200 py-10 sm:py-12 mt-auto text-xs text-slate-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        
+        <!-- Column 1: Brand Info -->
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2">
+            <div class="w-7 h-7 rounded-xl bg-brand-600 flex items-center justify-center text-white">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 20h10"></path>
+                <path d="M12 20V10"></path>
+                <path d="M12 10a5 5 0 0 1 5-5h2v2a5 5 0 0 1-5 5h-2z"></path>
+                <path d="M12 10a5 5 0 0 0-5-5H5v2a5 5 0 0 0 5 5h2z"></path>
+              </svg>
+            </div>
+            <span class="font-black text-slate-900 text-base">AgroBridge</span>
+          </div>
+          <p class="text-slate-500 leading-relaxed" id="t-ftr-desc">Direct agricultural marketplace connecting producers with buyers and trade partners.</p>
         </div>
-        <span class="font-black text-slate-900 text-sm">AgroBridge GE</span>
+
+        <!-- Column 2: Marketplace -->
+        <div class="space-y-2.5">
+          <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider" id="t-ftr-col-mkt">Marketplace</h4>
+          <ul class="space-y-2 text-slate-500 font-medium">
+            <li><button onclick="navigateTo('marketplace')" class="hover:text-brand-600">Products Catalog</button></li>
+            <li><button onclick="navigateTo('marketplace')" class="hover:text-brand-600">Popular Categories</button></li>
+            <li><button onclick="navigateTo('marketplace')" class="hover:text-brand-600">Producers & Growers</button></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Services -->
+        <div class="space-y-2.5">
+          <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider" id="t-ftr-col-srv">Services</h4>
+          <ul class="space-y-2 text-slate-500 font-medium">
+            <li><button onclick="navigateTo('services')" class="hover:text-brand-600">3PL Freight Logistics</button></li>
+            <li><button onclick="navigateTo('services')" class="hover:text-brand-600">Cold Storage Warehouses</button></li>
+            <li><button onclick="navigateTo('services')" class="hover:text-brand-600">Customs Brokerage</button></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Company & Contact -->
+        <div class="space-y-2.5">
+          <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider" id="t-ftr-col-cmp">Company</h4>
+          <ul class="space-y-2 text-slate-500 font-medium">
+            <li><button onclick="scrollToSection('sec-how')" class="hover:text-brand-600">About AgroBridge</button></li>
+            <li><a href="mailto:support@agrobridge.ge" class="hover:text-brand-600">support@agrobridge.ge</a></li>
+            <li><span class="text-slate-400">Tbilisi, Georgia 🇬🇪</span></li>
+          </ul>
+        </div>
+
       </div>
-      <p class="text-slate-400">&copy; 2026 AgroBridge Platform. <span id="t-footer-rights">ყველა უფლება დაცულია.</span></p>
-      <span class="text-slate-500 font-medium">support@agrobridge.ge</span>
+
+      <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-400 text-[11px]">
+        <p>&copy; 2026 AgroBridge Platform. <span id="t-footer-rights">All rights reserved.</span></p>
+        <div class="flex items-center gap-4">
+          <a href="#" onclick="event.preventDefault()" class="hover:text-slate-600">Terms of Service</a>
+          <a href="#" onclick="event.preventDefault()" class="hover:text-slate-600">Privacy Policy</a>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -1048,38 +1142,6 @@
         deliveryOptions: ["Local pickup", "Domestic delivery"],
         productAttributes: { variety: "Mountain Flora", condition: "Raw Unheated", countryOfOrigin: "Georgia", region: "Kakheti", grade: "Premium Craft", moistureLevel: "17.2%", organicStatus: "Natural Bio", harvestYear: "2026", storageConditions: "Room temperature", shelfLife: "24 Months", packaging: "25kg Food Drums", incoterms: "EXW Kvareli", exportAvailability: "Domestic Only", leadTime: "1-2 Days", sampleAvailable: "500g Jar Sample" },
         createdAt: "2026-07-30T11:20:00Z", status: "active"
-      },
-      {
-        id: "prod-5",
-        slug: "temperature-controlled-3pl-reefer-containers",
-        title: { ka: "3PL ტემპერატურული გადაზიდვები (-25°C-დან +10°C-მდე)", en: "Temperature-Controlled 3PL Reefer Transport & Freight", ru: "Рефрижераторные 3PL перевозки (-25°C до +10°C)" },
-        description: { ka: "მულტიმოდალური საავტომობილო და საზღვაო ტემპერატურული გადაზიდვები...", en: "Integrated 3PL temperature-controlled reefer container freight...", ru: "Мультимодальные рефрижераторные перевозки..." },
-        category: "Packaging", subcategory: "Freight", productType: "Processed",
-        price: 0, currency: "USD", pricingUnit: "pallet", priceOnRequest: true,
-        availableQuantity: 150, quantityUnit: "pallet", minimumOrder: 1,
-        location: "Rotterdam / Poti Port", country: "Netherlands", region: "South Holland",
-        images: ["https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"],
-        sellerId: "seller-5", sellerName: "AgriCorp Netherlands B.V.", sellerType: "Distributor", sellerVerified: true,
-        certifications: ["ISO 22000", "HACCP"], exportAvailable: true,
-        deliveryOptions: ["International shipping", "Export available"],
-        productAttributes: { serviceType: "3PL Multimodal Freight", temperatureRange: "-25°C to +10°C", countryOfOrigin: "Netherlands / Georgia", incoterms: "CIF / DDP / FOB", leadTime: "Daily Dispatch", sampleAvailable: "N/A" },
-        createdAt: "2026-07-25T16:00:00Z", status: "active"
-      },
-      {
-        id: "prod-6",
-        slug: "organic-saperavi-dry-red-wine-2023",
-        title: { ka: "ორგანული საფერავი მშრალი წითელი ღვინო 2023", en: "Organic Saperavi Premium Dry Red Wine 2023", ru: "Органическое Саперави Премиум 2023" },
-        description: { ka: "მაღალი ხარისხის საფერავი კახეთის ვენახებიდან...", en: "High-tier organic Saperavi dry red wine...", ru: "Органическое красное сухое вино Саперави..." },
-        category: "Wine", subcategory: "Red Wine", productType: "Organic",
-        price: 6.20, currency: "USD", pricingUnit: "piece", priceOnRequest: false,
-        availableQuantity: 15000, quantityUnit: "piece", minimumOrder: 600,
-        location: "Gurjaani, Kakheti", country: "Georgia", region: "Kakheti",
-        images: ["https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=800&q=80"],
-        sellerId: "seller-1", sellerName: "Kakheti Heritage LLC", sellerType: "Exporter", sellerVerified: true,
-        certifications: ["Organic", "ISO 22000"], exportAvailable: true,
-        deliveryOptions: ["Domestic delivery", "International shipping", "Export available"],
-        productAttributes: { variety: "Saperavi 100%", condition: "Bottled 0.75L", countryOfOrigin: "Georgia", region: "Kakheti", grade: "AOP Mukuzani", alcoholContent: "14.2% Vol", organicStatus: "Bio Certified Organic", harvestYear: "2023", storageConditions: "14-18°C", shelfLife: "10+ Years", packaging: "6-Bottle Cartons", incoterms: "FOB Poti / CIF Hamburg", exportAvailability: "Worldwide", leadTime: "3 Days", sampleAvailable: "Sample Box Available" },
-        createdAt: "2026-07-26T08:45:00Z", status: "active"
       }
     ];
 
@@ -1087,9 +1149,7 @@
       { id: "seller-1", name: "Kakheti Heritage LLC", type: "Exporter", logo: "🍇", location: "Gurjaani, Kakheti, Georgia", country: "Georgia", region: "Kakheti", verified: true, memberSince: "2024", activeListings: 6, categories: ["Wine", "Nuts"] },
       { id: "seller-2", name: "Telavi Wine Cellar Cooperative", type: "Cooperative", logo: "🍷", location: "Telavi, Kakheti, Georgia", country: "Georgia", region: "Kakheti", verified: true, memberSince: "2023", activeListings: 8, categories: ["Wine"] },
       { id: "seller-3", name: "Gori Orchards & Export", type: "Producer", logo: "🍏", location: "Gori, Shida Kartli, Georgia", country: "Georgia", region: "Shida Kartli", verified: true, memberSince: "2024", activeListings: 5, categories: ["Fruits"] },
-      { id: "seller-4", name: "Caucasus Nut Cooperative", type: "Cooperative", logo: "🌰", location: "Zugdidi, Samegrelo, Georgia", country: "Georgia", region: "Samegrelo", verified: true, memberSince: "2023", activeListings: 12, categories: ["Nuts"] },
-      { id: "seller-5", name: "AgriCorp Netherlands B.V.", type: "Distributor", logo: "🚢", location: "Rotterdam, Netherlands", country: "Netherlands", region: "South Holland", verified: true, memberSince: "2022", activeListings: 14, categories: ["Packaging", "Fertilizers"] },
-      { id: "seller-6", name: "Alazani Honey & Bee Farm", type: "Farmer", logo: "🍯", location: "Kvareli, Kakheti, Georgia", country: "Georgia", region: "Kakheti", verified: false, memberSince: "2025", activeListings: 3, categories: ["Honey"] }
+      { id: "seller-4", name: "Caucasus Nut Cooperative", type: "Cooperative", logo: "🌰", location: "Zugdidi, Samegrelo, Georgia", country: "Georgia", region: "Samegrelo", verified: true, memberSince: "2023", activeListings: 12, categories: ["Nuts"] }
     ];
 
     function getListingsData() {
@@ -1140,23 +1200,26 @@
     const i18n = {
       ka: {
         brandSub: "DIRECT FARM MARKETPLACE",
-        navHome: "მთავარი", navMarketplace: "პროდუქცია & ბაზარი", navServices: "სერვისები & ლოჯისტიკა", navHow: "როგორ მუშაობს", navDashboard: "კაბინეტი",
+        navHome: "მთავარი", navMarketplace: "პროდუქცია & ბაზარი", navServices: "სერვისები", navHow: "როგორ მუშაობს", navDashboard: "კაბინეტი",
         bnavHome: "მთავარი", bnavMarketplace: "ბაზარი", bnavDashboard: "კაბინეტი", bnavDealroom: "გარიგება", bnavLogin: "შესვლა",
-        btnLogin: "შესვლა", btnCreateListing: "+ განცხადება",
-        heroTag: "პირდაპირი აგრო ბაზარი ფერმერებისგან",
-        heroHeadline: "იპოვეთ და გაყიდეთ ნამდვილი აგრო პროდუქცია <span class='gradient-hero-text'>პირდაპირ ფერმერებისგან</span>",
-        heroSubtext: "აკავშირებს ადგილობრივ მწარმოებლებს, საბითუმო მყიდველებს, ექსპორტიორებსა და ლოჯისტიკურ სერვისებს უშუალოდ, შუამავლების გარეშე.",
-        searchPlaceholder: "რა პროდუქციას ეძებთ? (თხილი, ღვინო...)",
+        btnLogin: "შესვლა", btnCreateListing: "განცხადების დამატება",
+        heroTag: "პირდაპირი აგრო ბაზარი",
+        heroHeadline: "მწარმოებლისგან პირდაპირ მყიდველთან",
+        heroSubtext: "აღმოაჩინეთ აგრო პროდუქცია, დაუკავშირდით სანდო სავაჭრო პარტნიორებს და გაზარდეთ თქვენი ბიზნესი ერთი მარტივი პლატფორმით.",
+        searchPlaceholder: "მოძებნეთ თხილი, ღვინო, თაფლი, ხილი...",
         lblQuicktags: "პოპულარული:", tagHazelnut: "🌰 თხილი", tagWine: "🍷 ღვინო", tagFruit: "🍎 ხილი", tagHoney: "🍯 თაფლი",
-        btnHeroSearch: "ძებნა", ctaPrimary: "პროდუქციის დათვალიერება", ctaSecondary: "განცხადების დამატება",
-        secCategoriesTitle: "პოპულარული კატეგორიები", secCategoriesSub: "აირჩიეთ სასურველი აგრო პროდუქტი ან სერვისი", btnViewAllCat: "ყველას ნახვა",
-        secFeaturedTitle: "ახალი დამატებული პროდუქცია", secFeaturedSub: "პირდაპირი შეთავაზებები ვერიფიცირებული ფერმერებისგან", btnViewAllProducts: "ყველა პროდუქტი (14)",
-        secUsertypeTitle: "ვისთვის არის AgroBridge?", secUsertypeSub: "მარტივი პლატფორმა აგრო სექტორის ყველა მონაწილისთვის",
-        secHowTitle: "როგორ მუშაობს?", secHowSub: "3 მარტივი ნაბიჯი პირდაპირი გარიგების დასადებად",
-        secServicesTitle: "სერვისები & ლოჯისტიკა", secServicesSub: "3PL გადაზიდვები, საწყობები და საბაჟო მომსახურება", btnAllServices: "ყველა სერვისი",
-        secSuppliersTitle: "ვერიფიცირებული მწარმოებლები", secSuppliersSub: "სანდო აგრო კომპანიები და მარნები", btnAllSuppliers: "ყველა მომწოდებელი",
-        secFinalctaTitle: "გსურთ პროდუქციის გაყიდვა ან ყიდვა?", secFinalctaSub: "შემოუერთდით AgroBridge-ის პირდაპირ ფერმერულ ბაზარს უფასოდ.",
-        btnCtaAccount: "უფასო ანგარიშის შექმნა", btnCtaExplore: "პროდუქციის დათვალიერება",
+        btnHeroSearch: "ძებნა", ctaPrimary: "ბაზრის დათვალიერება", ctaSecondary: "განცხადების დამატება",
+        secCategoriesTitle: "აღმოაჩინეთ კატეგორიებით", secCategoriesSub: "სრული ასორტიმენტი ადგილობრივი მწარმოებლებისგან", btnViewAllCat: "ყველა კატეგორია", btnAllCatCard: "ყველა",
+        secFeaturedTitle: "ახალი შეთავაზებები", secFeaturedSub: "ახლად დამატებული აგრო პროდუქცია მწარმოებლებისგან.", btnViewAllProducts: "ყველა პროდუქტი",
+        secHowTitle: "ერთი პლატფორმა. გამარტივებული ვაჭრობა.", secHowSub: "3 მარტივი ნაბიჯი პირდაპირი აგრო გარიგების დასადებად",
+        howStep1Title: "1. იპოვეთ ან გამოაქვეყნეთ პროდუქტი", howStep1Desc: "დაათვალიერეთ აგრო განცხადებები ან განათავსეთ თქვენი მოსავალი რამდენიმე წუთში.",
+        howStep2Title: "2. დაუკავშირდით სავაჭრო პარტნიორს", howStep2Desc: "მართეთ პირდაპირი კომუნიკაცია მწარმოებლებს, საბითუმო მყიდველებსა და ექსპორტიორებს შორის.",
+        howStep3Title: "3. შეათანხმეთ მიწოდება და პირობები", howStep3Desc: "დააზუსტეთ ფასი, მინიმალური შეკვეთა და ლოჯისტიკური დეტალები უშუალოდ.",
+        linkSellers: "მწარმოებლებისთვის →", linkBuyers: "მყიდველებისთვის →",
+        secFinalctaTitle: "მზად ხართ იპოვოთ ახალი სავაჭრო პარტნიორი?", secFinalctaSub: "შემოუერთდით AgroBridge-ს და გახდით საქართველოს აგრო სავაჭრო ქსელის ნაწილი.",
+        btnCtaAccount: "უფასო ანგარიშის შექმნა", btnCtaExplore: "ბაზრის დათვალიერება",
+        ftrDesc: "პირდაპირი აგრო ბაზარი, რომელიც აკავშირებს მწარმოებლებს, მყიდველებსა და სავაჭრო პარტნიორებს.",
+        ftrColMkt: "ბაზარი", ftrColSrv: "სერვისები", ftrColCmp: "კომპანია",
         mktHeaderTitle: "აღმოაჩინეთ აგრო პროდუქცია", mktHeaderSub: "იხილეთ ნატურალური მოსავალი ფერმერებისგან, კოოპერატივებისა და აგრო კომპანიებისგან.",
         mktBtnSearch: "ძებნა", fltHeading: "ფილტრები", fltClearBtn: "გასუფთავება",
         fltLblCat: "კატეგორია", fltLblLoc: "მდებარეობა", fltLblType: "პროდუქტის ტიპი", fltLblPrice: "ფასის დიაპაზონი", fltPriceonreq: 'მოიცავდეს "ფასი მოთხოვნით"',
@@ -1169,35 +1232,38 @@
         btnDtlContact: "დაუკავშირდით გამყიდველს / მოითხოვეთ ფასი", sellerCardHeading: "ინფორმაცია გამყიდველზე", sellerMember: "წევრია", sellerListings: "აქტიური განცხადებები",
         inquiryHeading: "მოთხოვნის გაგზავნა გამყიდველთან", inqLblName: "თქვენი სახელი", inqLblCompany: "კომპანია", inqLblEmail: "ელ-ფოსტა", inqLblPhone: "ტელეფონი (არასავალდებულო)", inqLblQty: "საჭირო რაოდენობა", inqLblUnit: "ერთეული", inqLblCountry: "დანიშნულების ქვეყანა", inqLblMsg: "შეტყობინება", inqBtnSend: "მოთხოვნის გაგზავნა →",
         similarHeading: "მსგავსი პროდუქცია", btnShare: "გაზიარება",
-        dashRole: "ვერიფიცირებული ფერმერი & ექსპორტიორი", dashInvTitle: "ჩემი პროდუქციის მარაგები",
-        thProd: "პროდუქცია", thQty: "მარაგი", thPrice: "ფასი", thStatus: "სტატუსი",
-        dealTitle: "გარიგება #9042: 24 ტონა ქართული თხილი", dealSub: "გამყიდველი: Kakheti Heritage LLC 🇬🇪 | მყიდველი: AgriCorp Netherlands B.V. 🇳🇱", dealMilestoneLbl: "გარიგების ეტაპები",
-        srvPageTitle: "სერვისები & ლოჯისტიკა",
-        authTabLogin: "🔑 შესვლა", authTabRegister: "📝 რეგისტრაცია",
-        loginLblEmail: "ელ-ფოსტა / ტელეფონი", loginLblPass: "პაროლი", loginBtn: "სისტემაში შესვლა →",
-        regEntityLegal: "იურიდიული პირი", regEntityIndividual: "ფიზიკური პირი",
-        regLblName: "სახელი / კომპანია", regLblTax: "საიდენტიფიკაციო / პირადი N", regBtn: "ანგარიშის შექმნა →",
-        footerRights: "ყველა უფლება დაცულია.", toastLang: "ენა: ქართული 🇬🇪"
+        dashRole: "Verified Farmer & Exporter", dashInvTitle: "My Product Inventory",
+        thProd: "Product", thQty: "Stock Qty", thPrice: "Unit Price", thStatus: "Status",
+        dealTitle: "Deal #9042: 24 Tonnes Georgian Hazelnuts", dealSub: "Seller: Kakheti Heritage LLC 🇬🇪 | Buyer: AgriCorp Netherlands B.V. 🇳🇱", dealMilestoneLbl: "Deal Milestones",
+        srvPageTitle: "Services & Freight Logistics",
+        authTabLogin: "🔑 Sign In", authTabRegister: "📝 Registration",
+        loginLblEmail: "Email / Phone Number", loginLblPass: "Password", loginBtn: "Sign In →",
+        regEntityLegal: "Legal Entity", regEntityIndividual: "Individual / Farmer",
+        regLblName: "Company / Full Name", regLblTax: "Tax ID / Personal ID Number", regBtn: "Create Account →",
+        footerRights: "ყველა უფლება დაცულია.", toastLang: "ენა: ქართული"
       },
       en: {
         brandSub: "DIRECT FARM MARKETPLACE",
-        navHome: "Home", navMarketplace: "Products & Market", navServices: "Services & Logistics", navHow: "How it Works", navDashboard: "Workspace",
+        navHome: "Home", navMarketplace: "Marketplace", navServices: "Services", navHow: "How It Works", navDashboard: "Cabinet",
         bnavHome: "Home", bnavMarketplace: "Market", bnavDashboard: "Cabinet", bnavDealroom: "Deal", bnavLogin: "Sign In",
-        btnLogin: "Sign In", btnCreateListing: "+ Post Listing",
-        heroTag: "Direct Farm Marketplace",
-        heroHeadline: "Find & Sell Fresh Agricultural Produce <span class='gradient-hero-text'>Direct From Local Farmers</span>",
-        heroSubtext: "Connecting local producers, bulk buyers, exporters, and freight logistics directly without middleman fees.",
-        searchPlaceholder: "What produce are you looking for? (e.g. Hazelnuts, Wine...)",
+        btnLogin: "Sign In", btnCreateListing: "Create Listing",
+        heroTag: "Direct Agricultural Marketplace",
+        heroHeadline: "From producers directly to buyers",
+        heroSubtext: "Discover agricultural products, connect with reliable trade partners, and grow your business through one simple platform.",
+        searchPlaceholder: "Search hazelnuts, wine, honey, fruit...",
         lblQuicktags: "Popular:", tagHazelnut: "🌰 Hazelnuts", tagWine: "🍷 Wine", tagFruit: "🍎 Fruit", tagHoney: "🍯 Honey",
-        btnHeroSearch: "Search", ctaPrimary: "Browse Produce", ctaSecondary: "Post Listing",
-        secCategoriesTitle: "Popular Categories", secCategoriesSub: "Explore fresh agricultural produce and trade services", btnViewAllCat: "View All",
-        secFeaturedTitle: "Newly Listed Produce", secFeaturedSub: "Direct sell offers from verified local farmers & growers", btnViewAllProducts: "All Products (14)",
-        secUsertypeTitle: "Who is AgroBridge for?", secUsertypeSub: "A simple direct marketplace for everyone in agri-trade",
-        secHowTitle: "How It Works", secHowSub: "3 simple steps to execute direct farm transactions",
-        secServicesTitle: "Services & Logistics", secServicesSub: "3PL freight forwarding, cold storage, and customs", btnAllServices: "All Services",
-        secSuppliersTitle: "Verified Producers", secSuppliersSub: "Trusted agricultural companies & wineries", btnAllSuppliers: "All Producers",
-        secFinalctaTitle: "Want to sell or buy agricultural goods?", secFinalctaSub: "Join AgroBridge direct farm marketplace today for free.",
-        btnCtaAccount: "Create Free Account", btnCtaExplore: "Browse Produce",
+        btnHeroSearch: "Search", ctaPrimary: "Explore Marketplace", ctaSecondary: "Create Listing",
+        secCategoriesTitle: "Explore by category", secCategoriesSub: "Discover agricultural produce directly from verified growers", btnViewAllCat: "View all categories", btnAllCatCard: "View All",
+        secFeaturedTitle: "Fresh opportunities", secFeaturedSub: "Recently added agricultural products from producers and companies.", btnViewAllProducts: "View all products",
+        secHowTitle: "One platform. A simpler trade process.", secHowSub: "Three clear steps to connect and trade directly",
+        howStep1Title: "1. Find or publish a product", howStep1Desc: "Browse agricultural listings or post your produce in minutes.",
+        howStep2Title: "2. Connect with a trade partner", howStep2Desc: "Communicate directly with producers, wholesale buyers, and exporters.",
+        howStep3Title: "3. Agree on supply and delivery", howStep3Desc: "Finalize pricing, minimum order quantities, and logistics terms.",
+        linkSellers: "For sellers →", linkBuyers: "For buyers →",
+        secFinalctaTitle: "Ready to find your next trade partner?", secFinalctaSub: "Join AgroBridge and become part of Georgia's growing agricultural trade network.",
+        btnCtaAccount: "Create Free Account", btnCtaExplore: "Explore Marketplace",
+        ftrDesc: "Direct agricultural marketplace connecting producers with buyers and trade partners.",
+        ftrColMkt: "Marketplace", ftrColSrv: "Services", ftrColCmp: "Company",
         mktHeaderTitle: "Explore agricultural products", mktHeaderSub: "Discover products from farmers, producers, cooperatives, and agricultural companies.",
         mktBtnSearch: "Search", fltHeading: "Filters", fltClearBtn: "Clear All",
         fltLblCat: "Category", fltLblLoc: "Location", fltLblType: "Product Type", fltLblPrice: "Price Range", fltPriceonreq: 'Include "Price on Request"',
@@ -1213,32 +1279,35 @@
         dashRole: "Verified Farmer & Exporter", dashInvTitle: "My Product Inventory",
         thProd: "Product", thQty: "Stock Qty", thPrice: "Unit Price", thStatus: "Status",
         dealTitle: "Deal #9042: 24 Tonnes Georgian Hazelnuts", dealSub: "Seller: Kakheti Heritage LLC 🇬🇪 | Buyer: AgriCorp Netherlands B.V. 🇳🇱", dealMilestoneLbl: "Deal Milestones",
-        srvPageTitle: "Services & Logistics",
+        srvPageTitle: "Services & Freight Logistics",
         authTabLogin: "🔑 Sign In", authTabRegister: "📝 Registration",
         loginLblEmail: "Email / Phone Number", loginLblPass: "Password", loginBtn: "Sign In →",
         regEntityLegal: "Legal Entity", regEntityIndividual: "Individual / Farmer",
         regLblName: "Company / Full Name", regLblTax: "Tax ID / Personal ID Number", regBtn: "Create Account →",
-        footerRights: "All rights reserved.", toastLang: "Language: English 🇬🇧"
+        footerRights: "All rights reserved.", toastLang: "Language: English"
       },
       ru: {
         brandSub: "DIRECT FARM MARKETPLACE",
-        navHome: "Главная", navMarketplace: "Продукция и Маркет", navServices: "Сервисы и Логистика", navHow: "Как это работает", navDashboard: "Кабинет",
+        navHome: "Главная", navMarketplace: "Маркетплейс", navServices: "Сервисы", navHow: "Как это работает", navDashboard: "Кабинет",
         bnavHome: "Главная", bnavMarketplace: "Маркет", bnavDashboard: "Кабинет", bnavDealroom: "Сделка", bnavLogin: "Войти",
-        btnLogin: "Войти", btnCreateListing: "+ Объявление",
-        heroTag: "Прямой агро маркетплейс от фермеров",
-        heroHeadline: "Покупайте и продавайте агро-продукцию <span class='gradient-hero-text'>напрямую от фермеров</span>",
-        heroSubtext: "Соединяет местных производителей, оптовых покупателей, экспортеров и логистику напрямую без посредников.",
-        searchPlaceholder: "Какую продукцию вы ищете? (фундук, вино...)",
+        btnLogin: "Войти", btnCreateListing: "Добавить объявление",
+        heroTag: "Прямой агро маркетплейс",
+        heroHeadline: "От производителя напрямую покупателю",
+        heroSubtext: "Находите агро-продукцию, связывайтесь с надежными торговыми партнерами и развивайте бизнес на единой платформе.",
+        searchPlaceholder: "Поиск фундука, вина, меда, фруктов...",
         lblQuicktags: "Популярное:", tagHazelnut: "🌰 Фундук", tagWine: "🍷 Вино", tagFruit: "🍎 Фрукты", tagHoney: "🍯 Мед",
-        btnHeroSearch: "Поиск", ctaPrimary: "Обзор продукции", ctaSecondary: "Добавить объявление",
-        secCategoriesTitle: "Популярные категории", secCategoriesSub: "Выберите категорию свежей продукции или сервисов", btnViewAllCat: "Смотреть все",
-        secFeaturedTitle: "Свежие объявления", secFeaturedSub: "Прямые предложения от проверенных агро-производителей", btnViewAllProducts: "Все товары (14)",
-        secUsertypeTitle: "Для кого создан AgroBridge?", secUsertypeSub: "Простая платформа для каждого участника агро-сектора",
-        secHowTitle: "Как это работает?", secHowSub: "3 простых шага для заключения прямой сделки",
-        secServicesTitle: "Сервисы и Логистика", secServicesSub: "3PL грузоперевозки, холодильные склады и таможня", btnAllServices: "Все сервисы",
-        secSuppliersTitle: "Проверенные производители", secSuppliersSub: "Надежные агро-компании и винодельни", btnAllSuppliers: "Все производители",
-        secFinalctaTitle: "Хотите продать или купить урожай?", secFinalctaSub: "Присоединяйтесь к прямому агро-маркетплейсу AgroBridge бесплатно.",
-        btnCtaAccount: "Создать бесплатный аккаунт", btnCtaExplore: "Обзор продукции",
+        btnHeroSearch: "Поиск", ctaPrimary: "Обзор маркетплейса", ctaSecondary: "Добавить объявление",
+        secCategoriesTitle: "Обзор по категориям", secCategoriesSub: "Сельхозпродукция напрямую от фермеров и производителей", btnViewAllCat: "Все категории", btnAllCatCard: "Все",
+        secFeaturedTitle: "Свежие предложения", secFeaturedSub: "Недавно добавленная агро-продукция от производителей.", btnViewAllProducts: "Все товары",
+        secHowTitle: "Единая платформа. Простой процесс торговли.", secHowSub: "3 простых шага для прямой сделки",
+        howStep1Title: "1. Найдите или разместите продукт", howStep1Desc: "Просматривайте объявления или опубликуйте свой урожай за пару минут.",
+        howStep2Title: "2. Свяжитесь с партнером", howStep2Desc: "Общайтесь напрямую с производителями, оптовиками и экспортерами.",
+        howStep3Title: "3. Согласуйте условия и доставку", howStep3Desc: "Утвердите цены, минимальный объем и логистику напрямую.",
+        linkSellers: "Продавцам →", linkBuyers: "Покупателям →",
+        secFinalctaTitle: "Готовы найти нового торгового партнера?", secFinalctaSub: "Присоединяйтесь к AgroBridge и развивайте агро-торговлю вместе с нами.",
+        btnCtaAccount: "Создать аккаунт", btnCtaExplore: "Обзор маркетплейса",
+        ftrDesc: "Прямой агро маркетплейс, соединяющий производителей с покупателями и партнерами.",
+        ftrColMkt: "Маркетплейс", ftrColSrv: "Сервисы", ftrColCmp: "Компания",
         mktHeaderTitle: "Обзор агро-продукции", mktHeaderSub: "Откройте для себя продукцию от фермеров, производителей и кооперативов.",
         mktBtnSearch: "Поиск", fltHeading: "Фильтры", fltClearBtn: "Сбросить все",
         fltLblCat: "Категория", fltLblLoc: "Локация", fltLblType: "Тип продукта", fltLblPrice: "Диапазон цен", fltPriceonreq: 'Включая "Цена по запросу"',
@@ -1251,22 +1320,25 @@
         btnDtlContact: "Связаться с продавцом / Запросить цену", sellerCardHeading: "Информация о продавце", sellerMember: "На платформе с", sellerListings: "Активные объявления",
         inquiryHeading: "Отправить запрос продавцу", inqLblName: "Ваше имя", inqLblCompany: "Компания", inqLblEmail: "Email", inqLblPhone: "Телефон (опционально)", inqLblQty: "Требуемый объем", inqLblUnit: "Единица", inqLblCountry: "Страна назначения", inqLblMsg: "Сообщение", inqBtnSend: "Отправить запрос →",
         similarHeading: "Похожие товары", btnShare: "Поделиться",
-        dashRole: "Проверенный фермер и экспортер", dashInvTitle: "Запасы моей продукции",
-        thProd: "Продукция", thQty: "Запас", thPrice: "Цена", thStatus: "Статус",
-        dealTitle: "Сделка №9042: 24 тонн грузинского фундука", dealSub: "Продавец: Kakheti Heritage LLC 🇬🇪 | Покупатель: AgriCorp Netherlands B.V. 🇳🇱", dealMilestoneLbl: "Этапы сделки",
-        srvPageTitle: "Сервисы и Логистика",
-        authTabLogin: "🔑 Вход", authTabRegister: "📝 Регистрация",
-        loginLblEmail: "Email / Телефон", loginLblPass: "Пароль", loginBtn: "Войти в систему →",
-        regEntityLegal: "Юридическое лицо", regEntityIndividual: "Физическое лицо",
-        regLblName: "Имя / Компания", regLblTax: "ИНН / Личный номер", regBtn: "Создать аккаунт →",
-        footerRights: "Все права защищены.", toastLang: "Язык: Русский 🇷🇺"
+        dashRole: "Verified Farmer & Exporter", dashInvTitle: "My Product Inventory",
+        thProd: "Product", thQty: "Stock Qty", thPrice: "Unit Price", thStatus: "Status",
+        dealTitle: "Deal #9042: 24 Tonnes Georgian Hazelnuts", dealSub: "Seller: Kakheti Heritage LLC 🇬🇪 | Buyer: AgriCorp Netherlands B.V. 🇳🇱", dealMilestoneLbl: "Deal Milestones",
+        srvPageTitle: "Services & Freight Logistics",
+        authTabLogin: "🔑 Sign In", authTabRegister: "📝 Registration",
+        loginLblEmail: "Email / Phone Number", loginLblPass: "Password", loginBtn: "Sign In →",
+        regEntityLegal: "Legal Entity", regEntityIndividual: "Individual / Farmer",
+        regLblName: "Company / Full Name", regLblTax: "Tax ID / Personal ID Number", regBtn: "Create Account →",
+        footerRights: "Все права защищены.", toastLang: "Язык: Русский"
       }
     };
 
     let currentLang = 'ka';
 
     function toggleMobileDrawer() {
-      document.getElementById('mobile-drawer').classList.toggle('hidden');
+      const drawer = document.getElementById('mobile-drawer');
+      if (drawer) {
+        drawer.classList.toggle('hidden');
+      }
     }
 
     function openAuthModal(mode = 'login') {
@@ -1322,7 +1394,7 @@
       toast.className = `bg-slate-900 text-white text-xs px-4 py-3 rounded-xl shadow-xl flex items-center gap-2 pointer-events-auto transition-all font-medium border border-slate-800`;
       toast.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> <span>${message}</span>`;
       container.appendChild(toast);
-      lucide.createIcons();
+      if (window.lucide && window.lucide.createIcons) lucide.createIcons();
       setTimeout(() => { toast.remove(); }, 3500);
     }
 
@@ -1356,12 +1428,20 @@
       }, 50);
     }
 
+    function handleHeroSearch() {
+      const kw = document.getElementById('inp-hero-keyword').value.trim();
+      if (kw) {
+        document.getElementById('mkt-search-input').value = kw;
+        filterState.searchQuery = kw;
+      }
+      navigateTo('marketplace');
+    }
+
     function changeLanguage(lang) {
       currentLang = lang;
       const dict = i18n[lang];
 
       document.getElementById('t-brand-sub').innerText = dict.brandSub;
-      document.getElementById('t-nav-home').innerText = dict.navHome;
       document.getElementById('t-nav-marketplace').innerText = dict.navMarketplace;
       document.getElementById('t-nav-services').innerText = dict.navServices;
       document.getElementById('t-nav-how').innerText = dict.navHow;
@@ -1373,11 +1453,18 @@
       document.getElementById('m-nav-dashboard').innerText = dict.navDashboard;
       document.getElementById('m-nav-dealroom').innerText = dict.bnavDealroom;
 
-      document.getElementById('m-bnav-home').innerText = dict.bnavHome;
-      document.getElementById('m-bnav-marketplace').innerText = dict.bnavMarketplace;
-      document.getElementById('m-bnav-dashboard').innerText = dict.bnavDashboard;
-      document.getElementById('m-bnav-dealroom').innerText = dict.bnavDealroom;
-      document.getElementById('m-bnav-login').innerText = dict.bnavLogin;
+      document.getElementById('bnav-home').innerText = dict.bnavHome;
+      document.getElementById('bnav-marketplace').innerText = dict.bnavMarketplace;
+      document.getElementById('bnav-dashboard').innerText = dict.bnavDashboard;
+      document.getElementById('bnav-dealroom').innerText = dict.bnavDealroom;
+      document.getElementById('bnav-login').innerText = dict.bnavLogin;
+
+      if (document.getElementById('mnav-top-home')) document.getElementById('mnav-top-home').innerText = dict.navHome;
+      if (document.getElementById('mnav-top-marketplace')) document.getElementById('mnav-top-marketplace').innerText = dict.bnavMarketplace;
+      if (document.getElementById('mnav-top-services')) document.getElementById('mnav-top-services').innerText = dict.navServices;
+      if (document.getElementById('mnav-top-how')) document.getElementById('mnav-top-how').innerText = dict.navHow;
+      if (document.getElementById('mnav-top-dashboard')) document.getElementById('mnav-top-dashboard').innerText = dict.navDashboard;
+      if (document.getElementById('mnav-top-dealroom')) document.getElementById('mnav-top-dealroom').innerText = dict.bnavDealroom;
 
       document.getElementById('t-btn-login').innerText = dict.btnLogin;
       document.getElementById('t-btn-create-listing').innerText = dict.btnCreateListing;
@@ -1385,7 +1472,7 @@
       document.getElementById('m-btn-create-listing').innerText = dict.btnCreateListing;
 
       document.getElementById('t-hero-tag').innerText = dict.heroTag;
-      document.getElementById('t-hero-headline').innerHTML = dict.heroHeadline;
+      document.getElementById('t-hero-headline').innerText = dict.heroHeadline;
       document.getElementById('t-hero-subtext').innerText = dict.heroSubtext;
       document.getElementById('inp-hero-keyword').placeholder = dict.searchPlaceholder;
       document.getElementById('t-lbl-quicktags').innerText = dict.lblQuicktags;
@@ -1400,112 +1487,35 @@
       document.getElementById('t-sec-categories-title').innerText = dict.secCategoriesTitle;
       document.getElementById('t-sec-categories-sub').innerText = dict.secCategoriesSub;
       document.getElementById('t-btn-view-all-cat').innerText = dict.btnViewAllCat;
+      document.getElementById('t-btn-all-cat-card').innerText = dict.btnAllCatCard;
 
       document.getElementById('t-sec-featured-title').innerText = dict.secFeaturedTitle;
       document.getElementById('t-sec-featured-sub').innerText = dict.secFeaturedSub;
       document.getElementById('t-btn-view-all-products').innerText = dict.btnViewAllProducts;
 
-      document.getElementById('t-sec-usertype-title').innerText = dict.secUsertypeTitle;
-      document.getElementById('t-sec-usertype-sub').innerText = dict.secUsertypeSub;
-
       document.getElementById('t-sec-how-title').innerText = dict.secHowTitle;
       document.getElementById('t-sec-how-sub').innerText = dict.secHowSub;
-
-      document.getElementById('t-sec-services-title').innerText = dict.secServicesTitle;
-      document.getElementById('t-sec-services-sub').innerText = dict.secServicesSub;
-      document.getElementById('t-btn-all-services').innerText = dict.btnAllServices;
-
-      document.getElementById('t-sec-suppliers-title').innerText = dict.secSuppliersTitle;
-      document.getElementById('t-sec-suppliers-sub').innerText = dict.secSuppliersSub;
-      document.getElementById('t-btn-all-suppliers').innerText = dict.btnAllSuppliers;
+      document.getElementById('t-how-step1-title').innerText = dict.howStep1Title;
+      document.getElementById('t-how-step1-desc').innerText = dict.howStep1Desc;
+      document.getElementById('t-how-step2-title').innerText = dict.howStep2Title;
+      document.getElementById('t-how-step2-desc').innerText = dict.howStep2Desc;
+      document.getElementById('t-how-step3-title').innerText = dict.howStep3Title;
+      document.getElementById('t-how-step3-desc').innerText = dict.howStep3Desc;
+      document.getElementById('t-link-sellers').innerText = dict.linkSellers;
+      document.getElementById('t-link-buyers').innerText = dict.linkBuyers;
 
       document.getElementById('t-sec-finalcta-title').innerText = dict.secFinalctaTitle;
       document.getElementById('t-sec-finalcta-sub').innerText = dict.secFinalctaSub;
       document.getElementById('t-btn-cta-account').innerText = dict.btnCtaAccount;
       document.getElementById('t-btn-cta-explore').innerText = dict.btnCtaExplore;
 
-      // Marketplace View
-      document.getElementById('t-mkt-header-title').innerText = dict.mktHeaderTitle;
-      document.getElementById('t-mkt-header-sub').innerText = dict.mktHeaderSub;
-      document.getElementById('t-mkt-btn-search').innerText = dict.mktBtnSearch;
-      document.getElementById('t-flt-heading').innerText = dict.fltHeading;
-      document.getElementById('t-flt-clear-btn').innerText = dict.fltClearBtn;
-      document.getElementById('t-flt-lbl-cat').innerText = dict.fltLblCat;
-      document.getElementById('t-flt-lbl-loc').innerText = dict.fltLblLoc;
-      document.getElementById('t-flt-lbl-type').innerText = dict.fltLblType;
-      document.getElementById('t-flt-lbl-price').innerText = dict.fltLblPrice;
-      document.getElementById('t-flt-priceonreq').innerText = dict.fltPriceonreq;
-      document.getElementById('t-flt-lbl-qty').innerText = dict.fltLblQty;
-      document.getElementById('t-flt-lbl-sellertype').innerText = dict.fltLblSellertype;
-      document.getElementById('t-flt-verifiedonly').innerText = dict.fltVerifiedonly;
-      document.getElementById('t-flt-lbl-certs').innerText = dict.fltLblCerts;
-      document.getElementById('t-flt-btn-apply').innerText = dict.fltBtnApply;
-      document.getElementById('t-btn-mobile-filters').innerText = dict.btnMobileFilters;
-      document.getElementById('t-lbl-sortby').innerText = dict.lblSortby;
-      document.getElementById('t-empty-title').innerText = dict.emptyTitle;
-      document.getElementById('t-empty-desc').innerText = dict.emptyDesc;
-      document.getElementById('t-empty-btn-clear').innerText = dict.emptyBtnClear;
-      document.getElementById('t-empty-btn-browse').innerText = dict.emptyBtnBrowse;
-      document.getElementById('t-btn-loadmore').innerText = dict.btnLoadmore;
-
-      // Detail Page
-      document.getElementById('t-dtl-specs-heading').innerText = dict.dtlSpecsHeading;
-      document.getElementById('t-dtl-desc-heading').innerText = dict.dtlDescHeading;
-      document.getElementById('t-dtl-certs-heading').innerText = dict.dtlCertsHeading;
-      document.getElementById('t-dtl-trade-heading').innerText = dict.dtlTradeHeading;
-      document.getElementById('t-safety-heading').innerText = dict.safetyHeading;
-      document.getElementById('t-dtl-lbl-unitprice').innerText = dict.dtlLblUnitprice;
-      document.getElementById('t-dtl-lbl-avail').innerText = dict.dtlLblAvail;
-      document.getElementById('t-dtl-lbl-minorder').innerText = dict.dtlLblMinorder;
-      document.getElementById('t-btn-dtl-contact').innerText = dict.btnDtlContact;
-      document.getElementById('t-seller-card-heading').innerText = dict.sellerCardHeading;
-      document.getElementById('t-seller-member').innerText = dict.sellerMember;
-      document.getElementById('t-seller-listings').innerText = dict.sellerListings;
-      document.getElementById('t-inquiry-heading').innerText = dict.inquiryHeading;
-      document.getElementById('t-inq-lbl-name').innerText = dict.inqLblName;
-      document.getElementById('t-inq-lbl-company').innerText = dict.inqLblCompany;
-      document.getElementById('t-inq-lbl-email').innerText = dict.inqLblEmail;
-      document.getElementById('t-inq-lbl-phone').innerText = dict.inqLblPhone;
-      document.getElementById('t-inq-lbl-qty').innerText = dict.inqLblQty;
-      document.getElementById('t-inq-lbl-unit').innerText = dict.inqLblUnit;
-      document.getElementById('t-inq-lbl-country').innerText = dict.inqLblCountry;
-      document.getElementById('t-inq-lbl-msg').innerText = dict.inqLblMsg;
-      document.getElementById('t-inq-btn-send').innerText = dict.inqBtnSend;
-      document.getElementById('t-similar-heading').innerText = dict.similarHeading;
-      document.getElementById('t-btn-share').innerText = dict.btnShare;
-
-      document.getElementById('t-dash-role').innerText = dict.dashRole;
-      document.getElementById('t-dash-inv-title').innerText = dict.dashInvTitle;
-      document.getElementById('t-th-prod').innerText = dict.thProd;
-      document.getElementById('t-th-qty').innerText = dict.thQty;
-      document.getElementById('t-th-price').innerText = dict.thPrice;
-      document.getElementById('t-th-status').innerText = dict.thStatus;
-
-      document.getElementById('t-deal-title').innerText = dict.dealTitle;
-      document.getElementById('t-deal-sub').innerText = dict.dealSub;
-      document.getElementById('t-deal-milestone-lbl').innerText = dict.dealMilestoneLbl;
-      document.getElementById('t-srv-page-title').innerText = dict.srvPageTitle;
-
-      document.getElementById('t-auth-tab-login').innerText = dict.authTabLogin;
-      document.getElementById('t-auth-tab-register').innerText = dict.authTabRegister;
-      document.getElementById('t-login-lbl-email').innerText = dict.loginLblEmail;
-      document.getElementById('t-login-lbl-pass').innerText = dict.loginLblPass;
-      document.getElementById('t-login-btn').innerText = dict.loginBtn;
-
-      document.getElementById('t-reg-entity-legal').innerText = dict.regEntityLegal;
-      document.getElementById('t-reg-entity-individual').innerText = dict.regEntityIndividual;
-      document.getElementById('t-reg-lbl-name').innerText = dict.regLblName;
-      document.getElementById('t-reg-lbl-tax').innerText = dict.regLblTax;
-      document.getElementById('t-reg-btn').innerText = dict.regBtn;
-
+      document.getElementById('t-ftr-desc').innerText = dict.ftrDesc;
+      document.getElementById('t-ftr-col-mkt').innerText = dict.ftrColMkt;
+      document.getElementById('t-ftr-col-srv').innerText = dict.ftrColSrv;
+      document.getElementById('t-ftr-col-cmp').innerText = dict.ftrColCmp;
       document.getElementById('t-footer-rights').innerText = dict.footerRights;
 
-      renderCategories();
       renderFeaturedProducts();
-      renderUserTypes();
-      renderHowSteps();
-      renderServices();
-      renderSuppliers();
       renderMarketplacePage();
       renderDashboardInventory();
       renderDealMilestones();
@@ -1518,24 +1528,12 @@
       showToast(dict.toastLang, 'success');
     }
 
-    function renderCategories() {
-      const container = document.getElementById('grid-categories');
-      if (!container) return;
-      container.innerHTML = CATEGORIES.slice(1).map(c => `
-        <div onclick="selectCategoryFilter('${c.id}'); navigateTo('marketplace')" class="ui-card p-3 sm:p-4 text-center cursor-pointer hover:bg-slate-50 transition-all flex flex-col items-center justify-center space-y-1.5 sm:space-y-2">
-          <span class="text-2xl sm:text-3xl">${c.icon}</span>
-          <h3 class="text-[11px] sm:text-xs font-bold text-slate-900 line-clamp-1">${c.name[currentLang] || c.name.en}</h3>
-          <span class="text-[9px] sm:text-[10px] text-slate-500 font-medium bg-slate-100 px-2 py-0.5 rounded-full">Explore</span>
-        </div>
-      `).join('');
-    }
-
     function renderFeaturedProducts() {
       const container = document.getElementById('grid-featured-products');
       if (!container) return;
-      const listings = getListingsData().slice(0, 3);
+      const listings = getListingsData().slice(0, 4);
       container.innerHTML = listings.map(p => createProductCardHTML(p)).join('');
-      lucide.createIcons();
+      if (window.lucide && window.lucide.createIcons) lucide.createIcons();
     }
 
     function createProductCardHTML(p) {
@@ -1739,7 +1737,7 @@
         emptyBox.classList.add('hidden');
         grid.classList.remove('hidden');
         grid.innerHTML = list.map(p => createProductCardHTML(p)).join('');
-        lucide.createIcons();
+        if (window.lucide && window.lucide.createIcons) lucide.createIcons();
       }
     }
 
@@ -1774,7 +1772,7 @@
             <button onclick="removeFilterChip('${c.key}')" class="hover:text-brand-900 p-0.5"><i data-lucide="x" class="w-3 h-3"></i></button>
           </span>
         `).join('');
-        lucide.createIcons();
+        if (window.lucide && window.lucide.createIcons) lucide.createIcons();
       }
     }
 
@@ -1935,7 +1933,7 @@
         similarGrid.innerHTML = similars.map(p => createProductCardHTML(p)).join('');
       }
 
-      lucide.createIcons();
+      if (window.lucide && window.lucide.createIcons) lucide.createIcons();
     }
 
     function scrollToInquiryForm() {
@@ -1973,99 +1971,10 @@
       }
     }
 
-    function renderUserTypes() {
-      const container = document.getElementById('grid-usertypes');
-      if (!container) return;
-      const list = userTypesData[currentLang];
-      container.innerHTML = list.map(u => `
-        <div class="ui-card p-5 sm:p-6 rounded-2xl bg-white space-y-3 sm:space-y-4 flex flex-col justify-between">
-          <div class="space-y-2 sm:space-y-3">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-50 text-brand-700 flex items-center justify-center text-xl sm:text-2xl border border-brand-100">${u.icon}</div>
-            <h3 class="text-sm sm:text-base font-bold text-slate-900">${u.title}</h3>
-            <p class="text-[11px] sm:text-xs text-slate-600 leading-relaxed">${u.desc}</p>
-          </div>
-          <button onclick="openAuthModal('register')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs shadow-sm">${u.btn} &rarr;</button>
-        </div>
-      `).join('');
-    }
-
-    function renderHowSteps() {
-      const container = document.getElementById('grid-how-steps');
-      if (!container) return;
-      const list = howStepsData[currentLang];
-      container.innerHTML = list.map(s => `
-        <div class="ui-card p-5 sm:p-6 rounded-2xl bg-slate-50/60 space-y-2.5 sm:space-y-3 border border-slate-200">
-          <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-brand-600 text-white font-black text-xs flex items-center justify-center shadow-md">${s.num}</span>
-          <h3 class="text-sm sm:text-base font-bold text-slate-900">${s.title}</h3>
-          <p class="text-[11px] sm:text-xs text-slate-600 leading-relaxed">${s.desc}</p>
-        </div>
-      `).join('');
-    }
-
-    function renderServices() {
-      const container = document.getElementById('grid-pro-services');
-      if (!container) return;
-      const isKa = currentLang === 'ka';
-      const isRu = currentLang === 'ru';
-      container.innerHTML = `
-        <div class="ui-card p-4 sm:p-5 rounded-2xl bg-white space-y-2">
-          <i data-lucide="truck" class="w-5 h-5 text-brand-600"></i>
-          <h3 class="text-xs sm:text-sm font-bold text-slate-900">${isKa ? '3PL ლოჯისტიკა' : (isRu ? '3PL Логистика' : '3PL Freight Logistics')}</h3>
-          <p class="text-[11px] sm:text-xs text-slate-500">${isKa ? 'საავტომობილო და საზღვაო გადაზიდვები.' : (isRu ? 'Авто и морские перевозки.' : 'Road & maritime vessel freight.')}</p>
-        </div>
-        <div class="ui-card p-4 sm:p-5 rounded-2xl bg-white space-y-2">
-          <i data-lucide="thermometer" class="w-5 h-5 text-amber-600"></i>
-          <h3 class="text-xs sm:text-sm font-bold text-slate-900">${isKa ? 'საცივრე საწყობები' : (isRu ? 'Холодильные склады' : 'Cold Storage Warehousing')}</h3>
-          <p class="text-[11px] sm:text-xs text-slate-500">${isKa ? 'ტემპერატურულად კონტროლირებადი შენახვა.' : (isRu ? 'Склады с контролем температуры.' : 'Temperature-controlled storage.')}</p>
-        </div>
-        <div class="ui-card p-4 sm:p-5 rounded-2xl bg-white space-y-2">
-          <i data-lucide="file-text" class="w-5 h-5 text-blue-600"></i>
-          <h3 class="text-xs sm:text-sm font-bold text-slate-900">${isKa ? 'საბაჟო ბროკერი' : (isRu ? 'Таможенный брокер' : 'Customs Brokerage')}</h3>
-          <p class="text-[11px] sm:text-xs text-slate-500">${isKa ? 'EUR.1 სერტიფიკაცია და გაფორმება.' : (isRu ? 'Сертификация EUR.1 и таможня.' : 'EUR.1 certification & clearance.')}</p>
-        </div>
-        <div class="ui-card p-4 sm:p-5 rounded-2xl bg-white space-y-2">
-          <i data-lucide="shield-check" class="w-5 h-5 text-purple-600"></i>
-          <h3 class="text-xs sm:text-sm font-bold text-slate-900">${isKa ? 'SGS ინსპექტირება' : (isRu ? 'Инспекция SGS' : 'SGS Cargo Inspection')}</h3>
-          <p class="text-[11px] sm:text-xs text-slate-500">${isKa ? 'ხარისხისა და წონის დამოუკიდებელი ტესტი.' : (isRu ? 'Независимый контроль качества.' : 'Independent cargo quality testing.')}</p>
-        </div>
-      `;
-      lucide.createIcons();
-    }
-
-    function renderSuppliers() {
-      const container = document.getElementById('grid-trusted-suppliers');
-      if (!container) return;
-      const isKa = currentLang === 'ka';
-      const isRu = currentLang === 'ru';
-      container.innerHTML = `
-        <div class="ui-card p-4 sm:p-5 rounded-2xl bg-white space-y-1.5 sm:space-y-2">
-          <span class="text-[10px] sm:text-xs font-bold text-slate-400">Georgia 🇬🇪</span>
-          <h3 class="text-xs sm:text-sm font-bold text-slate-900">Kakheti Heritage LLC</h3>
-          <p class="text-[11px] sm:text-xs text-slate-500">🌰 Hazelnuts, 🍷 Bio Wine</p>
-        </div>
-        <div class="ui-card p-4 sm:p-5 rounded-2xl bg-white space-y-1.5 sm:space-y-2">
-          <span class="text-[10px] sm:text-xs font-bold text-slate-400">Georgia 🇬🇪</span>
-          <h3 class="text-xs sm:text-sm font-bold text-slate-900">Telavi Wine Cellar</h3>
-          <p class="text-[11px] sm:text-xs text-slate-500">🍷 Qvevri Amber Wine</p>
-        </div>
-        <div class="ui-card p-4 sm:p-5 rounded-2xl bg-white space-y-1.5 sm:space-y-2">
-          <span class="text-[10px] sm:text-xs font-bold text-slate-400">Georgia 🇬🇪</span>
-          <h3 class="text-xs sm:text-sm font-bold text-slate-900">Gori Orchards & Export</h3>
-          <p class="text-[11px] sm:text-xs text-slate-500">🍏 Red Gala Apples</p>
-        </div>
-        <div class="ui-card p-4 sm:p-5 rounded-2xl bg-white space-y-1.5 sm:space-y-2">
-          <span class="text-[10px] sm:text-xs font-bold text-slate-400">Netherlands 🇳🇱</span>
-          <h3 class="text-xs sm:text-sm font-bold text-slate-900">AgriCorp Netherlands B.V.</h3>
-          <p class="text-[11px] sm:text-xs text-slate-500">🚢 EU Importer & Wholesale</p>
-        </div>
-      `;
-    }
-
     function renderDashboardInventory() {
       const tbody = document.getElementById('inventory-tbody');
       if (!tbody) return;
       const isKa = currentLang === 'ka';
-      const isRu = currentLang === 'ru';
       tbody.innerHTML = `
         <tr class="hover:bg-slate-50 cursor-pointer" onclick="openProductDetailPage('prod-1')">
           <td class="p-3 font-bold text-slate-900">${isKa ? 'ქართული თხილი (13-15მმ)' : 'Georgian Hazelnuts (13-15mm)'}</td>
@@ -2091,7 +2000,24 @@
     function renderServicesPage() {
       const grid = document.getElementById('services-page-grid');
       if (!grid) return;
-      renderServices();
+      grid.innerHTML = `
+        <div class="ui-card p-5 rounded-2xl bg-white space-y-2">
+          <i data-lucide="truck" class="w-5 h-5 text-brand-600"></i>
+          <h3 class="text-sm font-bold text-slate-900">3PL Freight Logistics</h3>
+          <p class="text-xs text-slate-500">Road and maritime vessel freight for agricultural cargo.</p>
+        </div>
+        <div class="ui-card p-5 rounded-2xl bg-white space-y-2">
+          <i data-lucide="thermometer" class="w-5 h-5 text-amber-600"></i>
+          <h3 class="text-sm font-bold text-slate-900">Cold Storage Warehousing</h3>
+          <p class="text-xs text-slate-500">Temperature-controlled reefer storage.</p>
+        </div>
+        <div class="ui-card p-5 rounded-2xl bg-white space-y-2">
+          <i data-lucide="file-text" class="w-5 h-5 text-blue-600"></i>
+          <h3 class="text-sm font-bold text-slate-900">Customs Brokerage</h3>
+          <p class="text-xs text-slate-500">EUR.1 certification and customs declaration.</p>
+        </div>
+      `;
+      if (window.lucide && window.lucide.createIcons) lucide.createIcons();
     }
 
     function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
@@ -2101,6 +2027,7 @@
     window.applyMarketplaceFilters = applyMarketplaceFilters;
     window.clearAllFilters = clearAllFilters;
     window.handleMarketplaceSearchInput = handleMarketplaceSearchInput;
+    window.handleHeroSearch = handleHeroSearch;
     window.removeFilterChip = removeFilterChip;
     window.openMobileFilterDrawer = openMobileFilterDrawer;
     window.closeMobileFilterDrawer = closeMobileFilterDrawer;
@@ -2113,6 +2040,7 @@
     window.shareProduct = shareProduct;
     window.navigateTo = navigateTo;
     window.changeLanguage = changeLanguage;
+    window.toggleMobileDrawer = toggleMobileDrawer;
 
     document.addEventListener('DOMContentLoaded', () => {
       changeLanguage('ka');
